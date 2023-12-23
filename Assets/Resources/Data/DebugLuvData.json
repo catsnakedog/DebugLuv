@@ -1,0 +1,48 @@
+{
+"StoryData":[
+ {
+  "ChName": "Java",
+  "StoryNumber": 1,
+  "StoryName": "첫만남"
+ }
+],
+    "TextData": [
+        {
+            "ChName": null,
+            "StoryNumber": null,
+            "BranchNumber": null,
+            "TaskOrder": null,
+            "BGTask": null,
+            "Ch1Task": null,
+            "Ch2Task": null,
+            "Ch3Task": null,
+            "Ch4Task": null,
+            "Ch1Image": null,
+            "Ch1Scale": null,
+            "Ch2Image": null,
+            "Ch2Scale": null,
+            "Ch3Image": null,
+            "Ch3Scale": null,
+            "Ch4Image": null,
+            "Ch4Scale": null,
+            "BGImage": null,
+            "Name": null,
+            "Text": null,
+            "ChoiceNumber": null,
+            "Value1": null,
+            "Value2": null,
+            "Value3": null,
+            "Value4": null,
+            "Value5": null,
+            "Value6": null,
+            "Value7": null
+        }
+    ],
+    "ChoiceData": [
+        {
+            "ChoiceNumber": null,
+            "BranchNumber": null,
+            "Text": null
+        }
+    ]
+}
