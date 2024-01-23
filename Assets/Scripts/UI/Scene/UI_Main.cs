@@ -46,7 +46,6 @@ public class UI_Main : UI_Scene
 
     void GameStart(PointerEventData data)
     {
-        Managers.Resource.TextDataSetting();
         Managers.Scene.LoadScene(Define.Scene.InGame);
     }
 

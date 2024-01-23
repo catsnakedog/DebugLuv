@@ -1,0 +1,729 @@
+
+2024-01-24 08:31:05
+
+
+발견된 버그 갯수 : 240
+
+
+----------------------------------------------------
+
+7번 줄 : | BGImage | Ch1ImageCode | Ch1Pos 
+
+
+8번 줄 : | BGImage | Ch1ImageCode | Ch1Pos 
+
+
+10번 줄 : | TaskOrder 
+
+
+11번 줄 : | Ch1ImageCode | Ch1Pos 
+
+
+25번 줄 : | BGImage 
+
+
+26번 줄 : | BGImage 
+
+
+27번 줄 : | BGImage 
+
+
+28번 줄 : | BGImage 
+
+
+56번 줄 : | Value_BG_0-None | Value_BG_1-None 
+
+
+57번 줄 : | BGImage 
+
+
+58번 줄 : | BGImage 
+
+
+59번 줄 : | BGImage 
+
+
+60번 줄 : | BGImage 
+
+
+61번 줄 : | BGImage 
+
+
+62번 줄 : | BGImage 
+
+
+63번 줄 : | BGImage 
+
+
+64번 줄 : | BGImage 
+
+
+65번 줄 : | BGImage 
+
+
+66번 줄 : | BGImage 
+
+
+67번 줄 : | BGImage 
+
+
+68번 줄 : | BGImage 
+
+
+69번 줄 : | Value_BG_0-None | Value_BG_1-None | BGImage 
+
+
+74번 줄 : | TaskOrder 
+
+
+83번 줄 : | Value_BG_0-None | Value_BG_1-None 
+
+
+102번 줄 : | TaskOrder | TaskOrder | TaskOrder | TaskOrder | BGImage 
+
+
+103번 줄 : | BGImage 
+
+
+104번 줄 : | BGImage 
+
+
+105번 줄 : | BGImage 
+
+
+106번 줄 : | BGImage 
+
+
+107번 줄 : | BGImage 
+
+
+108번 줄 : | TaskOrder | BGImage 
+
+
+109번 줄 : | TaskOrder | TaskOrder | TaskOrder | BGImage 
+
+
+110번 줄 : | BGImage 
+
+
+111번 줄 : | BGImage 
+
+
+112번 줄 : | BGImage 
+
+
+113번 줄 : | BGImage 
+
+
+114번 줄 : | BGImage 
+
+
+115번 줄 : | BGImage 
+
+
+116번 줄 : | BGImage 
+
+
+117번 줄 : | TaskOrder | BGImage 
+
+
+118번 줄 : | TaskOrder | BGImage 
+
+
+119번 줄 : | TaskOrder | BGImage 
+
+
+120번 줄 : | TaskOrder | BGImage 
+
+
+121번 줄 : | BGImage 
+
+
+122번 줄 : | BGImage 
+
+
+123번 줄 : | BGImage 
+
+
+124번 줄 : | BGImage 
+
+
+125번 줄 : | BGImage 
+
+
+126번 줄 : | BGImage 
+
+
+127번 줄 : | BGImage 
+
+
+128번 줄 : | BGImage 
+
+
+129번 줄 : | BGImage 
+
+
+130번 줄 : | BGImage 
+
+
+131번 줄 : | BGImage 
+
+
+132번 줄 : | BGImage 
+
+
+133번 줄 : | BGImage 
+
+
+134번 줄 : | BGImage 
+
+
+135번 줄 : | BGImage 
+
+
+136번 줄 : | BGImage 
+
+
+137번 줄 : | BGImage 
+
+
+138번 줄 : | BGImage 
+
+
+139번 줄 : | BGImage 
+
+
+140번 줄 : | BGImage 
+
+
+141번 줄 : | BGImage 
+
+
+142번 줄 : | BGImage 
+
+
+143번 줄 : | BGImage 
+
+
+144번 줄 : | BGImage 
+
+
+145번 줄 : | BGImage 
+
+
+146번 줄 : | BGImage 
+
+
+147번 줄 : | BGImage 
+
+
+148번 줄 : | BGImage 
+
+
+149번 줄 : | BGImage 
+
+
+150번 줄 : | BGImage 
+
+
+151번 줄 : | BGImage 
+
+
+152번 줄 : | BGImage 
+
+
+153번 줄 : | BGImage 
+
+
+154번 줄 : | BGImage 
+
+
+155번 줄 : | TaskOrder | Value_BG_0-None | BGImage 
+
+
+156번 줄 : | BGImage 
+
+
+157번 줄 : | BGImage 
+
+
+158번 줄 : | BGImage 
+
+
+159번 줄 : | BGImage 
+
+
+160번 줄 : | BGImage 
+
+
+161번 줄 : | BGImage 
+
+
+162번 줄 : | BGImage 
+
+
+163번 줄 : | BGImage 
+
+
+164번 줄 : | BGImage 
+
+
+165번 줄 : | BGImage 
+
+
+166번 줄 : | BGImage 
+
+
+167번 줄 : | BGImage 
+
+
+168번 줄 : | BGImage 
+
+
+169번 줄 : | BGImage 
+
+
+170번 줄 : | BGImage 
+
+
+171번 줄 : | BGImage 
+
+
+172번 줄 : | BGImage 
+
+
+173번 줄 : | BGImage 
+
+
+174번 줄 : | BGImage 
+
+
+175번 줄 : | BGImage 
+
+
+176번 줄 : | BGImage 
+
+
+177번 줄 : | BGImage 
+
+
+178번 줄 : | BGImage 
+
+
+179번 줄 : | BGImage 
+
+
+180번 줄 : | BGImage 
+
+
+181번 줄 : | BGImage 
+
+
+182번 줄 : | BGImage 
+
+
+183번 줄 : | BGImage 
+
+
+184번 줄 : | BGImage 
+
+
+185번 줄 : | BGImage 
+
+
+186번 줄 : | BGImage 
+
+
+187번 줄 : | BGImage 
+
+
+188번 줄 : | BGImage 
+
+
+189번 줄 : | BGImage 
+
+
+190번 줄 : | BGImage 
+
+
+191번 줄 : | BGImage 
+
+
+192번 줄 : | BGImage 
+
+
+193번 줄 : | BGImage 
+
+
+194번 줄 : | BGImage 
+
+
+195번 줄 : | BGImage 
+
+
+196번 줄 : | BGImage 
+
+
+197번 줄 : | BGImage 
+
+
+198번 줄 : | BGImage 
+
+
+199번 줄 : | BGImage 
+
+
+200번 줄 : | BGImage 
+
+
+201번 줄 : | BGImage 
+
+
+202번 줄 : | BGImage 
+
+
+203번 줄 : | BGImage 
+
+
+204번 줄 : | BGImage 
+
+
+205번 줄 : | BGImage 
+
+
+206번 줄 : | BGImage 
+
+
+207번 줄 : | BGImage 
+
+
+208번 줄 : | BGImage 
+
+
+209번 줄 : | BGImage 
+
+
+210번 줄 : | BGImage 
+
+
+211번 줄 : | BGImage 
+
+
+212번 줄 : | BGImage 
+
+
+213번 줄 : | TaskOrder | BGImage 
+
+
+214번 줄 : | BGImage 
+
+
+215번 줄 : | BGImage 
+
+
+216번 줄 : | BGImage 
+
+
+217번 줄 : | BGImage 
+
+
+218번 줄 : | BGImage 
+
+
+219번 줄 : | BGImage 
+
+
+220번 줄 : | BGImage 
+
+
+221번 줄 : | BGImage 
+
+
+222번 줄 : | BGImage 
+
+
+223번 줄 : | BGImage 
+
+
+224번 줄 : | BGImage 
+
+
+225번 줄 : | BGImage 
+
+
+226번 줄 : | BGImage 
+
+
+227번 줄 : | BGImage 
+
+
+228번 줄 : | BGImage 
+
+
+229번 줄 : | BGImage 
+
+
+230번 줄 : | BGImage 
+
+
+231번 줄 : | TaskOrder | BGImage 
+
+
+232번 줄 : | BGImage 
+
+
+233번 줄 : | BGImage 
+
+
+234번 줄 : | BGImage 
+
+
+235번 줄 : | BGImage 
+
+
+236번 줄 : | BGImage 
+
+
+237번 줄 : | BGImage 
+
+
+238번 줄 : | BGImage 
+
+
+239번 줄 : | BGImage 
+
+
+240번 줄 : | BGImage 
+
+
+241번 줄 : | BGImage 
+
+
+242번 줄 : | BGImage 
+
+
+243번 줄 : | BGImage 
+
+
+244번 줄 : | BGImage 
+
+
+245번 줄 : | BGImage 
+
+
+246번 줄 : | BGImage 
+
+
+247번 줄 : | BGImage 
+
+
+248번 줄 : | BGImage 
+
+
+249번 줄 : | BGImage 
+
+
+250번 줄 : | BGImage 
+
+
+251번 줄 : | BGImage 
+
+
+252번 줄 : | BGImage 
+
+
+253번 줄 : | BGImage 
+
+
+254번 줄 : | BGImage 
+
+
+255번 줄 : | BGImage 
+
+
+256번 줄 : | BGImage 
+
+
+257번 줄 : | BGImage 
+
+
+258번 줄 : | BGImage 
+
+
+259번 줄 : | BGImage 
+
+
+260번 줄 : | BGImage 
+
+
+261번 줄 : | BGImage 
+
+
+262번 줄 : | BGImage 
+
+
+263번 줄 : | BGImage 
+
+
+264번 줄 : | BGImage 
+
+
+265번 줄 : | BGImage 
+
+
+266번 줄 : | BGImage 
+
+
+267번 줄 : | BGImage 
+
+
+268번 줄 : | BGImage 
+
+
+269번 줄 : | BGImage 
+
+
+270번 줄 : | BGImage 
+
+
+271번 줄 : | BGImage 
+
+
+272번 줄 : | BGImage 
+
+
+273번 줄 : | BGImage 
+
+
+274번 줄 : | BGImage 
+
+
+275번 줄 : | BGImage 
+
+
+276번 줄 : | BGImage 
+
+
+277번 줄 : | BGImage 
+
+
+278번 줄 : | BGImage 
+
+
+279번 줄 : | Value_BG_0-None | Value_BG_1-None | BGImage 
+
+
+280번 줄 : | BGImage 
+
+
+281번 줄 : | BGImage 
+
+
+282번 줄 : | Value_BG_0-None | Value_BG_1-None | BGImage 
+
+
+283번 줄 : | BGImage 
+
+
+284번 줄 : | BGImage 
+
+
+285번 줄 : | BGImage 
+
+
+286번 줄 : | BGImage 
+
+
+287번 줄 : | BGImage 
+
+
+288번 줄 : | BGImage 
+
+
+289번 줄 : | BGImage 
+
+
+290번 줄 : | BGImage 
+
+
+291번 줄 : | BGImage 
+
+
+292번 줄 : | BGImage 
+
+
+293번 줄 : | Value_BG_0-None | Value_BG_1-None | BGImage 
+
+
+294번 줄 : | BGImage 
+
+
+295번 줄 : | BGImage 
+
+
+296번 줄 : | BGImage 
+
+
+297번 줄 : | BGImage 
+
+
+298번 줄 : | BGImage 
+
+
+299번 줄 : | BGImage 
+
+
+300번 줄 : | BGImage 
+
+
+301번 줄 : | BGImage 
+
+
+302번 줄 : | BGImage 
+
+
+303번 줄 : | BGImage 
+
+
+304번 줄 : | BGImage 
+
+
+305번 줄 : | BGImage 
+
+
+306번 줄 : | BGImage 
+
+
+307번 줄 : | Value_BG_0-None | Value_BG_1-None | BGImage 
+
+
+308번 줄 : | BGImage 
+
+
+309번 줄 : | BGImage 
+
+
+310번 줄 : | BGImage 
+
+
+311번 줄 : | BGImage 
+
+
+312번 줄 : | TaskOrder | TaskOrder | BGImage 
+
+
+313번 줄 : | BGImage 
+
+
+314번 줄 : | BGImage 
+
+
+315번 줄 : | BGImage 
+
+
+316번 줄 : | BGImage 
+
+
+317번 줄 : | Value_BG_0-None | Value_BG_1-None | BGImage 
+
+

@@ -7,14 +7,15 @@ public class InGame : BaseScene
     TaskController _taskController;
     int _textDataIdx;
     int _textDataBranch;
-
+    InGameData _inGameData;
 
     protected override void Init()
     {
         base.Init();
         SceneType = Define.Scene.InGame;
         Managers.UI_Manager.ShowSceneUI<UI_InGame>();
-        _taskController = gameObject.AddComponent<TaskController>();
+        _taskController = gameObject.GetOrAddComponent<TaskController>();
+        _inGameData = Data.GameData.InGameData;
 
         StartCoroutine(InGameStart());
     }
@@ -37,7 +38,7 @@ public class InGame : BaseScene
     {
         if(ParagraphDataSetting(out List<TextData> data))
         {
-            StartCoroutine(_taskController.TaskSetting(data));
+            _taskController.TaskSetting(data);
         }
         else
         {
@@ -53,26 +54,16 @@ public class InGame : BaseScene
 
     bool ParagraphDataSetting(out List<TextData> data)
     {
-        data = new List<TextData>();
-        if(Data.GameData.InGameData.TextData[_textDataBranch].Count > _textDataIdx)
-        {
-            data.Add(Data.GameData.InGameData.TextData[_textDataBranch][_textDataIdx]);
-            _textDataIdx++;
-            for(int i = _textDataIdx; i < Data.GameData.InGameData.TextData[_textDataBranch].Count; i++)
-            {
-                if (string.IsNullOrEmpty(Data.GameData.InGameData.TextData[_textDataBranch][_textDataIdx].ChName))
-                {
-                    data.Add(Data.GameData.InGameData.TextData[_textDataBranch][_textDataIdx]);
-                    _textDataIdx++;
-                }
-                else
-                    break;
-            }
+        var storage = _inGameData.TextData[_inGameData.ChName][_inGameData.StoryNumber][_textDataBranch];
 
+        if(storage.Count > _textDataIdx)
+        {
+            data = storage[_textDataIdx];
             return true;
         }
         else
         {
+            data = storage[_textDataIdx];
             return false;
         }
     }

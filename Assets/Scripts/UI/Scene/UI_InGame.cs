@@ -83,7 +83,7 @@ public class UI_InGame : UI_Scene
 
     IEnumerator FadeIn()
     {
-        Get<Image>((int)Images.BG).sprite = Data.GameData.InGameData.InGameSprite[Data.GameData.InGameData.TextData[0][0].BGImage];
+        Get<Image>((int)Images.BG).sprite = Data.GameData.InGameData.InGameSprite["black"];
         while (Get<Image>((int)Images.BG).color.a < 1)
         {
             Get<Image>((int)Images.BG).color += new Color(0, 0, 0, Time.deltaTime * FadeSpeed);

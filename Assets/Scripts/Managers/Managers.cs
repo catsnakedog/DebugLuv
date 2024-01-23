@@ -26,7 +26,7 @@ public class Managers : MonoBehaviour // 필요한 각종 기능들을 모아두는 클래스이�
     }
 
     static void Init(){
-        if(s_instance == null) // 싱글톤 패턴을 통해 s_instance의 유일성을 보장한다
+        if(s_instance == null) // s_instance의 유일성을 보장한다
         {
             GameObject go = GameObject.Find("@Managers");
             if(go==null)

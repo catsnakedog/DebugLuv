@@ -7,11 +7,11 @@ public class TaskController : MonoBehaviour
     List<TextData> _data;
     string[] _chTask;
 
-    public IEnumerator TaskSetting(List<TextData> textData)
+    public void TaskSetting(List<TextData> textData)
     {
         _data = textData;
-        
-        foreach(TextData data in _data)
+
+        foreach (TextData data in _data)
         {
             _chTask = new string[4];
             if (!string.IsNullOrEmpty(data.Ch1Task))
@@ -23,7 +23,7 @@ public class TaskController : MonoBehaviour
             if (!string.IsNullOrEmpty(data.Ch4Task))
                 _chTask[0] = data.Ch4Task;
 
-            List<List<List<string>>> lineList = new List<List<List<string>>>();
+            List<List<List<string>>> lineList = new();
 
             int i = 0;
             foreach(string orderList in data.TaskOrder.Split("\n"))
@@ -57,7 +57,6 @@ public class TaskController : MonoBehaviour
             }
             StartCoroutine(StartLine(lineList));
         }
-        yield return new WaitForSeconds(0);
     }
 
     IEnumerator StartLine(List<List<List<string>>> lineList)
