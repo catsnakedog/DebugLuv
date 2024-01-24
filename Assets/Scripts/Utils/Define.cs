@@ -11,6 +11,7 @@ public class Define : MonoBehaviour
         Unknown,
         Main,
         InGame,
+        Test,
         Loading,
     }
 
