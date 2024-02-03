@@ -30,4 +30,9 @@ public class Define : MonoBehaviour
         Drag,
         Effect,
     }
+
+    public struct Tasks
+    {
+        List<TextData>
+    }
 }

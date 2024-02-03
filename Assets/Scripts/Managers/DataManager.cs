@@ -9,9 +9,9 @@ using UnityEngine.UI;
 
 public class DataManager // 데이터를 관리하는 Manager이다
 {
-    JsonManager _jsonManager; // Json 데이터를 읽고, 쓰는 Manager이다
-    InGameData _inGameData;
-    DebugLuvData _debugLuvData;
+    private JsonManager _jsonManager; // Json 데이터를 읽고, 쓰는 Manager이다
+    private InGameData _inGameData;
+    private DebugLuvData _debugLuvData;
 
     public void Init()
     {
@@ -52,14 +52,14 @@ public class DataManager // 데이터를 관리하는 Manager이다
         _jsonManager.SaveJson(Data.GameData.SaveData);
     }
 
-    public void SortingDebugLuvData(DebugLuvData data)
+    public void SortDebugLuvData(DebugLuvData data)
     {
 
     }
 
     public void TextDataSetting() // 해당 ChName, StoryNumber의 데이터를 가공한다
     {
-        TextDataClear();
+        ClearTextData();
 
         string chName = "None";
         int storyNumber = -1;
@@ -147,7 +147,7 @@ public class DataManager // 데이터를 관리하는 Manager이다
 #endif
     }
 
-    public void TextDataClear()
+    public void ClearTextData()
     {
         Data.GameData.InGameData.TextData = new();
     }

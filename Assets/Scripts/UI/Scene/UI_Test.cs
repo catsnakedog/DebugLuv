@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class UI_Test : UI_Scene
 {
-    enum TMP_InputFields
+    enum TMP_Dropdowns
     {
         ChName,
         StoryNumber
@@ -35,13 +35,39 @@ public class UI_Test : UI_Scene
     {
         base.Init();
 
-        Bind<TMP_InputField>(typeof(TMP_InputFields));
+        Bind<TMP_Dropdown>(typeof(TMP_Dropdowns));
         Bind<TMP_Text>(typeof(TMP_Texts));
         HardBind<Button>(typeof(Buttons));
-
-        Get<TMP_InputField>((int)TMP_InputFields.ChName).onEndEdit.AddListener(ChNameSetting);
-        Get<TMP_InputField>((int)TMP_InputFields.StoryNumber).onEndEdit.AddListener(StoryNumberSetting);
+        Get<TMP_Dropdown>((int)TMP_Dropdowns.ChName).onValueChanged.AddListener(ChNameChange);
+        Get<TMP_Dropdown>((int)TMP_Dropdowns.StoryNumber).onValueChanged.AddListener(StoryNumberChange);
         Get<Button>((int)Buttons.Start).gameObject.AddUIEvent(GameStart, Define.UIEvent.Click);
+
+        UISetting();
+    }
+
+    void UISetting()
+    {
+        ChNameUISetting();
+        StoryNumberUISetting();
+    }
+
+    void ChNameUISetting()
+    {
+        foreach(string key in Data.GameData.InGameData.TextData.Keys)
+        {
+            Get<TMP_Dropdown>((int)TMP_Dropdowns.ChName).options.Add(new TMP_Dropdown.OptionData(key));
+        }
+        Data.GameData.InGameData.ChName = Get<TMP_Dropdown>((int)TMP_Dropdowns.ChName).options[0].text;
+        Get<TMP_Dropdown>((int)TMP_Dropdowns.ChName).RefreshShownValue();
+    }
+
+    void StoryNumberUISetting()
+    {
+        foreach(int key in Data.GameData.InGameData.TextData[Data.GameData.InGameData.ChName].Keys)
+        {
+            Get<TMP_Dropdown>((int)TMP_Dropdowns.StoryNumber).options.Add(new TMP_Dropdown.OptionData(key.ToString()));
+        }
+        Get<TMP_Dropdown>((int)TMP_Dropdowns.StoryNumber).RefreshShownValue();
     }
 
     void GameStart(PointerEventData data)
@@ -49,37 +75,15 @@ public class UI_Test : UI_Scene
         Managers.Scene.LoadScene(Define.Scene.InGame);
     }
 
-    void ChNameSetting(string value)
+    void ChNameChange(int value)
     {
-        Data.GameData.InGameData.ChName = value;
-        _isChInput = true;
-
-        GameStartCheck();
+        Data.GameData.InGameData.ChName = Get<TMP_Dropdown>((int)TMP_Dropdowns.ChName).options[value].text;
+        Get<TMP_Dropdown>((int)TMP_Dropdowns.ChName).ClearOptions();
+        StoryNumberUISetting();
     }
 
-    void StoryNumberSetting(string value)
+    void StoryNumberChange(int value)
     {
-        if (int.TryParse(value, out int number))
-        {
-            Data.GameData.InGameData.StoryNumber = number;
-            _isStoryNumberInput = true;
-        }
-        else
-        {
-            Get<TMP_Text>((int)TMP_Texts.WarningText).text = "StoryNumber isn't natural number";
-        }
-
-        GameStartCheck();
-    }
-
-    void GameStartCheck()
-    {
-        if(_isChInput && _isStoryNumberInput)
-        {
-            Get<TMP_Text>((int)TMP_Texts.WarningText).text = $"Press Button to Start Game\n{Data.GameData.InGameData.ChName}, {Data.GameData.InGameData.StoryNumber}";
-            Get<Button>((int)Buttons.Start).gameObject.SetActive(true);
-        }
-        else
-            Get<Button>((int)Buttons.Start).gameObject.SetActive(false);
+        Data.GameData.InGameData.StoryNumber = int.Parse(Get<TMP_Dropdown>((int)TMP_Dropdowns.StoryNumber).options[value].text);
     }
 }

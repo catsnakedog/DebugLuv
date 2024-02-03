@@ -7,7 +7,7 @@ public class InGameData
 {
     public string ChName;
     public int StoryNumber;
-    public Dictionary<string, Dictionary<int, Dictionary<int, List<List<TextData>>>>> TextData; // 캐릭터 이름 - 브랜치 넘버 - 해당 브랜치 데이터 묶음 - 해당 브랜치 데이터 
+    public Dictionary<string, Dictionary<int, Dictionary<int, List<List<TextData>>>>> TextData; // DebugLuvData.ChName - DebugLuvData.Branch - 해당 브랜치 데이터 묶음 - 해당 브랜치 데이터
     public Dictionary<string, Sprite> InGameSprite;
 
     public InGameData()

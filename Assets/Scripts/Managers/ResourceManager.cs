@@ -40,14 +40,30 @@ public class ResourceManager // Resource를 관리하는 Manager이다
     public void Destroy(GameObject go) // GameObject.Destroy와 차이점은 없지만 무언가 추가 될 수도 있으니 추가해둔다
     {
         if(go == null)
-        return;
+            return;
 
         Object.Destroy(go);
     }
 
-    public void SpirteDataClear()
+    public void SpriteDataSetting()
     {
-        /*
+        InGameData inGameData = Data.GameData.InGameData;
+        foreach(var storyData in inGameData.TextData[inGameData.ChName][inGameData.StoryNumber])
+        {
+            foreach(var branchData in storyData.Value)
+            {
+                foreach(var a in branchData)
+                {
+                    a.EtcTask
+                }
+            }
+        }
+    }
+
+    public void SpriteDataClear() // InGame이 끝난 후 호출
+    {
+        Data.GameData.InGameData.InGameSprite.Clear();
+
         if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.BGImage) && !string.IsNullOrEmpty(textData.BGImage))
             Data.GameData.InGameData.InGameSprite.Add(textData.BGImage, LoadSpirte(textData.BGImage));
         if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.Ch1Image) && !string.IsNullOrEmpty(textData.Ch1Image))
@@ -58,7 +74,5 @@ public class ResourceManager // Resource를 관리하는 Manager이다
             Data.GameData.InGameData.InGameSprite.Add(textData.Ch3Image, LoadSpirte(textData.Ch3Image));
         if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.Ch4Image) && !string.IsNullOrEmpty(textData.Ch4Image))
             Data.GameData.InGameData.InGameSprite.Add(textData.Ch4Image, LoadSpirte(textData.Ch4Image));
-        Data.GameData.InGameData.InGameSprite = new();
-        */
     }
 }

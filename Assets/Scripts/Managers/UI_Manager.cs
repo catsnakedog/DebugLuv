@@ -22,12 +22,12 @@ public class UI_Manager // UI를 관리하는 Manager이다
     public void SetCanavas(GameObject go, bool sort = true) // 기본적인 Setting + 기존의 UI들과 충돌이 일어나지 않도록 Order를 관리해준다
     {
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
-        canvas.renderMode= RenderMode.ScreenSpaceOverlay;
+        canvas.renderMode= RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = Camera.main;
         canvas.overrideSorting = true;
         CanvasScaler scaler = Util.GetOrAddComponent<CanvasScaler>(go);
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(2400, 1080); // 플레이어 지정 해상도
-        Util.GetOrAddComponent<CanvasSizeFix>(go); // UI 해상도 지정
+        scaler.referenceResolution = new Vector2(1920, 1080); // 플레이어 지정 해상도
 
         if(sort)
             canvas.sortingOrder = ++_order;
