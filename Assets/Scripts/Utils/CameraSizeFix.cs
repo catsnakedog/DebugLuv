@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraSizeFix : MonoBehaviour
 {
-    int BeforeWidth;
-    int BeforeHeight;
+    private int _beforeWidth;
+    private int _beforeHeight;
 
     void Start()
     {
-        BeforeWidth = Screen.width;
-        BeforeHeight = Screen.height;
+        _beforeWidth = Screen.width;
+        _beforeHeight = Screen.height;
         SetResolution();
     }
 
@@ -21,8 +21,8 @@ public class CameraSizeFix : MonoBehaviour
 
         int deviceWidth = Screen.width; // 기기 너비 저장
         int deviceHeight = Screen.height; // 기기 높이 저장
-        BeforeWidth = deviceWidth;
-        BeforeHeight = deviceHeight;
+        _beforeWidth = deviceWidth;
+        _beforeHeight = deviceHeight;
 
         if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 기기의 해상도 비가 더 큰 경우
         {
@@ -38,9 +38,9 @@ public class CameraSizeFix : MonoBehaviour
 
     void Update()
     {
-        if (BeforeWidth != Screen.width || BeforeHeight != Screen.height)
+        if (_beforeWidth != Screen.width || _beforeHeight != Screen.height)
             SetResolution();
-        BeforeWidth = Screen.width;
-        BeforeHeight = Screen.height;
+        _beforeWidth = Screen.width;
+        _beforeHeight = Screen.height;
     }
 }

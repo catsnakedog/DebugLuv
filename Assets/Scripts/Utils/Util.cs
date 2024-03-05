@@ -12,45 +12,36 @@ public class Util{
         return component;
     }
 
-
-    public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
+    public static int StringToInt(string text)
     {
-        if(go == null)
-            return null;
+        int value;
 
-        if(recursive == false)
-        {
-            for(int i = 0; i<go.transform.childCount; i++)
-            {
-                Transform transform = go.transform.GetChild(i);
-                if(string.IsNullOrEmpty(name) || transform.name == name)
-                {
-                    T component = transform.GetComponent<T>();
-                    if(component != null)
-                        return component;
-                }
-            }
-        }
+        if (string.IsNullOrEmpty(text))
+            value = -1;
         else
-        {
-            foreach(T component in go.GetComponentsInChildren<T>())
-            {
-                if(string.IsNullOrEmpty(name) || component.name == name)
-                {
-                    return component;
-                }
-            }
-        }
+            value = int.Parse(text);
 
-        return null;
+        return value;
     }
-
-    public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
+    public static float StringToFloat(string text)
     {
-        Transform transform = FindChild<Transform>(go, name, recursive);
-        if(transform==null)
-            return null;
+        float value;
 
-        return transform.gameObject;
+        if (string.IsNullOrEmpty(text))
+            value = -1f;
+        else
+            value = float.Parse(text);
+
+        return value;
+    }
+    public static Vector2 StringToVector2(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return Vector2.zero;
+
+        string[] xy = text.Split(",");
+        Vector2 value = new Vector2(float.Parse(xy[0]), float.Parse(xy[1]));
+
+        return value;
     }
 }

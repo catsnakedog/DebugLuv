@@ -1,76 +1,70 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public abstract class UI_Base : MonoBehaviour // UI의 가장 기본이 되는 calss이다
+public class UI_Base : MonoBehaviour
 {
-    protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>(); // 필요한 오브젝트를 딕셔너리로 저장한다
-    static GameObject ClickTarget; // 클릭 이펙트와 관련된 변수
+    private Dictionary<string, Dictionary<Type, UnityEngine.Object>> _objects;
 
-    public abstract void Init();
-    
-
-    protected void Bind<T>(Type type) where T : UnityEngine.Object // Enum으로 정의된 Object를 찾아서 _objects안에 넣는다
+    public GameObject Get(Enum name) // GameObject 반환
     {
-        string[] names = Enum.GetNames(type);
-
-        UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
-        _objects.Add(typeof(T), objects);
-
-        for(int i = 0; i < names.Length; i++)
+        if (_objects == null)
+            _objects = new();
+        if(!_objects.ContainsKey(name.ToString())) // 한번도 호출이 안된 경우 _objects에 등록한다
+            _objects[name.ToString()] = new();
+        if (!_objects[name.ToString()].ContainsKey(typeof(GameObject))) // GameObject가 아직 바인딩이 안된 경우 바인딩 해준다
         {
-            if(typeof(T)==typeof(GameObject))
-                objects[i] = Util.FindChild(gameObject, names[i], true);
-            else
-                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
-        }
-    }
-    protected void HardBind<T>(Type type) where T : UnityEngine.Object // Bind에서 추가로 비활성화 된 Object까지 찾아준다
-    {
-        string[] names = Enum.GetNames(type);
-
-        UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
-        _objects.Add(typeof(T), objects);
-
-        for (int i = 0; i < names.Length; i++)
-        {
-            if (typeof(T) == typeof(GameObject))
-            {
-                foreach (Transform target in GetComponentsInChildren<Transform>(true))
+            GameObject target = null;
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
+                if (child.gameObject.name == name.ToString())
                 {
-                    if(target.name == names[i])
-                        objects[i] = target.gameObject;
+                    target = child.gameObject;
+                    break;
                 }
+            if (target == null)
+            {
+                Debug.LogWarning($"error_UI : {name.ToString()}라는 UI 오브젝트가 없습니다.");
+                return null;
             }
             else
-            {
-                foreach (T target in GetComponentsInChildren<T>(true))
-                {
-                    if (target.name == names[i])
-                        objects[i] = target;
-                }
-            }
+                _objects[name.ToString()][typeof(GameObject)] = target;
         }
+        return (GameObject)_objects[name.ToString()][typeof(GameObject)];
     }
-    protected T Get<T>(int idx) where T : UnityEngine.Object // 실질적으로 코드상에서 우리가 원하는 Object를 찾을때 이 함수를 통해 _objects에 접근해서 찾는다
+
+    public TargetType Get<TargetType>(Enum name) where TargetType : UnityEngine.Object // GameObject 반환
     {
-        UnityEngine.Object[] objects = null;
-        if(_objects.TryGetValue(typeof(T), out objects) == false)
-            return null;
+        if (_objects == null)
+            _objects = new();
+        if (!_objects.ContainsKey(name.ToString())) // 한번도 호출이 안된 경우 _objects에 등록
+            _objects[name.ToString()] = new();
+        if (!_objects[name.ToString()].ContainsKey(typeof(TargetType))) // TargetType이 아직 바인딩이 안된 경우 바인딩 해준다
+        {
+            TargetType target = null;
+            foreach (TargetType child in transform.GetComponentsInChildren<TargetType>(true))
+                if (child.name == name.ToString())
+                {
+                    target = child;
+                    break;
+                }
+            if (target == null)
+            {
+                Debug.LogWarning($"error_UI : {name.ToString()}라는 UI 오브젝트에 {typeof(TargetType).ToString()} 컴포넌트가 없습니다.");
+                return null;
+            }
+            else
+                _objects[name.ToString()][typeof(TargetType)] = target;
+        }
 
-        return objects[idx] as T;
+        return (TargetType)_objects[name.ToString()][typeof(TargetType)];
     }
 
-    public static void BindEvent(GameObject go, Action<UnityEngine.EventSystems.PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click) // 클릭과 관련된 이벤트를 Bind 해준다
+    public void BindEvent(GameObject go, Action<UnityEngine.EventSystems.PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click) // 클릭과 관련된 이벤트를 Bind 해준다
     {
         UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
 
-        switch(type)
+        switch (type)
         {
             case Define.UIEvent.Click:
                 evt.OnClickHandler -= action;
@@ -90,22 +84,5 @@ public abstract class UI_Base : MonoBehaviour // UI의 가장 기본이 되는 calss이다
                 evt.OnUpHandler += action;
                 break;
         }
-    }
-
-    public static void Down(PointerEventData data) // 클릭 이펙트와 관련된 함수
-    {
-        ClickTarget = data.pointerCurrentRaycast.gameObject;
-        if(ClickTarget.transform.childCount == 0)
-            Debug.LogWarning($"error_UI_Base : {ClickTarget.name}의 클릭 이펙트가 없습니다.");
-        else
-            ClickTarget.transform.GetChild(0).gameObject.SetActive(true);
-    }
-
-    public static void Up(PointerEventData data) // 클릭 이펙트와 관련된 함수
-    {
-        if (ClickTarget.transform.childCount == 0)
-            Debug.LogWarning($"error_UI_Base : {ClickTarget.name}의 클릭 이펙트가 없습니다.");
-        else
-            ClickTarget.transform.GetChild(0).gameObject.SetActive(false);
     }
 }

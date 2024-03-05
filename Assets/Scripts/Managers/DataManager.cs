@@ -6,45 +6,46 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
-public class DataManager // 데이터를 관리하는 Manager이다
+public class DataManager : ManagerSingle<DataManager>, IInit // 데이터를 관리하는 Manager이다
 {
     private JsonManager _jsonManager; // Json 데이터를 읽고, 쓰는 Manager이다
-    private InGameData _inGameData;
-    private DebugLuvData _debugLuvData;
+    private ParsingManager _parsingManager;
+    public DebugLuvData DebugLuvData;
 
     public void Init()
     {
-        GameObject go = GameObject.Find("@Data"); // Data의 값들을 시각적으로 확인하기 위해서 @Data라는 GameObject를 만들어서 값을 저장해준다
-        if (go == null)
+        GameObject data = GameObject.Find("@Data"); // Data의 값들을 시각적으로 확인하기 위해서 @Data라는 GameObject를 만들어서 값을 저장해준다
+        if (data == null)
         {
+            GameObject root = GameObject.Find("@Root");
+            if (root == null)
+                root = new GameObject("@Root");
+
             GameData gameData = new GameData();
 
             _jsonManager = new JsonManager();
+            _parsingManager = new ParsingManager();
 
-            _jsonManager.LoadJsonData<SaveData>("SaveData", out gameData.SaveData); // Json데이터들을 가져온다
-            _jsonManager.LoadJsonData<DebugLuvData>("DebugLuvData", out gameData.DebugLuvData);
-            _jsonManager.LoadJsonData<CheckData>("CheckData", out gameData.CheckData);
+            LoadJsonData(gameData);
 
-            go = new GameObject { name = "@Data" };
-            go.AddComponent<Data>(); // @Data라는 게임 오브젝트를 만들어서 Data 스크립트를 달아준다
-            UnityEngine.Object.DontDestroyOnLoad(go);
+            data = new GameObject { name = "@Data" };
+            data.transform.SetParent(root.transform);
+            data.AddComponent<Data>(); // @Data라는 게임 오브젝트를 만들어서 Data 스크립트를 달아준다
             Data.GameData = gameData; // 데이터는 Data라는 클래스에 보관한다, 데이터에 접근할 때는 Data.GameData로 접근하면 된다
-            _inGameData = Data.GameData.InGameData;
-            _debugLuvData = Data.GameData.DebugLuvData;
-
-            TextDataSetting();
         }
     }
 
-    public void LoadJsonData()
+    public void ParsingDebugLuvData()
     {
-
+        _parsingManager.StartParsing(out DebugLuvData); // tsv 형식으로 저장된 데이터들을 가공한다
     }
 
-    public void LoadSaveData()
+    public void LoadJsonData(GameData gameData)
     {
-
+        _jsonManager.LoadJsonData<SaveData>("SaveData", out gameData.SaveData); // Json데이터들을 가져온다
+        _jsonManager.LoadJsonData<CheckData>("CheckData", out gameData.CheckData);
     }
 
     public void Save() // SaveData를 저장한다
@@ -52,89 +53,33 @@ public class DataManager // 데이터를 관리하는 Manager이다
         _jsonManager.SaveJson(Data.GameData.SaveData);
     }
 
-    public void SortDebugLuvData(DebugLuvData data)
+    public EpisodeData GetEpisodeData(string Story, int Episode)
     {
-
+        return DebugLuvData.Story[Story].Episode[Episode];
     }
 
+    /*
     public void TextDataSetting() // 해당 ChName, StoryNumber의 데이터를 가공한다
     {
-        ClearTextData();
-
-        string chName = "None";
-        int storyNumber = -1;
-        int branchNumber = -1;
-
 #if UNITY_EDITOR
-        if (_debugLuvData.TextData.Length > 0)
-        {
-            if (string.IsNullOrEmpty(_debugLuvData.TextData[0].ChName) || _debugLuvData.TextData[0].StoryNumber == -1 || _debugLuvData.TextData[0].BranchNumber == -1)
-            {
-                Debug.LogWarning($"error_DebugLuvData : TextData의 첫번 째 행에 ChName, StoryNumber, BranchNumber 중 빈칸이 존재합니다. 빈칸이 오면 안됩니다 채워주세요.");
-                return;
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"error_DebugLuvData : TextData가 없습니다. 데이터를 확인해주세요");
-            return;
-        }
-
-        List<string> bugReport = new();
+        List<string> bugReport = StartBugReport();
 #endif
-
-        int cnt = 0;
-
-        foreach (TextData textData in _debugLuvData.TextData)
-        {
-            bool isExtraTask = false;
-
-            if (string.IsNullOrEmpty(textData.ChName) || textData.StoryNumber == -1 || textData.BranchNumber == -1) // 한개라도 비었으면 ExtraTask로 판별
-                isExtraTask = true;
-            else
-            {
-                chName = textData.ChName;
-                storyNumber = textData.StoryNumber;
-                branchNumber = textData.BranchNumber;
-            }
 
 #if UNITY_EDITOR
             string bugFirst;
             if (!FirstCheckTextData(textData, cnt, isExtraTask, out bugFirst))
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터가 이상합니다. 로그를 확인해주세요.");
                 bugReport.Add(bugFirst);
             }
 #endif
 
-            if (!_inGameData.TextData.ContainsKey(chName))
-                _inGameData.TextData[chName] = new();
-            if (!_inGameData.TextData[chName].ContainsKey(storyNumber))
-                _inGameData.TextData[chName][storyNumber] = new();
-            if (!_inGameData.TextData[chName][storyNumber].ContainsKey(branchNumber))
-                _inGameData.TextData[chName][storyNumber][branchNumber] = new();
-
-            var target = _inGameData.TextData[chName][storyNumber][branchNumber];
-
-            if (isExtraTask)
-            {
 #if UNITY_EDITOR
                 if(target.Count == 0)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {chName}의 {storyNumber}번 스토리의 {branchNumber}브랜치의 첫 데이터가 ExtraTask입니다. 데이터를 확인해주세요.");
                     bugReport.Add($"{chName}-{storyNumber}-{branchNumber} : First Paragraph is ExtraTask");
                     return;
                 }
 #endif
-                target[^1].Add(textData);
-            }
-            else
-            {
-                target.Add(new List<TextData> { textData });
-            }
-
-            cnt++;
-        }
 #if UNITY_EDITOR
         string bugLast;
         if(!LastCheckTextData(out bugLast))
@@ -143,7 +88,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
         }
 
         MakeBugReport(bugReport);
-        Debug.LogWarning($"error_DebugLuvData : 이상한 데이터가 있습니다. 로그를 확인해주세요. Assets/Log/DataBugReport.txt 파일을 확인해주세요.");
 #endif
     }
 
@@ -221,7 +165,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
 
             if (vaildStory.Contains(storyNumber.ToString()))
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Story가 StoryData에 존재하지 않습니다. 데이터를 확인해주세요.");
                 bug.Append("| Story ");
                 isVaildData = false;
             }
@@ -229,7 +172,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             // ChName 체크
             if (!vaildChName.Contains(data.ChName))
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 ChName이 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| ChName ");
                 isVaildData = false;
             }
@@ -261,7 +203,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
         {
             if (!vaildTaskOrder.Contains(task))
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 TaskOrder가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| TaskOrder ");
                 isVaildData = false;
             }
@@ -286,7 +227,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
         {
             if (!checkTaskVaild[key])
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {key}가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append($"| {key} ");
                 isVaildData = false;
             }
@@ -333,7 +273,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             // BGImage 체크
             if (!vaildImage.Contains(data.BGImage))
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 BGImage가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| BGImage ");
                 isVaildData = false;
             }
@@ -341,7 +280,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             // ChoiceNumber 체크
             if (data.ChoiceNumber != -1 && !vaildChoiceNumber.Contains(data.ChoiceNumber.ToString()))
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 ChoiceNumber가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| ChoiceNumber ");
                 isVaildData = false;
             }
@@ -349,25 +287,21 @@ public class DataManager // 데이터를 관리하는 Manager이다
             // ImageCode 체크
             if (!string.IsNullOrEmpty(data.Ch1ImageCode) && data.Ch1ImageCode.Split("-").Length != 6)
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch1ImageCode가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| Ch1ImageCode ");
                 isVaildData = false;
             }
             if (!string.IsNullOrEmpty(data.Ch2ImageCode) && data.Ch2ImageCode.Split("-").Length != 6)
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch2ImageCode가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| Ch2ImageCode ");
                 isVaildData = false;
             }
             if (!string.IsNullOrEmpty(data.Ch3ImageCode) && data.Ch3ImageCode.Split("-").Length != 6)
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch3ImageCode가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| Ch3ImageCode ");
                 isVaildData = false;
             }
             if (!string.IsNullOrEmpty(data.Ch4ImageCode) && data.Ch4ImageCode.Split("-").Length != 6)
             {
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch4ImageCode가 이상합니다. 데이터를 확인해주세요.");
                 bug.Append("| Ch4ImageCode ");
                 isVaildData = false;
             }
@@ -382,7 +316,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 string[] datas = data.Ch1Pos.Split(",");
                 if (datas.Length != 2)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch1Pos 값이 이상합니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch1Pos ");
                     isVaildData = false;
                 }
@@ -391,14 +324,12 @@ public class DataManager // 데이터를 관리하는 Manager이다
                     isVaildVector2 = float.TryParse(datas[0].Trim(), out x);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch1Pos x값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch1Pos ");
                         isVaildData = false;
                     }
                     isVaildVector2 = float.TryParse(datas[1].Trim(), out y);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch1Pos y값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch1Pos ");
                         isVaildData = false;
                     }
@@ -409,7 +340,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 string[] datas = data.Ch2Pos.Split(",");
                 if (datas.Length != 2)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch2Pos 값이 이상합니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch2Pos ");
                     isVaildData = false;
                 }
@@ -418,14 +348,12 @@ public class DataManager // 데이터를 관리하는 Manager이다
                     isVaildVector2 = float.TryParse(datas[0].Trim(), out x);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch2Pos x값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch2Pos ");
                         isVaildData = false;
                     }
                     isVaildVector2 = float.TryParse(datas[1].Trim(), out y);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch2Pos y값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch2Pos ");
                         isVaildData = false;
                     }
@@ -436,7 +364,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 string[] datas = data.Ch3Pos.Split(",");
                 if (datas.Length != 2)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch3Pos 값이 이상합니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch3Pos ");
                     isVaildData = false;
                 }
@@ -445,14 +372,12 @@ public class DataManager // 데이터를 관리하는 Manager이다
                     isVaildVector2 = float.TryParse(datas[0].Trim(), out x);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch3Pos x값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch3Pos ");
                         isVaildData = false;
                     }
                     isVaildVector2 = float.TryParse(datas[1].Trim(), out y);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch3Pos y값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch3Pos ");
                         isVaildData = false;
                     }
@@ -463,7 +388,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 string[] datas = data.Ch4Pos.Split(",");
                 if (datas.Length != 2)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch4Pos 값이 이상합니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch4Pos ");
                     isVaildData = false;
                 }
@@ -472,14 +396,12 @@ public class DataManager // 데이터를 관리하는 Manager이다
                     isVaildVector2 = float.TryParse(datas[0].Trim(), out x);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch4Pos x값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch4Pos ");
                         isVaildData = false;
                     }
                     isVaildVector2 = float.TryParse(datas[1].Trim(), out y);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch4Pos y값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append("| Ch4Pos ");
                         isVaildData = false;
                     }
@@ -491,7 +413,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             {
                 if (data.Ch1Scale <= 0)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch1Scale값은 0보다 작거나 같을 수 없습니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch1Scale ");
                     isVaildData = false;
                 }
@@ -500,7 +421,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             {
                 if (data.Ch2Scale <= 0)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch2Scale값은 0보다 작거나 같을 수 없습니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch2Scale ");
                     isVaildData = false;
                 }
@@ -509,7 +429,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             {
                 if (data.Ch3Scale <= 0)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch3Scale값은 0보다 작거나 같을 수 없습니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch3Scale ");
                     isVaildData = false;
                 }
@@ -518,7 +437,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             {
                 if (data.Ch4Scale <= 0)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 Ch4Scale값은 0보다 작거나 같을 수 없습니다. 데이터를 확인해주세요.");
                     bug.Append("| Ch4Scale ");
                     isVaildData = false;
                 }
@@ -565,7 +483,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
 
         if (string.IsNullOrEmpty(value))
         {
-            Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}의 값이 없습니다. 데이터를 확인해주세요.");
             bug.Append($"| {valueName.ToString()}-None ");
             valueBugReport = bug.ToString();
             return false;
@@ -577,7 +494,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 float dataFloat;
                 if(!float.TryParse(value, out dataFloat))
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}가 이상합니다. 데이터를 확인해주세요.");
                     bug.Append($"| {valueName.ToString()}-float ");
                     valueBugReport = bug.ToString();
                     return false;
@@ -588,7 +504,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 int dataInt;
                 if(!int.TryParse(value, out dataInt))
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}가 이상합니다. 데이터를 확인해주세요.");
                     bug.Append($"| {valueName.ToString()}-int ");
                     valueBugReport = bug.ToString();
                     return false;
@@ -598,7 +513,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             case "stringName":
                 if (!vaildImage.Contains(value))
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}가 이상합니다. 데이터를 확인해주세요.");
                     bug.Append($"| {valueName.ToString()}-stringName ");
                     valueBugReport = bug.ToString();
                     return false;
@@ -616,7 +530,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 string[] datas = value.Split(",");
                 if(datas.Length != 2)
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}의 Pos값이 이상합니다. 데이터를 확인해주세요.");
                     bug.Append($"| {valueName.ToString()}-Vector2 ");
                     isReturnFalse = true;
                 }
@@ -625,14 +538,12 @@ public class DataManager // 데이터를 관리하는 Manager이다
                     isVaildVector2 = float.TryParse(datas[0].Trim(), out x);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}의 x값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append($"| {valueName.ToString()}-Vector2x ");
                         isReturnFalse = true;
                     }
                     isVaildVector2 = float.TryParse(datas[1].Trim(), out y);
                     if (!isVaildVector2)
                     {
-                        Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}의 y값이 이상합니다. 데이터를 확인해주세요.");
                         bug.Append($"| {valueName.ToString()}-Vector2y ");
                         isReturnFalse = true;
                     }
@@ -640,7 +551,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
                 valueBugReport = bug.ToString();
                 return !isReturnFalse;
             default:
-                Debug.LogWarning($"error_DebugLuvData : {cnt + 7}번 줄 데이터의 {valueName.ToString()}의 타입이 안적혀있습니다. 데이터를 확인해주세요.");
                 bug.Append($"| {valueName.ToString()}-Type ");
                 valueBugReport = bug.ToString();
                 return false;
@@ -659,7 +569,6 @@ public class DataManager // 데이터를 관리하는 Manager이다
             {
                 if (!textData[ChKey][StoryKey].ContainsKey(0))
                 {
-                    Debug.LogWarning($"error_DebugLuvData : {ChKey} 캐릭터의 {StoryKey}번 스토리 데이터에 0번 브랜치가 없습니다. 모든 스토리는 0번 브랜치를 가져야합니다. 데이터를 확인해주세요.");
                     bug.Append($"| {ChKey}-{StoryKey}");
                     isVaildData = false;
                 }
@@ -696,5 +605,19 @@ public class DataManager // 데이터를 관리하는 Manager이다
 
         sw.Flush();
         sw.Close();
+
+        Debug.LogWarning("TextData에 버그가 있습니다 \"Assets/Log/DataBugReport\"를 확인해주세요.");
     }
+
+    List<string> StartBugReport()
+    {
+        if (_debugLuvData.TextData.Length > 0)
+            if (string.IsNullOrEmpty(_debugLuvData.TextData[0].ChName) || _debugLuvData.TextData[0].StoryNumber == -1 || _debugLuvData.TextData[0].BranchNumber == -1)
+                Debug.LogWarning($"error_DebugLuvData : TextData의 첫번 째 행에 ChName, StoryNumber, BranchNumber 중 빈칸이 존재합니다. 빈칸이 오면 안됩니다 채워주세요.");
+            else
+            Debug.LogWarning($"error_DebugLuvData : TextData가 없습니다. 데이터를 확인해주세요");
+
+        return new List<string>();
+    }
+    */
 }

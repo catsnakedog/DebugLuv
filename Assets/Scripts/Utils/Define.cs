@@ -5,16 +5,6 @@ using UnityEngine;
 
 public class Define : MonoBehaviour
 {
-
-    public enum Scene
-    {
-        Unknown,
-        Main,
-        InGame,
-        Test,
-        Loading,
-    }
-
     public enum Sound
     {
         Bgm,
@@ -28,11 +18,5 @@ public class Define : MonoBehaviour
         Down,
         Up,
         Drag,
-        Effect,
-    }
-
-    public struct Tasks
-    {
-        List<TextData>
     }
 }

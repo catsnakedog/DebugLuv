@@ -4,17 +4,37 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Manager // UI를 관리하는 Manager이다
+public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는 Manager이다
 {
-    int _order = 0;
+    private int _order = 0;
+    private Vector2 _screenSize = new Vector2(1920, 1080);
+    private Stack<UI_Base> _popupStack = new(); // 팝업같은 경우 Stack으로 관리해준다
 
-    Stack<UI_Popup> _popupStack = new Stack<UI_Popup>(); // 팝업같은 경우 Stack으로 관리해준다
+    private UI_Base _sceneUI;
+    
+    public UIType GetUI<UIType>() where UIType : UI_Base
+    {
+        if (_sceneUI is UIType) // SceneUI 인지 검사
+            return _sceneUI as UIType;
+
+        foreach(UI_Base popup in _popupStack) // PopupUI 인지 검사
+        {
+            if (popup is UIType)
+                return popup as UIType;
+        }
+
+        Debug.LogWarning($"error_UI_Manager : {typeof(UIType).ToString()} UI는 존재하지 않습니다.");
+        return null;
+    }
 
     public GameObject Root{
-        get{
-            GameObject root = GameObject.Find("@UI_Root"); // UI같은 경우 @UI_Root에 자식으로 들어간다
+        get
+        {
+        GameObject root = GameObject.Find("@UI_Root"); // UI같은 경우 @UI_Root에 자식으로 들어간다
         if(root == null)
-            root = new GameObject{name = "@UI_Root"};
+            {
+                root = new GameObject { name = "@UI_Root" };
+            }
         return root;
         }
     }
@@ -27,7 +47,7 @@ public class UI_Manager // UI를 관리하는 Manager이다
         canvas.overrideSorting = true;
         CanvasScaler scaler = Util.GetOrAddComponent<CanvasScaler>(go);
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920, 1080); // 플레이어 지정 해상도
+        scaler.referenceResolution = _screenSize; // 플레이어 지정 해상도
 
         if(sort)
             canvas.sortingOrder = ++_order;
@@ -35,44 +55,43 @@ public class UI_Manager // UI를 관리하는 Manager이다
             canvas.sortingOrder = 0;
     }
 
-    public T ShowSceneUI<T>(string name = null) where T : UI_Scene // Scene에서 가장 기본이 되는 SceneUI를 세팅한다
+    public void ShowSceneUI(string name = null) // Scene에서 가장 기본이 되는 SceneUI를 세팅한다
     {   
-        if(string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
-
-        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}"); // SceneUI같은 경우 Resources/UI/Scene에 저장한다
-        T sceneUI = Util.GetOrAddComponent<T>(go);
-
+        GameObject go = ResourceManager.Instance.Instantiate($"Prefabs/UI/Scene/UI_{name}"); // SceneUI같은 경우 Resources/UI/Scene에 저장한다
+        if (go == null)
+        {
+            Debug.LogWarning($"error_UI_Manager : {name} Scene의 Scene UI 생성을 실패했습니다.");
+            return;
+        }
+        SetCanavas(go, false);
         go.transform.SetParent(Root.transform);
 
-        Managers.Scene.CurrentScene.SceneUI = sceneUI;
-        return sceneUI;
+        _sceneUI = go.GetComponent<UI_Base>();
     }
 
-    public T ShowPopupUI<T>(string name = null) where T : UI_Popup // PopupUI를 세팅한다
-    {   
-        if(string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
-
-        GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}"); // PopupUI같은 경우 Resources/UI/Popup에 저장한다
-        T popup = Util.GetOrAddComponent<T>(go);
-        _popupStack.Push(popup);
-
+    public void ShowPopupUI(string name = null) // PopupUI를 세팅한다
+    {
+        GameObject go = ResourceManager.Instance.Instantiate($"Prefabs/UI/Popup/UI_{name}"); // SceneUI같은 경우 Resources/UI/Popup에 저장한다
+        if (go == null)
+        {
+            Debug.LogWarning($"error_UI_Manager : UI_{name} Popup 생성을 실패했습니다.");
+            return;
+        }
+        SetCanavas(go);
         go.transform.SetParent(Root.transform);
 
-
-        return popup;
+        _popupStack.Push(go.GetComponent<UI_Base>());
     }
 
 
-    public void ClosePopupUI(UI_Popup popup) // 팝업을 닫는다
+    public void ClosePopupUI(UI_Base popup) // 팝업을 닫는다
     {
         if(_popupStack.Count == 0) // 스택에 팝업이 없을 경우 리턴한다
             return;
 
         if(_popupStack.Peek() != popup) // 가장 위에 있는 팝업이 닫을려는 팝업이 아닌 경우 리턴한다
         {
-            Debug.LogWarning("Close Popup Failed");
+            Debug.LogWarning($"error_UI_Manager : {popup.name} Popup은 최상단에 위치하지 않습니다.");
             return;
         }
 
@@ -84,8 +103,8 @@ public class UI_Manager // UI를 관리하는 Manager이다
         if(_popupStack.Count==0)
             return;
 
-        UI_Popup popup = _popupStack.Pop();
-        Managers.Resource.Destroy(popup.gameObject);
+        UI_Base popup = _popupStack.Pop();
+        Destroy(popup.gameObject);
         popup = null;
 
         _order--;

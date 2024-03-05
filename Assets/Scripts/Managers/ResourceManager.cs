@@ -4,14 +4,16 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class ResourceManager // Resource를 관리하는 Manager이다
+public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit // Resource를 관리하는 Manager이다
 {
-    public T Load<T>(string path) where T : Object // Resource.Load와 차이점은 없지만 무언가 추가 될 수도 있으니 추가해둔다
+    public Dictionary<string, Sprite> InGameSprite;
+
+    public void Init()
     {
-        return Resources.Load<T>(path);
+        InGameSprite = new();
     }
 
-    public Sprite LoadSpirte(string name)
+    public Sprite LoadSprite(string name)
     {
         Sprite sprite = Resources.Load<Sprite>($"Sprites/{name}");
         if(sprite == null)
@@ -23,38 +25,29 @@ public class ResourceManager // Resource를 관리하는 Manager이다
         return sprite;
     }
 
-    public GameObject Instantiate(string path, Transform parent = null) // 인스턴트 하는 모든 GameObject들은 Prefabs 파일 안에 있으니 따로 경로를 쓰는 과정을 생략해준다
+    public GameObject Instantiate(string path)
     {
-        GameObject original = Load<GameObject>($"Prefabs/{path}");
-        if(original == null)
+        GameObject target = Resources.Load<GameObject>(path);
+        if (target == null)
         {
-            Debug.LogWarning($"Failed to load prefab : {path}");
+            Debug.LogWarning($"error_ResourceManager : {path} Prefab이 존재하지 않습니다.");
+            return null;
         }
-
-        GameObject go = Object.Instantiate(original, parent);
-        go.name = original.name;
-
-        return go;
+        else
+            return GameObject.Instantiate(target);
     }
 
-    public void Destroy(GameObject go) // GameObject.Destroy와 차이점은 없지만 무언가 추가 될 수도 있으니 추가해둔다
+    public void SetSpriteData(EpisodeData data)
     {
-        if(go == null)
-            return;
-
-        Object.Destroy(go);
-    }
-
-    public void SpriteDataSetting()
-    {
-        InGameData inGameData = Data.GameData.InGameData;
-        foreach(var storyData in inGameData.TextData[inGameData.ChName][inGameData.StoryNumber])
+        InGameSprite["@None"] = null;
+        foreach(List<SetenceData> setences in data.Setence)
         {
-            foreach(var branchData in storyData.Value)
+            foreach(SetenceData setence in setences)
             {
-                foreach(var a in branchData)
+                foreach(string sprite in setence.Ch1Info.ImageCode.Split("-"))
                 {
-                    a.EtcTask
+                    if (sprite.Trim() != "@None")
+                        LoadSprite(sprite.Trim());
                 }
             }
         }
@@ -62,17 +55,11 @@ public class ResourceManager // Resource를 관리하는 Manager이다
 
     public void SpriteDataClear() // InGame이 끝난 후 호출
     {
-        Data.GameData.InGameData.InGameSprite.Clear();
+        InGameSprite.Clear();
+    }
 
-        if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.BGImage) && !string.IsNullOrEmpty(textData.BGImage))
-            Data.GameData.InGameData.InGameSprite.Add(textData.BGImage, LoadSpirte(textData.BGImage));
-        if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.Ch1Image) && !string.IsNullOrEmpty(textData.Ch1Image))
-            Data.GameData.InGameData.InGameSprite.Add(textData.Ch1Image, LoadSpirte(textData.Ch1Image));
-        if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.Ch2Image) && !string.IsNullOrEmpty(textData.Ch2Image))
-            Data.GameData.InGameData.InGameSprite.Add(textData.Ch2Image, LoadSpirte(textData.Ch2Image));
-        if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.Ch3Image) && !string.IsNullOrEmpty(textData.Ch3Image))
-            Data.GameData.InGameData.InGameSprite.Add(textData.Ch3Image, LoadSpirte(textData.Ch3Image));
-        if (!Data.GameData.InGameData.InGameSprite.ContainsKey(textData.Ch4Image) && !string.IsNullOrEmpty(textData.Ch4Image))
-            Data.GameData.InGameData.InGameSprite.Add(textData.Ch4Image, LoadSpirte(textData.Ch4Image));
+    public void Clear()
+    {
+        SpriteDataClear();
     }
 }

@@ -1,0 +1,689 @@
+Com	0	0	BG													BGFadein	1	BG_Black																																																							BG_Black			
+Com	0	0	Etc				Wait	1																																																																	BG_Black			
+Com	0	0	Etc				UI_UP	0.3																																																																	BG_Black			
+Com	0	0	 Text	Extra																																																																					BG_Black	유니티	...안녕하세요.	
+Com	0	0	Text																																																																						BG_Black	???	안녕하세요, 유니티님. 이쪽에 앉으시면 됩니다.​	
+			Etc	Extra	0		Wait	2																																																																				
+			Etc	Extra	1		SFX																																																																					
+			Etc	Extra	2		SFX																																																																					
+Com	0	0	BG													BGFadein	1	ep1_doc4																																																										
+			Etc	Add	0		SFX																																																																					
+Com	0	0	Text																																																																						ep1_doc4	???	저희 병원에 처음 내원해주셨네요. 오늘 무슨 일 때문에 오셨을까요?​	
+Com	0	0	Text																																																																						ep1_doc4	유니티	.......	
+Com	0	0	Text																																																																						ep1_doc4	유니티	...사실​	
+Com	0	0	Text																																																																						ep1_doc4	유니티	.......	
+Com	0	0	Text																																																																						ep1_doc4	유니티	사실은 제가…	
+Com	0	0	Text																																																																						ep1_doc4	유니티	....…​	
+Com	0	0	Etc																																																																									
+Com	0	0	Text																																																																						ep1_doc4	유니티	죄송합니다. 제가 이런 일에 익숙하지 않아서 말이 잘 안 나오네요.​	
+Com	0	0	BG													BGFadein	1	ep1_doc1																																																							ep1_doc1	???	부담 갖지 마세요. 천천히 얘기해주셔도 됩니다.​	
+Com	0	0	Text																																																																						ep1_doc1	???	누구나 말하기 힘든 고민 한 둘은 가지고 있으니까요.​	
+Com	0	0	Text																																																																						ep1_doc1	유니티	…선생님.​	
+Com	0	0	Text																																																																						ep1_doc1	유니티	정말 말도 안되는 이야기같아서요...	
+Com	0	0	Text																																																																						ep1_doc1	유니티	제가 이상해진 건 아니겠죠?​	
+Com	0	0	Text																																																																						ep1_doc1	유니티	아니 분명 방학까지는 멀쩡했는데 개강하자마자 갑자기...	
+Com	0	0	Text																																																																						ep1_doc1	???	잠시 진정하시고요. 천천히 무슨 일이 있었는지 알려주시겠어요?	
+			BG																																																																						ep1_doc1			
+Com	0	0	Text																																																																						ep1_doc1	유니티	...몇 주 전의 일이었어요…​아니, 개강했을 그 순간부터요.	
+			BG													BGFadein	1	BG_Black																																																										
+Com	0	0	Text																																																																						BG_Black	유니티	zzz...​	
+Com	0	0	Text																																																																						BG_Black	???	...니티...!​	
+Com	0	0	Text																																																																						BG_Black	???	유니티 학생?	
+Com	0	0	Text																																																																						BG_Black		…?!​	
+Com	0	0	BG													BGFadein	1	BG_lectureRoom																																																										
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	네… 넵! 여기 있습니다!	
+Com	0	0	Text																																																																						BG_lectureRoom		나는 헐레벌떡 입가의 침을 닦으며 외쳤다.​	
+Com	0	0	Text																																																																						BG_lectureRoom	표 교수님	그러면 지금 이 상황에서 진행하는 packet switching는 어떤 유형인가요?​	
+			Etc	Add	0		StorageSpawn	Professor_normal	1	0,0																																																																		
+			Etc	Extra	1	0	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	그…그건...​	
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	비, 비 연결형 패킷 스위칭입니다.​	
+Com	0	0	Text																																																																						BG_lectureRoom	표 교수님	훌륭합니다! GREAT! 브라보~~!​	
+			Etc	Add	0	0	CrossFade	Professor_03	1	0,0																																																																		
+			Etc	Extra	1	0	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_lectureRoom		휴. 다행히 아는 내용이다.​	
+Com	0	0	Text																																																																						BG_lectureRoom		교수님은 내 대답에 만족한 듯, 턱을 쓰다듬으며 흐뭇한 미소로 나를 바라봤다.​	
+			Text																																																																						BG_lectureRoom	표 교수님	역시 유니티군. Good이에요. 다음에도 물어볼테니 정진하도록 하세요.​	
+			Etc	Add	0	0	CrossFade	Professor_03_body	1	0,0																																																																		
+			Etc	Extra	1	0	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	… 네.​	
+			Etc	Extra	0	0	FadeOut	0.3																																																																				
+			Etc																																																																									
+Com	0	0	Text																																																																						BG_lectureRoom		또 질문이다.​	
+Com	0	0	Text																																																																						BG_lectureRoom		교수님 질문도 이번 주만 벌써 7번째다.	
+Com	0	0	Text																																																																						BG_lectureRoom		아직 수요일밖에 안됐는데 말이지...	
+Com	0	0	Text 																																																																						BG_lectureRoom	표 교수님	자, 이것으로 오늘 수업을 마치겠습니다. ​	
+			Etc	Add	0		CrossFade	Professor_normal	1	0,0																																																																		
+			Etc	Extra	1		SFX																																																																					
+			Etc	Add	1	0	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_lectureRoom	학생1	감사합니다 교수님~​	
+Com	0	0	Text																																																																						BG_lectureRoom	학생들	감사합니다~	
+Com	0	0	Text																																																																						BG_lectureRoom	표 교수님	아, 유니티군. 유니티군은 제 연구실에서 잠시 저 좀 보고 가세요.​	
+			Etc	Add	0	0	FadeOut	0.3																																																																				
+	0		Text																																																																						BG_lectureRoom	유니티	네? 아, 알겠습니다...	
+Com	0	0	Text																																																																						BG_lectureRoom	학생2	...야. 그러고보니 저번에도 저 사람한테 질문하지 않았냐?​	
+Com	0	0	Text																																																																						BG_lectureRoom	학생3	그러게... 다른 수업에서도 유독 저 분만 질문 받으시는 것 같던데?​	
+Com	0	0	Text																																																																						BG_lectureRoom	학생3	야야, 저 사람 그 사람이잖아. ‘죄 지은 자’​	
+Com	0	0	Text																																																																						BG_lectureRoom	학생3	소년이 죄를 저지르면 소년원에 가듯​,	
+Com	0	0	Text																																																																						BG_lectureRoom	학생1	대학생이 죄를 저지르면…..​.	
+Com	0	0	Text																																																																						BG_lectureRoom	학생2	아… 대학원생으로 찍혔다고?​	
+Com	0	0	Text																																																																						BG_lectureRoom	학생3	도대체 무슨 잘못을 저질렀길래... 쯧쯧...	
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	다 들린다 다 들려…​	
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	주위 사람들의 이런 반응도 이제는 익숙하다.	
+Com	0	0	Text																																																																						BG_lectureRoom	유니티	그래, 이제는 익숙해져야지...	
+			BG													BGWipeL	1	BG_professor room																																																										
+Com	0	0	Text																																																																						BG_professor room	유니티	교수님? 부르셔서 왔습니다.	
+Com	0	0	Text																																																																						BG_professor room	표 교수님	어어 그래. 어서와요.	
+Com	0	0	Text																																																																						BG_professor room	표 교수님	음료는 뭐로 줄까요? 커피? 차?	
+Com	0	0	Text																																																																						BG_professor room	유니티	하하… 바로 다음 수업을 가야해서 오래는 못 있을 것 같습니다.	
+Com	0	0	Text																																																																						BG_professor room	표 교수님	걱정 마요. 오래 걸리진 않을테니. 전에 했던 제안은 어떻게 생각하나요?	
+Com	0	0	Text																																																																						BG_professor room	유니티	하하… 아직 고민해보고 있습니다.​	
+Com	0	0	Text																																																																						BG_professor room	표 교수님	저희 랩실은 에어컨도 잘 나오고 의자도 고급이고, 컴퓨터도 1년마다 한번씩 최신사양으로 업데이트 하고 있어요.​	
+Com	0	0	Text																																																																						BG_professor room	표 교수님	유니티군만 괜찮다면 저희 랩실으로 와서 유니티군의 재능을 꽃피워보는 건 어떨까 싶은데,​	
+Com	0	0	Text																																																																						BG_professor room	표 교수님	저희 랩실에서 집중적으로 실적 쌓고 나가면 진학할 때나 다른 기업 취직할 때도 상당히 도움이 될 거예요.	
+Com	0	0	Text																																																																						BG_professor room	유니티	아… 네. 알고있습니다. 좋은 제안 감사합니다. 잘 고려해보겠습니다.​	
+Com	0	0	Text																																																																						BG_professor room	유니티	그러면 이번 기회에 같이 등산이나 한 번 하면서 진학에 대한 상담을...​	
+Com	0	0	Text																																																																						BG_professor room	유니티	안녕히 계세요!!!!!​	
+			Etc	Extra	0		UI_Down	0.5																																																																	BG_professor room			
+			Etc	Extra	1		Wait	4																																																																				
+			BG	Extra	2											BGFadein	1	BG_Black																																																										
+			BG	Extra	3											BGFadein	1	BG_sky																																																							BG_Black			
+Com	0	0	Text																																																																						BG_sky	유니티	…...​	
+Com	0	0	Text																																																																						BG_sky		하아아아아…..​	
+Com	0	0	Text																																																																						BG_sky		나는 살면서 하늘을 우러러 한점밖에 부끄럼이 없는 사람인데…​	
+Com	0	0	Text																																																																						BG_sky		어째서 하늘은 나를 대학원에 보내려고 하는걸까...​	
+Com	0	0	Text																																																																						BG_sky		아이고 내 팔자야 내 팔자야...​	
+Com	0	0	Etc				StorageSpawn	ep1_ring_effect	0.05	0,0																																																																		
+			Etc	Add	0		ZoomBR	0.2	1																																																																			
+			Etc	Add	0		SFX																																																																					
+			Text	Extra	1																																																																				BG_sky		응? 갑자기 전화?	
+Com	0	0	Etc				StorageSpawn	ep1_ring_kim	1	10,0																																																																		
+			Etc	Add	0	0	ZoomT	0.01	0.05																																																																			
+			Etc	Add	0	0	MoveEaseIn	0.5	0,0																																																																			
+			Etc	Extra	1	0	ZoomT	0.1	1																																																																			
+			Etc	Extra	2	0	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_sky	유니티	여보세요?	
+Com	0	0	Text																																																																						BG_sky	조교	...유니티님 맞으신가요?	
+Com	0	0	Text																																																																						BG_sky	조교	안녕하세요, 저는 송교수님 랩실 김진태 조교라고 합니다.​	
+Com	0	0	Text																																																																						BG_sky	조교	다름이 아니라 저희 교수님께서 유니티님을 뵙고 싶어...	
+Com	0	0	Text																																																																						BG_sky	유니티	아, 아, 여보세요? 앗 전파가!	
+			Etc	Extra	0	0	ZoomB	0.1	0.05																																																																			
+			Etc	Extra	1	0	MoveEaseOut	0.5	10,0																																																																			
+			Etc	Add	2		SFX																																																																		BG_sky			
+Com	0	0	Text																																																																						BG_sky		제발…​	
+Com	0	0	Text																																																																						BG_sky	유니티	날 좀 내버려 둬!!!!!!​	
+			BG	Extra	0											BGFadein	1	BG_White																																																										
+			BG	Extra	1											BGFadein	1	ep1_doc1																																																										
+Com	0	0	Text																																																																						ep1_doc1	???	음... 그러니까 교수님들께 사랑 받아서 힘들다는 말씀이시죠?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	...네.​	
+Com	0	0	Text																																																																						ep1_doc1	???	유니티님, 본인이 공부하는 과목을 좋아하시나요?​	
+			BG	Add	0											BGFadein	1	ep1_doc3																																																										
+Com	0	0	Text																																																																						ep1_doc3	유니티	그럼요. 좋아하죠 일단은...​	
+Com	0	0	Text																																																																						ep1_doc3	???	그러면 대학원도 나쁘지 않은 선택지 아닌가요?​	
+Com	0	0	Text																																																																						ep1_doc3	유니티	네? ​	
+Com	0	0	Text																																																																						ep1_doc3	유니티	아니요. 저는 아직 군대도 안다녀왔는데 갑자기 대학원이라니요?​	
+Com	0	0	Text																																																																						ep1_doc3	유니티	너무 갑작스럽게 느껴져요.	
+Com	0	0	Text																																																																						ep1_doc3	유니티	저는 고작 2학년일 뿐이라구요!​	
+Com	0	0	Text													BGFadein	1	ep1_doc2																																																							ep1_doc3	???	흠...저는 나쁘지 않은 기회라고 생각됩니다.​	
+Com	0	0	Text													BGFadein	1	ep1_doc1																																																							ep1_doc2	???	얘기를 들어보니 유니티님은 실력이 뛰어난 분이신 것 같습니다.​	
+Com	0	0	Text																																																																						ep1_doc1	???	교수님들께서 벌써 이렇게 관심을 가질 정도니까요.​	
+Com	0	0	Text																																																																						ep1_doc1	???	저는 유니티님 같이 능력있는 분이 대학원에 가는 게 개인적으로도 사회적으로도 좋은 일이라고 생각합니다.​​​	
+Com	0	0	Text																																																																						ep1_doc1	???	대학원 진학에 그렇게 부정적인 생각을 가지게 된 계기가 있을까요?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	아니, 저는 코딩이 하고 싶은 거지 연구를 하고 싶은 게 아니에요.	
+Com	0	0	Text																																																																						ep1_doc1	유니티	전 하루라도 빨리 취업하고 싶어요.	
+Com	0	0	Text																																																																						ep1_doc1	???	그렇군요. 대학원 가는 게 싫을 수 있죠. 다만 병원에 오실 정도는 아닌 것 같은데요...	
+Com	0	0	Text																																																																						ep1_doc1	???	혹시 어떤 일이 있었길래 병원으로 오시게 된 건가요?	
+			BG	Extra	0											BGFadein	1	BG_Black																																																										
+			BG	Extra	1											BGFadein	1	BG_Studyroom																																																							BG_Black			
+Com	0	0	Etc				StorageSpawn_FadeIn	1	ep1_study_sagak_short	5,0																																																															BG_Studyroom			
+			Etc	Extra	0		Wait	1																																																																	BG_Studyroom			
+			Etc	Extra	1	0	FadeOut	1																																																																	BG_Studyroom			
+			Etc	Extra	2		StorageSpawn_FadeIn	1	ep1_study_pallak_short	-5,0																																																															BG_Studyroom			
+			Etc	Extra	3		Wait	1																																																																	BG_Studyroom			
+			Etc	Extra	4	0	FadeOut	1																																																																	BG_Studyroom			
+			Text	Add	3																																																																				BG_Studyroom	유니티	.............	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	후... 다 끝냈다.	
+Com	0	0	Text																																																																						BG_Studyroom		마지막 코드를 정리하고 난 후, 나는 기지개를 펴며 주위를 둘러보았다.	
+Com	0	0	Text																																																																						BG_Studyroom		…………	
+			Etc	Add	0		StorageSpawn	ep1_study_sagak_long	1	-10,0																																																															BG_Studyroom			
+			Etc	Add	1	0	MoveAndDis	2	10,0																																																																BG_Studyroom			
+			Etc	Add	0		StorageSpawn	ep1_study_pallak_long	1	10,0																																																															BG_Studyroom			
+			Etc	Extra	1	1	WaitObj	1																																																																	BG_Studyroom			
+			Etc	Extra	2	1	MoveAndDis	2	-10,0																																																																BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		이상하다.​	
+Com	0	0	Text																																																																						BG_Studyroom		오늘은 크리스마스 이브인데	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	…이 사람들, 왜 여기서 하루종일 이러고 있지?​	
+Com	0	0	Etc				StorageSpawn_FadeIn	0.5	ep1_study_book1	-2,0																																																															BG_Studyroom			
+			Text	Add	0																																																																				BG_Studyroom		<오토마타: 개정판 5th ed>	
+			Etc	Extra	0	0	ObjLock																																																																		BG_Studyroom			
+Com	0	0	Etc				StorageSpawn_FadeIn	0.5	ep1_study_book2	2,0																																																															BG_Studyroom			
+			Text	Add	0																																																																				BG_Studyroom		<효율적인 데이터 베이스 관리>​	
+			Etc	Extra	0	1	ObjLock																																																																		BG_Studyroom			
+Com	0	0	Etc				StorageSpawn_FadeIn	0.5	ep1_study_book3	2,-2																																																															BG_Studyroom			
+			Text	Add	0																																																																				BG_Studyroom		<인공지능 개론>	
+			Etc	Extra	0	2	ObjLock																																																																		BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		뭐지 이 사람들, 수상할 정도로 다 컴공이다.​	
+				Extra	0	0	FadeOut	0.3																																																																	BG_Studyroom			
+				Extra	0	1	FadeOut	0.3																																																																	BG_Studyroom			
+				Extra	0	2	FadeOut	0.3																																																																	BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		아니 다들 왜 이렇게 열심히 공부하는거야? ​	
+Com	0	0	Text																																																																						BG_Studyroom		…​	
+Com	0	0	Text																																																																						BG_Studyroom		물론 지금까지 코딩 공부하던 내가 할 말은 아니지만...	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	이러면 내가 신입생 때 봤던 괴상한 소문이 다 사실이 되는 거잖아...	
+Com	0	0	Text																																																																						BG_Studyroom		학교 온라인 커뮤니티 에브리바디.	
+Com	0	0	Text																																																																						BG_Studyroom		에브리바디에는 유독 컴퓨터공학과는 이상할 정도로 소문이 많다.​	
+Com	0	0	Text																																																																						BG_Studyroom		특히 나쁜 쪽으로.	
+			Etc	Extra	0		StorageSpawn	ep1_everytime	1	0,-10																																																															BG_Studyroom			
+			Etc	Add	1		MoveEaseIn	1	0,0																																																																BG_Studyroom			
+			Etc	Extra	2		Wait	1																																																																	BG_Studyroom			
+			Etc	Extra	3		StorageSpawn	ep1_everytime_question	1	0,0																																																															BG_Studyroom			
+			Etc	Extra	4		Wait	2																																																																	BG_Studyroom			
+			Etc	Extra	5		StorageSpawn	ep1_everytime_answer1	1	0,0																																																															BG_Studyroom			
+			Etc	Extra	6		Wait	2																																																																	BG_Studyroom			
+			Etc	Extra	7		StorageSpawn	ep1_everytime_answer2	1	0,0																																																															BG_Studyroom			
+			Etc	Extra	8		Wait	2																																																																	BG_Studyroom			
+			Etc	Extra	9		StorageSpawn	ep1_everytime_answer3	1	0,0																																																															BG_Studyroom			
+			Etc	Extra	10		Wait	2																																																																	BG_Studyroom			
+			Etc	Extra	11		StorageLock																																																																		BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		대학교에 들어오기 전까지는 적당히 떠돌아다니는 괴담정도라고 생각했다.	
+			Etc	Add	0	0	MoveAndDis	0.5	0,-10																																																																BG_Studyroom			
+			Etc	Add	0	1	MoveAndDis	0.5	0,-10																																																																BG_Studyroom			
+			Etc	Add	0	2	MoveAndDis	0.5	0,-10																																																																BG_Studyroom			
+			Etc	Add	0	3	MoveAndDis	0.5	0,-10																																																																BG_Studyroom			
+			Etc	Add	0	4	MoveAndDis	0.5	0,-10																																																																BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		아무리 그래도 크리스마스 이브에도 공부하는 건… 심한 거 아닐까?​	
+Com	0	0	Text																																																																						BG_Studyroom		열람실을 쪽 둘러봤다.​	
+Com	0	0	Text																																																																						BG_Studyroom		그리고 평소 우리과 사람들을 생각해보았다.​	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	흠….​	
+Com	0	0	Text																																																																						BG_Studyroom		대부분 생각보다 멀쩡하게 생기긴 했다.​	
+Com	0	0	Text																																																																						BG_Studyroom		여름이면 안 씻어서 퀘퀘한 냄새가 난다든가​	
+Com	0	0	Text																																																																						BG_Studyroom		머리를 감지 않아서 머릿기름에 떡져 있다던가.​	
+Com	0	0	Text																																																																						BG_Studyroom		없다고는 말 못하겠지만 그런 사람은 보기 힘들다.	
+Com	0	0	Text																																																																						BG_Studyroom		오히려 이따금 정말 잘생긴 사람들도 보인다.​	
+			Ch	Add	0																				FadeIn	0.5	0,0																																														BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		…정말 가끔이지만.​	
+Com	0	0	Text																																																																						BG_Studyroom		아무리 멀쩡한 사람이라도 컴공이 되면 이상한 저주에 걸리는 건 아닐까?​	
+			Ch	Extra	0																				FadeOut	0.5																																															BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		…..​	
+Com	0	0	Text																																																																						BG_Studyroom		하, 쓸데없는 생각 말고 공부나 …	
+Com	0	0	Text																																																																						BG_Studyroom		……	
+Com	0	0	Text																																																																						BG_Studyroom		아니?​	
+Com	0	0	Text																																																																						BG_Studyroom		다시 생각해보니까…..​	
+Com	0	0	Text																																																																						BG_Studyroom		이거 진짜 컴공이 문제인 거 아니야?	
+Com	0	0	Text																																																																						BG_Studyroom		오늘 같은 날 열람실에서 죽어라 공부만 한다는 말은	
+Com	0	0	Text																																																																						BG_Studyroom		이 사람들이 다 솔로라는 거잖아?	
+Com	0	0	Text																																																																						BG_Studyroom		그리고 이 인간들 다 컴공이라고?	
+Com	0	0	Text																																																																						BG_Studyroom		다시 한 번 둘러보자​	
+Com	0	0	Text																																																																						BG_Studyroom		아니 저렇게 잘생긴 사람도 여자친구가 없다고?​	
+			Ch	Add	0																				FadeIn	0.5	0,0																																														BG_Studyroom			
+			Ch	Extra	1																				FadeOut	0.5																																															BG_Studyroom			
+Com	0	0	Text																																																																						BG_Studyroom		이거 진짜…​	
+Com	0	0	Text																																																																						BG_Studyroom		컴공이 문제인가?​	
+Com	0	0	Text																																																																						BG_Studyroom		……	
+Com	0	0	Text																																																																						BG_Studyroom		아무래도 맞는것 같다.	
+Com	0	0	Text																																																																						BG_Studyroom		확 전과해?​	
+Com	0	0	Text																																																																						BG_Studyroom		그러면 내 캠퍼스 라이프도 돌아오는건가?	
+Com	0	0	Text																																																																						BG_Studyroom	???	뭐라고?​	
+Com	0	0	Text																																																																						BG_Studyroom		…?​	
+Com	0	0	Text																																																																						BG_Studyroom	???	…..취소해​	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	어… 네?	
+Com	0	0	Text																																																																						BG_Studyroom		뭐지?​	
+Com	0	0	Text																																																																						BG_Studyroom		누가 열람실에서 큰 소리를...​	
+Com	0	0	Text																																																																						BG_Studyroom	???	너 그 말 당장 취소해!!!!!​	
+			Etc	Add	0		StorageSpawn	화난컴공신	0.01	0,0																0.1																																																		
+			Etc	Add	0		ZoomM	0.5	5																																																																			
+			Etc	Extra	1	0	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_Studyroom	유니티	으아아악!!!!!​	
+Com	0	0	Text																																																																						BG_Studyroom	???	내가널얼마나많이도와줬는데너코딩이상하게한것도내가몰래고쳐준게한둘이아닌데네가나한테어떻게그럴수​	
+			Etc	Add	0		StorageSpawn	말하는컴공신	5	0,0																																																																		
+			Etc	Extra	1	1	ObjLock																																																																					
+Com	0	0	Text																																																																						BG_Studyroom	유니티	으아아악!!!!! 귀신이다!!!!!​	
+			Etc	Extra	0		StorageSpawn_FadeIn	1	White	0,0																																																																		
+			Etc	Extra	1	0	FadeOut	0.1																																																																				
+			Etc	Add	2	1	FadeOut	0.1																																																																				
+Com	0	0	Text																																																																						BG_Black		...나는 그대로 기절했다.​	
+			Etc	Add	0		StorageSpawn	Black	1	0,0																																																																		
+			Etc	Add	0		SFX																																																																					
+			Etc	Extra	0		UI_Down	0.5																																																																				
+			Etc	Extra	1		Wait	5																																																																				
+Com	0	0	Etc				UI_UP	0.5																																																																				
+			Text	Extra	0																																																																				BG_god	???	...어나…​	
+Com	0	0	Text																																																																						BG_god	???	일어나…​	
+Com	0	0	Text																																																																						BG_god	???	야아아아!!!!! 안 일어나?!	
+Com	0	0	Text																																																																						BG_god	유니티	으윽…​	
+Com	0	0	Text																																																																						BG_god	유니티	아야야… 뒤통수야.…​	
+Com	0	0	Text																																																																						BG_god	유니티	음?​	
+Com	0	0	Text																																																																						BG_god		뭔가 이상하다.	
+Com	0	0	Text																																																																						BG_god	???	언제까지 누워 있을거야?	
+			Ch	Add	0																				CHFadeIn	0.5																																			010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612											BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	네?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	누...​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	누구...세요?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		이 괴상한 공간은 또 어디야?	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	???	호에에엥​	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789613											BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	???	날 못알아보는 거야?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	???	정말 뚁땽해!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	예?	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	???	아무래도 우리 유니티군이 날 모르는 눈치니, 아름답고 깜찍하게 설명을 해줄게~!​	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	네?​	
+Com	0	0	Text																																																												1										BG_god	???	이 세상에서 가장 귀엽고 사랑스러운 신은 누구?​	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None		1										BG_god	???	자애로운 마음으로 컴공생들을 굽어살피는 신은 누구?​	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	하와와 맞아요~ 그건 바로 나 컴.공.신 ☆~	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		...	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		꿈인가?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		이게 그 자각몽인가 뭔가하는 그건가?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		그러면 손가락 꺾어봐야하는데?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	흠...안 되네...	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	호에에엥~ 유니티군 무시하지 마!​	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	첫 만남이라고 잔뜩 준비하고 왔는데 너무해!​	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_1_hings-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	컴공신 삐져버린다? 흥!​	
+			Ch	Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_6_close-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		저건 뭐길래 내 꿈에 나와서 저러지?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god		컴공 공부를 너무 열심히 한 나머지 꿈에서까지 나를 괴롭힐 셈인가?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	그래서 그쪽은 컴공신이라는거죠?	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	응응! 세상에서 제일 귀여운 컴공신이야!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/0_0_fx_2_happy/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_3_woo-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/0_0_fx_2_happy/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	음. 아무래도 진짜 아픈가보다.	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/0_0_fx_2_happy/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	그래, 눈 딱 감고 다시 뜨면 원래대로 돌아올거야.	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	그래도 소용 없어. 아무리 부정해봐도 현실은 비정한 법이야.	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None																																			010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/0_0_fx_2_happy/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	아니 이게 진짜라고?	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	그래! 얼마나 더 말해줘야 믿을거야!​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	그나저나, 유니티? 아까 했던 말 다시 한 번 말해볼래?​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None																																			010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	예?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	어떤거요?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	너 ​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	전.과.하고싶다고?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	엥 제가요?​	
+Com	0	0	Text Ch1																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	그래! 네가 전과하고싶다고 하소연했잖아!​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_3_hate/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	과가 문제라느니 모든 괴담의 시발점이라느니!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	아.​	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	네가 어떻게 그럴 수 있어! 너 코딩도 열심히 하고 좋아했잖아!​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_3_angry-0_0_m_4_uh-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None																																			010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_3_angry-0_0_m_4_uh-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	전과하지마! 아니, 네가 했던 말 빨리 취소해!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_3_angry-0_0_m_4_uh-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	일단 진정하세요. 그냥 자학개그 같은 느낌으로 한거였어요.​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_3_angry-0_0_m_4_uh-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	몰라! 취소해!​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_3_angry-0_0_m_4_uh-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	아니 그러니까...​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	취소해!!! 취소하란 말이야!!!!!!!​	
+Com	0	0	TextVibe																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	취소해 취소해 취소해 취소해~~~~~!!!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	…...​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	아유 시끄러!!!!!!!!!!​	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	유니티	아니 뭐, 제가 못할 말 했어요?​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	막말로 지금 도서관에는 컴공 뿐이지,​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	학생은 또 더럽게 많아서 친해질 계기도 많지 않지!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	그렇다고 과 평가가 좋은가 하면 그런것도 아니고!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	에브리바디 들어가봤어요? 거기 보면 컴공 험담만 한가득이에요!​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	컴공신이면 이런 거 좀 관리하고 그래야하는 거 아니에요?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	신이라는 작자가 무늬만 신이지!​	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	흐무무…​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_0_hing-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_2_normal-0_0_m_4_uh-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	너...너 지금 말 다했어?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_0_hing-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	아뇨? 아직 반도 안했는데요?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_0_hing-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	유니티	지금 이 정도에서 끝날 거라고 생각하셨어요?​	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	흥 됐어! 너 열심히 코딩하고 공부해서 내가 좋게 보고 있었는데​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_5_bboo-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_0_hing-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_5_bboo-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789612	1										BG_god	컴공신	너도 그냥 똑같은 그냥 지나가던 컴공 1이었던것 뿐이었어!​	
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	내 마음을 가지고 놀다니!!!​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_5_bboo-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789612	1										BG_god	컴공신	컴공의 신을 농락한 죄...그 죄값을 달게 받아라!​	
+			Etc	Extra	0		StorageSpawn	ep1_curse_error	1	0,0															ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_2_umm-0_0_fx_1_flush/0_0_fx_0_angry/@None/@None												BG_god			
+Com	0	0	Text																																																																						BG_god	유니티	? 이게 무슨...	
+			Etc	Extra	0		CurseBug																																																																		BG_god			
+			Etc	Extra	1		FadeIn	1	White																																																																BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_6_close-0_0_m_8_shouting-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789613	1										BG_god	유니티	으윽… 머리가...​	
+Com	0	0	Text																																																											-0.2927478, 0.7789614	1										BG_god	컴공신	흐흥, 넌 지금 저주에 걸렸어!​	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None																																			 												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789615	1										BG_god	유니티	예? 저주요?​	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789616	1										BG_god	컴공신	그래. 네가 컴공이 싫다고 했잖아!​?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789617	1										BG_god	컴공신	그러면 난 저주로 널 영원히 컴공에 묶어둘 수 밖에 없지!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789618	1										BG_god	유니티	무슨 수로 절 묶어두시게요? 뭐 졸업 못하게 하는, 뭐 그런거요?	
+Com	0	0	Text																																																											-0.2927478, 0.7789619	1										BG_god	컴공신	흥. 내가 컴공을 모욕한 자에게 고작 그런 가벼운 저주를 걸 까 봐? 내가 건 저주는 바로...!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_3_angry-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_3_angry-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789620	1										BG_god	유니티	…꿀꺽…	
+Com	0	0	Text																																																											-0.2927478, 0.7789621	1										BG_god	컴공신	바로 대학원생이 되는 저주야!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_3_angry-0_0_m_2_umm-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789622	1										BG_god	컴공신	그것도 컴퓨터공학과 대학원생!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789623	1										BG_god	유니티	네?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789624	1										BG_god	유니티	대학원생이요?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789625	1										BG_god	유니티	컴퓨터공학과 대학원생?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789626	1										BG_god	컴공신	그래! 대학원생!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789627	1										BG_god	컴공신	교수님 밑에서 영원한 코딩 노예가 되는거지!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789628	1										BG_god	유니티	어… 그렇군요…?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789629	1										BG_god	유니티	그럼 이제 보내주시는건가요?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789630	1										BG_god	유니티	오토마타 마저 공부해야하는데...	
+Com	0	0	Text																																																											-0.2927478, 0.7789631	1										BG_god	컴공신	이제 앞으로 교수님들이 너에게 수많은 러브콜을 보낼 거야	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789632	1										BG_god	컴공신	교수님들의 러브콜에 지친 넌 결국 랩실로 끌려가게 되겠지!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789633	1										BG_god	유니티	아니 뭐 저주는 저주긴 한데...	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789634	1										BG_god	유니티	그... 제 말은 듣고 계신거 맞죠?	
+Com	0	0	Text																																																											-0.2927478, 0.7789635	1										BG_god	컴공신	그래도!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789636	1										BG_god	컴공신	그럼에도 불구하고!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789637	1										BG_god	유니티	아... 네... 안듣고계셨구나...	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789638	1										BG_god	컴공신	내가 수많은 컴공생들중에서 가장 아꼈던 너니까!	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789639	1										BG_god	컴공신	특별히 기회를 줄게.	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789640	1										BG_god	유니티	네? 기회요…?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789641	1										BG_god	컴공신	네가 컴공을 미워하는건 결국 연애를 못하고 있어서 그런거잖아?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789642	1										BG_god	컴공신	그렇다면 연애를 하면 컴공이 다시 좋아지겠지?	
+Com	0	0	Text																																																											-0.2927478, 0.7789643	1										BG_god	컴공신	그 러 니 까	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_5_hentai-0_0_m_7_ssik-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789644	1										BG_god	컴공신	1년!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_2_normal-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789645	1										BG_god	컴공신	딱 1년 안에 네가 인연있는 사람과 맺어진다면 대학원에 가는 저주는 풀릴 거야.	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789646	1										BG_god	유니티	제가요?  1년 안에 연애를요?	
+Com	0	0	Text																																																										010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None	-0.2927478, 0.7789647	1										BG_god	유니티	지금까지 '연애 못한 햇수 == 나이' 인 사람한테 그런 조건은 너무 가혹한거 아니에요?	
+Com	0	0	Text																																																											-0.2927478, 0.7789648	1										BG_god	컴공신	말했잖아~ 기회를 주겠다고~!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_4_wink-0_0_m_6_merong-0_0_fx_1_flush/@None/@None/@None																																			010-@None-@None-0_0_e_4_wink-0_0_m_0_happy-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789649	1										BG_god	컴공신	그 사람들을 만나면 ‘아, 이 사람이구나’ 라고 느낌이 오게 될 거야.	
+Com	0	0	Text																																																											-0.2927478, 0.7789650	1										BG_god	컴공신	저주도 풀고 연인도 생기고	
+Com	0	0	Text																																																											-0.2927478, 0.7789651	1										BG_god	컴공신	꺄아! 내가 생각한 방법이지만 너무나 완벽해!	
+				Add	0																				ChaFaceChange	010-@None-@None-0_0_e_6_close-0_0_m_0_happy-0_0_fx_1_flush/0_0_fx_2_happy/@None/@None																																			010-@None-@None-0_0_e_4_wink-0_0_m_6_merong-0_0_fx_1_flush/@None/@None/@None												BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789652	1										BG_god	컴공신	자 열심히 해보라구 유니티! 이 컴공신은 널 응원하고 있어~ 그럼 이만~~~	
+				Add	0																				Fadeout	1																																															BG_god			
+Com	0	0	Text																																																											-0.2927478, 0.7789653	1										BG_god	유니티	잠시만요! 잠시만요!!!!	
+Com	0	0	Text																																																																						BG_god	유니티	야! 야!	
+Com	0	0	Text																																																																						BG_god	유니티	야!!!!!!!	
+			BG	Add	0											BGFadein	2	BG_Studyroom																																																							BG_god			
+Com	0	0	Text																																																																						BG_Studyroom	학생1	저기요.	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	네? 아, 네…넵!	
+Com	0	0	Text																																																																						BG_Studyroom	학생1	열람실에선 조용히 해주시겠어요?	
+Com	0	0	Text																																																																						BG_Studyroom	유니티	아니 근데 분명히 저기에 자칭 신이라는 웬 이상한 사람 하나가…	
+Com	0	0	Text																																																																						BG_Studyroom		………	
+Com	0	0	BG Text																																																																						BG_Studyroom	유니티	없네?	
+																																																																									BG_Studyroom	학생1	하...피곤하실 만은 한데, 소리 좀 신경 써주세요.	
+																																																																										유니티	네...죄송합니다...	
+Com	0	0	Text																																																																						black		마치 꿈이었던 것처럼, 컴공신은 온데간데없이 사라졌다.	
+Com	0	0	Text																																																																						black		...그리고 난 1개월 열람실 이용제한을 받았다.	
+Com	0	0	Text													BGFadein																																																									ep1_doc1	유니티	사실은 그게 정말 꿈이었던 게 아닐까요?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	신이라느니… 저주라느니… 실제로 있을 리가 없잖아요.	
+Com	0	0	Text																																																																						ep1_doc1	유니티	제가 공부를 너무 열심히 한 나머지 정신병이 와버린걸까요?	
+Com	0	0	Text													BGFadein																																																									ep1_doc3	???	지금까지 말씀하신 걸 종합해보면 정신병까지는 아니더라도 충분히 위험군에 속한다고 생각됩니다.	
+Com	0	0	Text																																																																						ep1_doc3	유니티	제가...제가 이상해졌다구요?	
+Com	0	0	Text													BGFadein																																																									ep1_doc2	???	이상해졌다라기 보단 스트레스나 부담이 이러한 형태로 왔다고 생각하시면 편할것 같습니다.	
+Com	0	0	Text																																																																						ep1_doc2	???	너무 부정적으로 생각하지 마세요. 본인이 문제가 있다고 생각하면 오히려 더 그렇게 될 수 있으니까요.	
+Com	0	0	Text																																																																						ep1_doc2	유니티	그러면 선생님, 저는 앞으로 어떻게 해야 하는 건가요?	
+Com	0	0	Text													BGFadein																																																									ep1_doc1	???	우선 최대한 이 문제에 신경을 끄고 일상적으로 행동해야 합니다.	
+Com	0	0	Text																																																																						ep1_doc1	???	일단…백준 플레 3을 목표로 코딩을 매일 4시간 이상 1달동안 지속하는 걸 추천합니다.	
+Com	0	0	Text																																																																						ep1_doc1	???	다음 학기를 위해 Lisp 실습 위주로 프로그래밍 언어론을 공부하는 것도 좋아 보이네요.	
+Com	0	0	BG Text													Glitch																																																									ep1_doc1	유니티	알겠습니다. 더 많은 코딩… 더 많은 공부…	
+Com	0	0	Text																																																																						ep1_doc1		…?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	잠시만요?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	스트레스를 많이 받아서 문제가 생긴거라면서요?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	지금같은 상황을 보면 코딩 공부가 스트레스의 원인이잖아요?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	그런데 여기서 코딩을 더 하라는 말씀이신가요?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	...아니 애초에 선생님은 컴공에 대해서 어떻게 그렇게 잘 아시죠?	
+Com	0	0	Text																																																																						ep1_doc1	???	…	
+Com	0	0	Text																																																																						ep1_doc1		순간 섬찟한 느낌이 들었고, 온몸에 소름이 돋았다.	
+Com	0	0	Text																																																																						ep1_doc1	???	헤에~ 유니티쿤 제법인걸?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	…?	
+Com	0	0	Text																																																																						ep1_doc1	유니티	방금… 뭐라고…	
+Com	0	0	Text																																																																						ep1_doc1	???	유니티쿤, 아직도 눈치채지 못 한건가요?	
+			BG	Add	0											BGFadeIn	1	ep1_doc_table																																																							ep1_doc1			
+			Etc	Add	1		StorageSpawn_FadeIn	1	ep1_doc_glitch 	0,0																																																															ep1_doc_table			
+			Etc	Extra	2	0	Glitch																																																																		ep1_doc_table			
+Com	0	0	Text																																																																						ep1_doc_table		...식은땀이 흐르기 시작했다.	
+			Etc	Add	0		StorageSpawn	ep1_docgod_glitch	1	0,0																																																															ep1_doc_table			
+			Etc	Add	0	0	Glitch																																																																		ep1_doc_table			
+Com	0	0	Text																																																																						ep1_doc_table		나는 곧바로 고개를 들어 상담사를 쳐다봤고,	
+			Etc	Add	0		StorageSpawn	ep1_docgod1	1	0,-5																																																															ep1_doc_table			
+			Etc	Extra	1	0	Move	5	0,5																																																																			
+			Etc	Extra	2	0	ObjLock																																																																					
+Com	0	0	Text																																																																						ep1_docgod1	???	...이제야 이쪽을 봐주는구나?	
+			BG	Add	0											BGFadeIn	1	ep1_docgod2																																																							ep1_docgod1			
+Com	0	0	Text																																																																						ep1_docgod2	컴공신	짜잔! 상담사 선생님은 바로 귀여운 컴공신이었습니다~	
+			Etc	Add	0	0	FadeOut	0.5																																																																	ep1_docgod2			
+Com	0	0	Text																																																																						ep1_docgod3	컴공신	유니티쿤! 코딩공부 열심히 하면 모든게 해결될 거야~	
+			BG	Add	0											BGFadeIn	1	ep1_docgod3																																																							ep1_docgod3			
+Com	0	0	Text																																																																						ep1_docgod3	유니티	으...으아아아아아	
+			BG	Add	0											BGFadeIn	2	BG_White																																																										
+			BG	Extra	1											BGFadeIn	1	BG_room																																																										
+			Text	Extra	2																																																																				BG_room	유니티	아아아악!!!!!!	
+Com	0	0	Text																																																																						BG_room	유니티	허억… 허억… 허억…	
+Com	0	0	Text																																																																						BG_room	유니티	후우…이제는 하다하다 꿈에서도 나오네…	
+Com	0	0	Text																																																																						BG_room	컴공신	네가 이러고 있는 지금도 시간은 흘러가고있다구~	
+Com	0	0	Text																																																																						BG_room	유니티	하...하하...하하하하...	
+Com	0	0	Text																																																																						BG_room		세상이 나를 너무 미워한다. 특히 신 하나가.	
+			BG	Add	0											BGFadeIn	1	BG_Black																																																							BG_room			
+Com	1																																																																										저주? 인연? 	
+																																																																											...	
+																																																																											내가 이런 초자연적인 현상을 믿어야 해?	
+																																																																											그리고 연애?	
+																																																																											...	
+																																																																											솔직히	
+																																																																											누군가와 사귀어본 적도 없고.	
+																																																																											그런 생각조차 해본 적도 없다.	
+																																																																											애초에 누굴 좋아해본 적도 없으니까.	
+																																																																											…	
+																																																																											그런 나보고 1년 안에 인연을 찾으라고?	
+																																																																											아니 내가 1년 안에 여자친구를 사귀어야 한다고?	
+																																																																											그것도 특정 대상이랑 사귀어야 한다는 거 아니야?	
+																																																																											......	
+																																																																											나한테 너무한 것 아니야?	
+																																																																										유니티	으...	
+																																																																										유니티	일단 모르는 게 많으니	
+																																																																										유니티	대충 인터넷에 검색부터 해볼까?	
+																																																																												
+																																																																										유니티	흠...	
+																																																																											사주?	
+																																																																											타로?	
+																																																																											운명의 상대를 끌어당기는 주파수...?	
+																																																																											어째 믿기 어려운 것들만 나오네…	
+																																																																											음...	
+																																																																											아무래도 이건 아니야.	
+																																																																											운명의 상대를 알아볼 방법은 있다고 하니까 지금은 그 말을 믿어보자...	
+																																																																											방학이었으니까 마주치지 못했을 거야.	
+																																																																											이제 개학했으니까 이건 좀 더 지켜봐야겠어...	
+																																																																											다시 생각해보자. 내가 뭘 해야 하지?	
+																																																																											…..	
+																																																																											그래, 일단 어떻게든 만났다고 쳐.	
+																																																																											...근데 사귀지 못하면 의미가 없는 거 아니야?	
+																																																																												
+																																																																											...	
+																																																																												
+																																																																												
+																																																																												
+																																																																										유니티	어…	
+																																																																										유니티	음…	
+																																																																											저 사람의 열정을 폄하하고싶은 것은 아니지만...	
+																																																																											나랑은 방향이 안 맞는 것 같다.	
+																																																																										유니티	좀 더 제대로 된 조언은 없으려나?	
+																																																																											…	
+																																																																											오... 적극적이야.	
+																																																																											이건 그래도 반응이 좋은데?	
+																																																																										익명의 글	형도 딱 몇가지 알려줄게.	
+																																																																										익명의 글	자신없는 친구들 잘 보고 따라하면 된다.	
+																																																																										유니티	벌써부터 신뢰가 가.	
+																																																																										익명의 글	너가 학생이라면 일단 맘에 드는 여학생 근처에 앉아.	
+																																																																										유니티	오... 적극적이야.	
+																																																																										익명의 글	요즘 사람들은 이렇게 연애하는구나...	
+																																																																										익명의 글	좋아, 나도 이 정도는 할 수 있지. 그 다음에는?	
+																																																																										익명의 글	그리고	
+																																																																										유니티	그리고?	
+																																																																										익명의 글	그냥 앉아만 있어.	
+																																																																										익명의 글	아무것도 하지마.	
+																																																																										유니티	에?	
+																																																																										익명의 글	여학생이 먼저 인사하면 어색하게 너도 인사만해.	
+																																																																										익명의 글	절대 아무것도 하지마.	
+																																																																										유니티	...진짜로?	
+																																																																										익명의 글	그러다가 여학생이 샤프심 또는 교과서 같은거 안 챙겨오는 날이 있다?	
+																																																																										익명의 글	그냥 곁눈질로만 보다가 슬쩍 빌려줘.	
+																																																																										익명의 글	근데? 아무말도 하지마.	
+																																																																										유니티	...	
+																																																																										익명의 글	입은 닥치고 있어, 제발.	
+																																																																										익명의 글	여학생이 고맙다고 해도 상상의 나래 펼치지마. 대답도 하지 마.	
+																																																																										익명의 글	웃지도 마, 그냥 공부나 열심히 해… 	
+																																																																										유니티	뭐 이딴 거지같은 글이...	
+																																																																										유니티	진짜 아무것도 하지마?	
+																																																																										유니티	그랬으면 내가 진작...	
+																																																																										유니티	에휴…	
+																																																																											기대한 내가 바보지.	
+																																																																											세시간 동안 인터넷을 돌아다녀봤지만 당장 나에게 쓸모 있는 조언은 하나도 없었다.	
+																																																																										유니티	후..	
+																																																																											...	
+																																																																											망할 컴공신...	
+																																																																											뭐, 만나면 자연스럽게 알아본다고?	
+																																																																											장장 3개월 동안 아무 일도 없었는데 내가 어떻게 알아!	
+																																																																											컴공신이면 컴공신답게 똑바로 알려줘야지.	
+																																																																											이거 코딩도 지멋대로 짜는 거 아니야?	
+																																																																											아 골 때려...	
+																																																																										유니티	아!!!	
+																																																																											으으…!	
+																																																																										유니티	윽…내 머리...	
+																																																																											갑자기 무언가가 내 머리 위로 떨어졌다.	
+																																																																											이게 뭐야?	
+																																																																										유니티	어라 잠만...	
+																																																																										유니티	이거라면...?	
+																																																																										유니티	152.41...	
+																																																																										유니티	아, 찾았다.	
+																																																																										유니티	후......	
+																																																																											‘내 나이 == 솔로였던 기간’	
+																																																																											이런 내가 솔직히 연애에 대해 무엇을 알겠는가?	
+																																																																											백준문제나 수학문제라면 자신있게 풀 수 있다.	
+																																																																											하지만 연애는 아니다.	
+																																																																											나는 뭐가 오답인지 뭐가 정답인지 전혀 모른다.	
+																																																																											비유를 하자면 이제 막 덧셈을 배우기 시작한 어린 아이정도…?	
+																																																																											하지만 나는 컴공.	
+																																																																											진정한 공학도라면 이런 상황에서 어떻게 해야 하는가?	
+																																																																											이렇게 실마리조차 잡히지 않을 때 컴공이라면 무엇부터 해야 하는가?	
+																																																																											그렇다! 바로 관련된 개념부터 차근차근 살펴봐야 한다.	
+																																																																											또 이럴 때는 책만한 것이 없지.	
+																																																																											그렇기 때문에 내가 여기서 연애서적을 찾는 건 타당한 이유가 있는 것이다.	
+																																																																											...	
+																																																																											이게 도서관까지 와서 책까지 찾아 봐야 할 정도냐고?	
+																																																																											모르는 것보다는 알려고 노력하는 자세가 중…	
+																																																																										???	아, 지나가겠습니다. 죄송합니다.	
+																																																																										유니티	흠흠...	
+																																																																											…진짜 하나도 안 부끄럽다니까...	
+																																																																											일단 어서 나머지 책이나 찾자.	
+																																																																										유니티	...음	
+																																																																										유니티	어디에 있지?	
+																																																																											 	
+																																																																											어쩔 수 없이 나는 책을 찾아줄 사람을 찾으러 대출창구로 향했다.	
+																																																																										유니티	저기…혹시 책 하나 찾아주실 수 있나요?	
+																																																																										근로장학생	네. 무슨 일이시죠?	
+																																																																											우와...	
+																																																																											눈꽃 같이 하얀 피부, 달빛이 녹아내린 눈동자	
+																																																																											차가우면서도 강렬한 특유의 분위기가 자꾸 내 시선을 사로잡는다.	
+																																																																										근로장학생	저기요?	
+																																																																										유니티	…	
+																																																																										근로장학생	저기요!	
+																																																																										유니티	아, 네!	
+																																																																											나도 모르게 넋을 놓고 쳐다보고 있었다.	
+																																																																										유니티	그, 책이 자리에 없는 것 같아서요.	
+																																																																										근로장학생	어떤 책인지 알려 주시겠어요?	
+																																																																										유니티	여기요.	
+																																																																										근로장학생	...	
+																																																																										유니티	체크 안 되어 있는 것들만 찾으면…	
+																																																																											말이 끝나기도 전에 그녀는 자리에서 일어나 책장이 있는 곳으로 향했다.	
+																																																																											빠르다...	
+																																																																											그녀는 말없이 책장으로 가서 책을 찾았다.	
+																																																																											책은 내가 찾던 곳 바로 맞은 편에 있었다.	
+																																																																										근로장학생	찾으시는 책 여기...	
+																																																																										근로장학생	......	
+																																																																											그녀는 책을 뽑을 때 흠칫 놀라는 기색을 보였다.	
+																																																																												
+																																																																											그러고는 이해가 안 간다는 표정으로 몇 번인가 나와 책을 번갈아 보더니	
+																																																																											다시 책표지를 노려봤다.	
+																																																																											응? 뭐지?	
+																																																																											설마…?	
+																																																																											아하! 저분이 먼저 빌리려고 했구나!	
+																																																																											어쩌지... 나도 급한데…	
+																																																																										유니티	그…제가 급하게 빌려야 해서 그러는데...	
+																																																																										유니티	필요하신 건 알겠지만... 제가 먼저 빌릴 수 있을까요?	
+																																																																											그녀는 아무 말 없이 책을 건네주었다.	
+																																																																											마치 쓰레기를 건네듯 최대한 손끝으로.	
+																																																																											아.	
+																																																																											새삼 느끼는 거지만 나,	
+																																																																											정말 말도 안 되는 책을 찾아달라고 한거였구나.	
+																																																																											......	
+																																																																											나는 부끄러워 책을 얼른 품 안으로 숨겼다.	
+																																																																											남에게 이런 책 빌리는 걸 들키다니...	
+																																																																											감사하다는 의미로 고개를 꾸벅 숙이고 빨리 나가려던 그 때	
+																																																																										???:	지나갑니다.	
+																																																																											어디선가 맡아본 적 있는 단 냄새가 코끝을 스쳤다.	
+																																																																											그것이 어떤 냄새인지 기억이 날 것만도 같을 때	
+																																																																										유니티	어?	
+																																																																											어째서인지 나는 넘어지고 있었다.	
+																																																																										유니티	어...어!	
+																																																																											누군가가 나를 밀치고 지나갔나?	
+																																																																											넘어지지 않으려고 무의식적으로 손을 뻗은 자리에는	
+																																																																											그녀가... 서 있었다...	
+																																																																												
+																																																																											?	
+																																																																											방금 무슨 일이...	
+																																																																											저 사람 머리 위에 있는 글자는 뭐지?	
+																																																																											Debug...Luv?	
+																																																																											내 눈이 이상해졌나?	
+																																																																										근로장학생	아야…	
+																																																																										유니티	그, 괜찮... 아니, 그보다 머리에 이상한 게…	
+																																																																										근로장학생	네?	
+																																																																											스스로의 눈을 비벼보고, 근로장학생의 머리 위로 손을 올려 열심히 내저어봐도 글자는 사라지지 않았다.	
+																																																																										근로장학생	저기요?	
+																																																																											그 글자는 아무런 촉감도 느껴지지 않고, 시간이 지나도 사라지지 않고 그 상태 그대로 남아있었다.	
+																																																																											말도 안 되는 상황에 멍하니 있던 내 머릿속에, 갑자기 한 가지 기억이 문득 스쳐지나갔다.	
+																																																																										근로장학생	저기요!	
+																																																																											이거 설마…?	
+																																																																										근로장학생	야!!	
+																																																																										유니티	...네!	
+																																																																										근로장학생	이거 안 놔?	
+		1																																																																									정신을 차려보니, 나는 쭉 그녀의 팔을 붙잡고 있었다.	0
+		1																																																																								유니티	죄, 죄송합니다.	
+		1																																																																								근로장학생	하…	
+		1																																																																									손을 놓자마자 벌떡 일어난 그녀는 잔뜩 구겨진 표정으로 옷에 뭍은 먼지를 털었다.	
+		1																																																																								유니티	그, 정말 죄송...	
+		1																																																																								근로장학생	…..	
+		1																																																																									그녀는 뚫어져라 나를 노려볼 뿐이었다.	
+		1																																																																								근로장학생	…................괜찮아요.	
+		1																																																																									괜찮다는 그녀의 말과 달리 그녀는 간신히 화를 참고 있는 듯 해 보였다.	
+		1																																																																									먼지를 터느라 고개를 숙여, 머리 위의 상태창이 내 눈 바로 앞으로 가까워졌다.	
+		1																																																																									상태창이 햇빛을 받으며 반짝이는 것을 지켜보니, 아까 뇌리를 스쳤던 가설이 다시 떠올랐다.	
+		1																																																																									...설마 컴공신이 말했던 운명이, 이건가?	
+		1																																																																								컴공신	그 사람들을 만나면 ‘아, 이 사람이구나’ 라고 느낌이 오게 될 거야.	
+		1																																																																									...그렇다면 이 사람이 내 저주를 풀어줄 사람?	
+		1																																																																									...뭐가 되었든, 지금은 이 사람이 유일한 단서다	
+		1																																																																									이 기회를 놓칠 순 없다. 뭐라도 해야 한다.	
+		1																																																																								유니티	저, 저기.…	
+		1																																																																								근로장학생	………네?	
+		1																																																																								유니티	이름이 어떻게 되세요?	
+		1																																																																								근로장학생	제가 왜 그쪽한테 이름을 알려줘야 하죠?	
+		1																																																																								유니티	그 …그렇다면	
+		1																																																																								유니티	번호!	
+		1																																																																								유니티	전화번호 좀 알려주세요.	
+		1																																																																								근로장학생	…	
+		1																																																																								근로장학생	하아…….	
+		1																																																																									그녀가 나를 경멸하듯 쳐다 봤다.	
+		1																																																																								근로장학생	다른 분들도 계시니 적당히 해주세요.	
+		1																																																																								유니티	제가 정말 급한 사정이 있어서 그래요. 혹시 근로 끝나고 잠깐만이라도 시간 좀..	
+		1																																																																								근로장학생	왜요. 그 이상한 책에서 그렇게 하라고 시키던가요?	
+		1																																																																								근로장학생	죄송한데, 당장 나가주세요.	
+		1																																																																								유니티	아니, 그게 아니라…	
+		1																																																																								근로장학생	당장 나가!	
+		1																																																																								근로장학생	자꾸 그러면 경찰 부를 거-!! 읍-	
+		1																																																																									갑작스러운 소란에 도서관에 있던 사람들이 이쪽을 쳐다보기 시작했고, 시선이 모여들자 나도 모르게 그녀의 입을 손으로 막아버렸다.	
+		1																																																																								유니티	ㅈ.. 죄...	
+		1																																																																								유니티	죄송합니다… 잠깐만… 제가 진짜 잘 설명할게요...	
+		1																																																																									...역효과였나보다.	
+		1																																																																									입이 막힌 채 발버둥치던 그녀가 갑자기 엄청난 힘으로 나를 밀쳤다.	
+		1																																																																								근로장학생	…!!!!!	
+		1																																																																									반대편으로 도망간 그녀의 얼굴이 점점 붉어지더니...	
+		1																																																																								근로장학생	야.. 이... 미친 놈아!!!!	
+		1																																																																									와 망했다.	
+		1																																																																								근로장학생	꺼져! 이 변태새끼! 어디 감히 그 따위 수작질이야!! 당장 안 꺼져!!!	
+		1																																																																								유니티	죄, 죄송... 아야! 아!	
+		1																																																																									나를 향해 던져지는 무수히 많은 책을 겨우겨우 피하며…	
+		1																																																																									도망치는 것 말고는 할 수 있는 게 없었다.	
+																																																																											……	
+																																																																											다시 한 번 생각해보자.	
+																																																																											도대체 조건이 뭐지?	
+																																																																											순서대로 생각해보면 뭔가 보이는 게 있을 거야...	
