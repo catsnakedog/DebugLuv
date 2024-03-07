@@ -10,7 +10,7 @@ public class ManagerSingle<ManagerType> : ManagerBase where ManagerType : Manage
     {
         get
         {
-            if (_instance == null)
+            if (_instance == null) // 자동화 - Manager중 아무나 호출해도 전부 세팅이 되도록 자동화 해둔 것이다
             {
                 _instance = FindObjectOfType<ManagerType>();
                 if (_instance == null)
