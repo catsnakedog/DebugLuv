@@ -50,7 +50,7 @@ public class Managers : MonoBehaviour // 따로 부착할 필요는 없음
         }
     }
 
-    public static void Clear<ManagerType>()
+    public static void Clear<ManagerType>() where ManagerType : ManagerBase
     {
         ManagerType manager = _instance.transform.GetComponent<ManagerType>();
 

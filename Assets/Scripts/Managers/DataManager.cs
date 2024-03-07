@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Playables;
 
 public class DataManager : ManagerSingle<DataManager>, IInit // 데이터를 관리하는 Manager이다
 {
@@ -45,7 +44,7 @@ public class DataManager : ManagerSingle<DataManager>, IInit // 데이터를 관리하�
     public void LoadJsonData(GameData gameData)
     {
         _jsonManager.LoadJsonData<SaveData>("SaveData", out gameData.SaveData); // Json데이터들을 가져온다
-        _jsonManager.LoadJsonData<CheckData>("CheckData", out gameData.CheckData);
+        //_jsonManager.LoadJsonData<CheckData>("CheckData", out gameData.CheckData);
     }
 
     public void Save() // SaveData를 저장한다

@@ -27,6 +27,11 @@ public class UI_Logo : UI_Base
         Value value = new Value();
         string fadeOutTime = "1";
         value.Value1 = fadeOutTime;
-        EffectManager.Instance.PlayEffect(typeof(FadeOut), Get(UI.Logo), value);
+        EffectManager.Instance.PlayEffect(typeof(FadeOut), Get(UI.Logo), value, GoMain);
+    }
+
+    private void GoMain()
+    {
+        SceneManagerEX.Instance.LoadScene("Main");
     }
 }
