@@ -117,5 +117,9 @@ public class TaskManager : ManagerSingle<TaskManager>
         UI_Manager.Instance.GetUI<UI_InGame>().Get<Image>("BG").sprite = ResourceManager.Instance.LoadSprite(_data[0].BgInfo.BgImage);
         UI_Manager.Instance.GetUI<UI_InGame>().Get<Image>("BG").color = new Color(1f, 1f, 1f, _data[0].BgInfo.Opacity);
         UI_Manager.Instance.GetUI<UI_InGame>().Get<TMP_Text>("Text").text = "";
+        if (_data[0].StateUI == "Hide")
+            UI_Manager.Instance.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -740, 0);
+        else
+            UI_Manager.Instance.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -370, 0);
     }
 }

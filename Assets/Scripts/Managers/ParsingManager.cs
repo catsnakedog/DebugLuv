@@ -31,12 +31,13 @@ public class ParsingManager
 
         string crruentStory = "";
         int crruentEpisode = 0;
+        int crruentBranch = 0;
 
         foreach (var setenceData in sheetData.LineData)
         {
             if (string.IsNullOrEmpty(setenceData.Story) || setenceData.Episode == -1 || setenceData.Branch == -1)
             {
-                data[crruentStory].Episode[crruentEpisode].Setence[^1].Add(setenceData);
+                data[crruentStory].Episode[crruentEpisode].Setence[crruentBranch][^1].Add(setenceData);
                 continue;
             }
 
@@ -51,12 +52,15 @@ public class ParsingManager
                 data[setenceData.Story].Episode[setenceData.Episode] = new();
                 data[setenceData.Story].Episode[setenceData.Episode].Setence = new();
             }
+            if (!data[setenceData.Story].Episode[setenceData.Episode].Setence.ContainsKey(setenceData.Branch))
+                data[setenceData.Story].Episode[setenceData.Episode].Setence[setenceData.Branch] = new();
 
-            data[setenceData.Story].Episode[setenceData.Episode].Setence.Add(new());
-            data[setenceData.Story].Episode[setenceData.Episode].Setence[^1].Add(setenceData);
+            data[setenceData.Story].Episode[setenceData.Episode].Setence[setenceData.Branch].Add(new());
+            data[setenceData.Story].Episode[setenceData.Episode].Setence[setenceData.Branch][^1].Add(setenceData);
 
             crruentStory = setenceData.Story;
             crruentEpisode = setenceData.Episode;
+            crruentBranch = setenceData.Branch;
         }
 
         return data;

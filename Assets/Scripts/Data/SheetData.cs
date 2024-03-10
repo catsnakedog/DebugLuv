@@ -35,6 +35,7 @@ public class LineData
     public ChInfo Ch4Info;
     public string Name;
     public string Text;
+    public string StateUI;
     public int Choice;
 }
 

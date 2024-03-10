@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EpisodeManager : ManagerSingle<EpisodeManager>
@@ -27,14 +28,20 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     }
 
     private InGameObjPack _inGameObjPack;
+    private EpisodeData _episodeData;
 
     public bool IsSetenceDone;
     public bool IsNext;
 
-    public void StartEpisode(EpisodeData data)
+    public int Branch;
+    public int Setence;
+
+    public void StartEpisode(EpisodeData data, int branch, int setence)
     {
         SetInGameObj();
-
+        Branch = branch;
+        Setence = setence;
+        _episodeData = data;
         StartCoroutine(Episode(data));
     }
 
@@ -45,14 +52,19 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
 
     private IEnumerator Episode(EpisodeData data)
     {
-        foreach (List<LineData> setence in data.Setence)
+        for(int i = Setence; i < data.Setence[Branch].Count; i++)
         {
+            Setence = i;
             IsNext = false;
             IsSetenceDone = false;
-            TaskManager.Instance.StartSetenceTasks(setence);
+            TaskManager.Instance.StartSetenceTasks(data.Setence[Branch][i]);
             yield return new WaitUntil(CheckSetenceDone);
             yield return new WaitUntil(() => IsNext);
         }
+        if (data.Setence[Branch][^1][^1].Choice != 0)
+            UI_Manager.Instance.GetUI<UI_InGame>().ShowChoice(data.Setence[Branch][^1][^1].Choice);
+        else
+            EpisodeEnd();
     }
 
     private bool CheckSetenceDone()
@@ -68,5 +80,17 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     public InGameObjPack GetInGameObjPack()
     {
         return _inGameObjPack;
+    }
+
+    public void EpisodeEnd()
+    {
+
+    }
+
+    public void ChangeBranch(int num)
+    {
+        Branch = num;
+        Setence = 0;
+        StartCoroutine(Episode(_episodeData));
     }
 }

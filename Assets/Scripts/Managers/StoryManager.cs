@@ -10,6 +10,6 @@ public class StoryManager : ManagerSingle<StoryManager>
     {
         EpisodeData data = DataManager.Instance.GetEpisodeData(InGameData.Story, InGameData.Episode);
         ResourceManager.Instance.SetSpriteData(data);
-        EpisodeManager.Instance.StartEpisode(data);
+        EpisodeManager.Instance.StartEpisode(data, InGameData.Branch,  InGameData.Setence);
     }
 }

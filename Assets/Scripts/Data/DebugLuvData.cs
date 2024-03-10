@@ -25,7 +25,7 @@ public class StoryData
 [System.Serializable]
 public class EpisodeData
 {
-    public List<List<LineData>> Setence;
+    public Dictionary<int, List<List<LineData>>> Setence;
 }
 #endregion
 

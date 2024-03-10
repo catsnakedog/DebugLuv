@@ -9,6 +9,7 @@ public class InGame : BaseScene
         StoryManager.Instance.InGameData = new(); // ÀÓ½Ã°ª
         StoryManager.Instance.InGameData.Story = "Com";
         StoryManager.Instance.InGameData.Episode = 0;
+        StoryManager.Instance.InGameData.Branch = 0;
         ChMakingManager.Instance.Set();
         StoryManager.Instance.StartInGame();
     }

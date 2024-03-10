@@ -67,19 +67,22 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
     {
         InGameSprite["@None"] = null;
         InGameSprite[""] = null;
-        foreach(List<LineData> setence in data.Setence)
+        foreach(List<List<LineData>> branch in data.Setence.Values)
         {
-            string[] parts;
-            foreach(LineData line in setence)
+            foreach (List<LineData> setence in branch)
             {
-                parts = line.Ch1Info.ImageCode.Split("-");
-                SetImageCode(parts);
-                parts = line.Ch2Info.ImageCode.Split("-");
-                SetImageCode(parts);
-                parts = line.Ch3Info.ImageCode.Split("-");
-                SetImageCode(parts);
-                parts = line.Ch4Info.ImageCode.Split("-");
-                SetImageCode(parts);
+                string[] parts;
+                foreach (LineData line in setence)
+                {
+                    parts = line.Ch1Info.ImageCode.Split("-");
+                    SetImageCode(parts);
+                    parts = line.Ch2Info.ImageCode.Split("-");
+                    SetImageCode(parts);
+                    parts = line.Ch3Info.ImageCode.Split("-");
+                    SetImageCode(parts);
+                    parts = line.Ch4Info.ImageCode.Split("-");
+                    SetImageCode(parts);
+                }
             }
         }
     }
