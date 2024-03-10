@@ -9,6 +9,12 @@ public class Effect : MonoBehaviour
     
     public void PlayEffect(Type type, Action<Action> endAction, Value value, Action work)
     {
+        if (type == null)
+        {
+            Debug.LogWarning($"error_Effect : Effect Type이 이상합니다.");
+            work?.Invoke();
+            return;
+        }
         if (_effect == null)
             _effect = new();
         if (!_effect.ContainsKey(type))

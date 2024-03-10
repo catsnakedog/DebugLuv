@@ -39,18 +39,20 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
 
     public void SetSpriteData(EpisodeData data)
     {
+        /*
         InGameSprite["@None"] = null;
-        foreach(List<SetenceData> setences in data.Setence)
+        foreach(List<LineData> setence in data.Setence)
         {
-            foreach(SetenceData setence in setences)
+            foreach(LineData line in setence)
             {
-                foreach(string sprite in setence.Ch1Info.ImageCode.Split("-"))
+                foreach(string sprite in line.Ch1Info.ImageCode.Split("-"))
                 {
                     if (sprite.Trim() != "@None")
                         LoadSprite(sprite.Trim());
                 }
             }
         }
+        */
     }
 
     public void SpriteDataClear() // InGame이 끝난 후 호출

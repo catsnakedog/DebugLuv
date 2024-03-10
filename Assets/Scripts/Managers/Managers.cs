@@ -25,9 +25,10 @@ public class Managers : MonoBehaviour // 따로 부착할 필요는 없음
         {
             GameObject root = GameObject.Find("@Root");
             if (root == null)
+            {
                 root = new GameObject("@Root");
-
-            DontDestroyOnLoad(root);
+                DontDestroyOnLoad(root);
+            }
 
             managers = new GameObject("@Managers");
             managers.transform.SetParent(root.transform);

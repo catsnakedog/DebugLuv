@@ -18,6 +18,7 @@ public class UI_Main : UI_Base
     private void Start()
     {
         BindEvent(Get(UI.QuitBtn), ClickQuitBtn, Define.UIEvent.Click);
+        BindEvent(Get(UI.OptionBtn), ClickOptionBtn, Define.UIEvent.Click);
         BindEvent(Get(UI.NewBtn), ClickNewBtn, Define.UIEvent.Click);
     }
 

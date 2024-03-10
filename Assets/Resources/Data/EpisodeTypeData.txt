@@ -1,3 +1,4 @@
+Story	Episode	StoryName
 Com	0	연애의 목적
 Com	1	디버그..러브?
 		

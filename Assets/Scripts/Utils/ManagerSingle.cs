@@ -20,7 +20,10 @@ public class ManagerSingle<ManagerType> : ManagerBase where ManagerType : Manage
                     {
                         GameObject root = GameObject.Find("@Root");
                         if (root == null)
+                        {
                             root = new GameObject("@Root");
+                            DontDestroyOnLoad(root);
+                        }
 
                         managers = new GameObject("@Managers");
                         managers.transform.SetParent(root.transform);

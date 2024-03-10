@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class StoryManager : ManagerSingle<StoryManager>
 {
-    EpisodeManager _episodeManager;
+    public InGameData InGameData;
 
-    public string Story;
-    public int Episode;
-
-    private void Awake()
+    public void StartInGame()
     {
-        _episodeManager = new();
-    }
-
-    public void StartEpisode()
-    {
-        EpisodeData data = DataManager.Instance.GetEpisodeData(Story, Episode);
+        EpisodeData data = DataManager.Instance.GetEpisodeData(InGameData.Story, InGameData.Episode);
         ResourceManager.Instance.SetSpriteData(data);
-        _episodeManager.Test(data);
+        EpisodeManager.Instance.StartEpisode(data);
     }
 }

@@ -6,9 +6,9 @@ public class InGame : BaseScene
 {
     void Start()
     {
-        DataManager.Instance.ParsingDebugLuvData();
-        StoryManager.Instance.Story = "Com";
-        StoryManager.Instance.Episode = 0;
-        StoryManager.Instance.StartEpisode();
+        StoryManager.Instance.InGameData = new();
+        StoryManager.Instance.InGameData.Story = "Com";
+        StoryManager.Instance.InGameData.Episode = 0;
+        StoryManager.Instance.StartInGame();
     }
 }

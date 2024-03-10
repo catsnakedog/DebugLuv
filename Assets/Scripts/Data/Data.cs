@@ -10,6 +10,7 @@ public class Data : MonoBehaviour
     public static GameData GameData; // 정적으로 선언한 변수는 Inspector창에서 보이지 않는다
                                      // 따라서 pulbic으로 선언한 VisibleGameData 변수를 만들어서 에디터상에서 시각적으로 데이터 확인을 가능하게 만든다
 
+
     void Start()
     {
         s_instance = gameObject.GetComponent<Data>();

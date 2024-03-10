@@ -4,69 +4,102 @@ using UnityEngine;
 
 public class TaskManager : ManagerSingle<TaskManager>
 {
-    public class TaskLogic
+    public class TaskConnect
     {
-        public List<int> AddLogic;
-        public List<int> ExtraLogic;
+        public List<int> ParallelConnect;
+        public List<int> SequentialConnect;
 
-        public TaskLogic()
+        public TaskConnect()
         {
-            AddLogic = new();
-            ExtraLogic = new();
+            ParallelConnect = new();
+            SequentialConnect = new();
         }
     }
 
-    private TaskLogic[] _taskLogic;
+    private TaskConnect[] _taskConnect;
     private List<Tasks> _tasks;
-    private List<SetenceData> _data;
+    private List<LineData> _data;
+    private GameObject _tasksRoot;
 
-    public List<GameObject> Storage = new();
+    public int _taskDoneCount;
+    public int _taskCount;
 
-    public void StartSetenceTasks(List<SetenceData> data)
+    public void StartSetenceTasks(List<LineData> data)
     {
-        _taskLogic = new TaskLogic[data.Count];
-        _tasks = new();
+        _taskConnect = new TaskConnect[data.Count];
         _data = data;
+        _taskDoneCount = 0;
+        _taskCount = data.Count;
 
-        for(int i = 0; i < _taskLogic.Length; i++)
+        for (int i = 0; i < _taskConnect.Length; i++)
         {
-            _taskLogic[i] = new TaskLogic();
-            _taskLogic[i].AddLogic = new();
-            _taskLogic[i].ExtraLogic = new();
-        }
+            _taskConnect[i] = new TaskConnect();
+            _taskConnect[i].ParallelConnect = new();
+            _taskConnect[i].SequentialConnect = new();
 
-        for(int i = data.Count - 1; i >= 0; i--)
-        {
-            if (data[i].Plus == -1)
-                break;
-            for (int j = data.Count - 1; j >= 0; j--)
+            string[] connects = data[i].Connect.Split("/");
+
+            if (connects[0].Trim() == "")
+                continue;
+
+            foreach (string connect in connects)
             {
-                if (data[j].Plus == -1)
-                {
-                    if (data[i].Type == "Add")
-                        _taskLogic[j].AddLogic.Add(i);
-                    else
-                        _taskLogic[j].ExtraLogic.Add(i);
+                string[] info = connect.Split("_");
+                string type = info[0];
+                int num = Util.StringToInt(info[1]);
 
-                    break;
-                }
-                if (data[j].Plus < data[i].Plus)
+                switch (type)
                 {
-                    if (data[i].Type == "Add")
-                        _taskLogic[j].AddLogic.Add(i);
-                    else
-                        _taskLogic[j].ExtraLogic.Add(i);
-
-                    break;
+                    case "C":
+                        _taskConnect[i].SequentialConnect.Add(num);
+                        break;
+                    case "P":
+                        _taskConnect[i].ParallelConnect.Add(num);
+                        break;
+                    default:
+                        Debug.LogWarning($"error_TaskManager : Connect Type이 이상합니다.");
+                        break;
                 }
             }
         }
 
+        _tasksRoot = new GameObject("@Tasks");
+
+        if(_tasks == null)
+        {
+            _tasks = new();
+            for (int i = 0; i < 5; i++)
+            {
+                Tasks tasks = _tasksRoot.AddComponent<Tasks>();
+                _tasks.Add(tasks);
+            }
+        }
+
         RunTasks(0);
+
+        StartCoroutine(WaitTaskAllDone());
     }
 
     public void RunTasks(int num)
     {
-        _tasks.Add(new Tasks(_taskLogic[num], _data[num]));
+        while(_tasks.Count <= num)
+        {
+            Tasks tasks = _tasksRoot.AddComponent<Tasks>();
+            _tasks.Add(tasks);
+        }
+
+        _tasks[num].Set(_taskConnect[num], _data[num]);
+    }
+
+    public void DoneTask()
+    {
+        _taskDoneCount++;
+    }
+
+    private IEnumerator WaitTaskAllDone()
+    {
+        yield return new WaitUntil(() => _taskCount == _taskDoneCount);
+
+        EpisodeManager.Instance.DoneSetenece();
     }
 }
