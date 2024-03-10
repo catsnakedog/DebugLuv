@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UI_InGame : UI_Base
 {
@@ -14,6 +15,11 @@ public class UI_InGame : UI_Base
         NextParagraph
     }
 
+    private void Start()
+    {
+        BindEvent(Get(UI.NextParagraph), NextSetence, Define.UIEvent.Click);
+    }
+
     public void ShowTextEffect(string text, Action work)
     {
         StartCoroutine(ShowText(text, work));
@@ -21,14 +27,13 @@ public class UI_InGame : UI_Base
 
     public IEnumerator ShowText(string text, Action work)
     {
-        Get<TMP_Text>(UI.Text).text = "";
-        StringBuilder sb = new();
+        StringBuilder sb = new(Get<TMP_Text>(UI.Text).text);
 
         foreach(char letter in text)
         {
             sb.Append(letter);
             Get<TMP_Text>(UI.Text).text = sb.ToString();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         work?.Invoke();
@@ -37,5 +42,17 @@ public class UI_InGame : UI_Base
     public void SetName(string text)
     {
         Get<TMP_Text>(UI.Name).text = text;
+    }
+
+    public void NextSetence(PointerEventData data)
+    {
+        if (EpisodeManager.Instance.IsSetenceDone)
+        {
+            EpisodeManager.Instance.IsNext = true;
+        }
+        else
+        {
+            //Skip
+        }
     }
 }

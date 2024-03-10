@@ -26,16 +26,10 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
         }
     }
 
-    private bool _isDone;
     private InGameObjPack _inGameObjPack;
 
-    public void Test(EpisodeData data)
-    {
-        foreach(var a in data.Setence)
-        {
-            TaskManager.Instance.StartSetenceTasks(a);
-        }
-    }
+    public bool IsSetenceDone;
+    public bool IsNext;
 
     public void StartEpisode(EpisodeData data)
     {
@@ -53,20 +47,22 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     {
         foreach (List<LineData> setence in data.Setence)
         {
-            _isDone = false;
+            IsNext = false;
+            IsSetenceDone = false;
             TaskManager.Instance.StartSetenceTasks(setence);
             yield return new WaitUntil(CheckSetenceDone);
+            yield return new WaitUntil(() => IsNext);
         }
     }
 
     private bool CheckSetenceDone()
     {
-        return _isDone;
+        return IsSetenceDone;
     }
 
     public void DoneSetenece()
     {
-        _isDone = true;
+        IsSetenceDone = true;
     }
 
     public InGameObjPack GetInGameObjPack()

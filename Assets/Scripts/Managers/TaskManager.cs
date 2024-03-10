@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TaskManager : ManagerSingle<TaskManager>
 {
@@ -30,6 +32,8 @@ public class TaskManager : ManagerSingle<TaskManager>
         _data = data;
         _taskDoneCount = 0;
         _taskCount = data.Count;
+
+        SetFirst();
 
         for (int i = 0; i < _taskConnect.Length; i++)
         {
@@ -101,5 +105,17 @@ public class TaskManager : ManagerSingle<TaskManager>
         yield return new WaitUntil(() => _taskCount == _taskDoneCount);
 
         EpisodeManager.Instance.DoneSetenece();
+    }
+
+    private void SetFirst()
+    {
+        ChMakingManager.Instance.SetDefault(0, _data[0].Ch1Info);
+        ChMakingManager.Instance.SetDefault(1, _data[0].Ch2Info);
+        ChMakingManager.Instance.SetDefault(2, _data[0].Ch3Info);
+        ChMakingManager.Instance.SetDefault(3, _data[0].Ch4Info);
+
+        UI_Manager.Instance.GetUI<UI_InGame>().Get<Image>("BG").sprite = ResourceManager.Instance.LoadSprite(_data[0].BgInfo.BgImage);
+        UI_Manager.Instance.GetUI<UI_InGame>().Get<Image>("BG").color = new Color(1f, 1f, 1f, _data[0].BgInfo.Opacity);
+        UI_Manager.Instance.GetUI<UI_InGame>().Get<TMP_Text>("Text").text = "";
     }
 }

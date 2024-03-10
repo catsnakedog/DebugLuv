@@ -15,7 +15,6 @@ public class Tasks : MonoBehaviour
 
     public void Set(TaskConnect taskConnect, LineData setenceData)
     {
-        UI_Manager.Instance.GetUI<UI_InGame>().SetName(setenceData.Name);
         _taskConnect = taskConnect;
         _setenceData = setenceData;
 
@@ -163,6 +162,7 @@ public class Tasks : MonoBehaviour
 
     private void TextTask(string task, Action done)
     {
+        UI_Manager.Instance.GetUI<UI_InGame>().SetName(_setenceData.Name);
         UI_Manager.Instance.GetUI<UI_InGame>().ShowTextEffect(_setenceData.Text, done);
     }
 

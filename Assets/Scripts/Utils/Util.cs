@@ -67,7 +67,7 @@ public class Util{
     public static Vector2 StringToVector2(string text)
     {
         if (string.IsNullOrEmpty(text.Trim()))
-            return Vector2.zero;
+            return new Vector2(-1000, -1000);
 
         string[] xy = text.Split(",");
         Vector2 value = new Vector2(float.Parse(xy[0]), float.Parse(xy[1]));

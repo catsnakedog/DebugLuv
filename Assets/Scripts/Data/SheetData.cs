@@ -11,7 +11,7 @@ public class SheetData
     public List<ChImageData> ChImageData;
 }
 
-#region SentenceData
+#region LineData
 [System.Serializable]
 public class LineData
 {
@@ -28,11 +28,11 @@ public class LineData
     public Task Ch2Task;
     public Task Ch3Task;
     public Task Ch4Task;
+    public BgInfo BgInfo;
     public ChInfo Ch1Info;
     public ChInfo Ch2Info;
     public ChInfo Ch3Info;
     public ChInfo Ch4Info;
-    public string BgImage;
     public string Name;
     public string Text;
     public int Choice;
@@ -62,6 +62,13 @@ public class ChInfo
     public string ImageCode;
     public Vector2 Pos;
     public float Scale;
+    public float Opacity;
+}
+[System.Serializable]
+public class BgInfo
+{
+    public string BgImage;
+    public float Opacity;
 }
 #endregion
 
