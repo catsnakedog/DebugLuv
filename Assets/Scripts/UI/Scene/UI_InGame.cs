@@ -57,9 +57,9 @@ public class UI_InGame : UI_Base
 
     public void NextSetence(PointerEventData data)
     {
-        if (EpisodeManager.Instance.IsSetenceDone)
+        if (EpisodeManager.IsSentenceDone)
         {
-            EpisodeManager.Instance.IsNext = true;
+            EpisodeManager.IsNext = true;
         }
         else
         {
@@ -107,7 +107,7 @@ public class UI_InGame : UI_Base
 
     private void SelectChoice(PointerEventData data)
     {
-        EpisodeManager.Instance.ChangeBranch(_choiceData.Select[Util.StringToInt(data.pointerCurrentRaycast.gameObject.name[^1].ToString())].Branch);
+        EpisodeManager.ChangeBranch(_choiceData.Select[Util.StringToInt(data.pointerCurrentRaycast.gameObject.name[^1].ToString())].Branch);
         Get(UI.Select).SetActive(false);
     }
 }

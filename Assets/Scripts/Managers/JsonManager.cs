@@ -1,11 +1,27 @@
+//-------------------------------------------------------------------------------------------------
+// @file	JsonManager.cs
+//
+// @brief	Json 데이터 사용을 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Text;
 
+/// <summary> Json 데이터 사용을 위한 매니저 </summary>
 public class JsonManager // Json데이터를 읽고 쓰는 Manager이다
 {
+    /// <summary>
+    /// Json Type 데이터를 Save ( 안드로이드, Window 대응 )
+    /// </summary>
+    /// <param name="saveData"> 저장 데이터 </param>
     public void SaveJson(SaveData saveData) // 데이터를 쓰는 함수
     {
         StringBuilder sb = new StringBuilder(Application.dataPath);

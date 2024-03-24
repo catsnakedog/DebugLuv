@@ -1,9 +1,22 @@
+//-------------------------------------------------------------------------------------------------
+// @file	ResourceManager.cs
+//
+// @brief	에셋 관리를 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
+
+/// <summary> Resourc(에셋) 관리를 위한 메니저 </summary>
 public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit // Resource를 관리하는 Manager이다
 {
     public Dictionary<string, Sprite> InGameSprite;
@@ -13,44 +26,43 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
         InGameSprite = new();
     }
 
-    public Sprite LoadSprite(string name)
+    public static Sprite GetSprite(string name)
     {
-        Sprite sprite = Resources.Load<Sprite>($"Sprites/{name}");
-        if(sprite == null)
+        
+        if (Instance.InGameSprite == null) Instance.Init();
+
+        string path = $"Sprites/{name}";
+
+        if ( !Instance.InGameSprite.ContainsKey(path) )
         {
-            Debug.LogWarning($"error_ResourceManager : {name} 이미지 파일이 존재하지 않습니다.");
-            sprite = Resources.Load<Sprite>("Sprites/BugJava");
+            Sprite _sprite = Resources.Load<Sprite>(path);
+            Instance.InGameSprite.Add(path, _sprite);
+
+            if(Instance.InGameSprite[path] == null)
+            {
+                Util.DebugLogWarning($"error_ResourceManager : {name} 이미지 파일이 존재하지 않습니다.");
+                Instance.InGameSprite[path] = Resources.Load<Sprite>("Sprites/BugJava");
+            }
         }
 
-        return sprite;
+        return Instance.InGameSprite[path];
     }
 
-    public Sprite LoadChSprite(string name)
+    public static Sprite GetChSprite(string name)
     {
-        Sprite sprite = Resources.Load<Sprite>($"Sprites/Ch/{name}");
-        if (sprite == null)
-        {
-            Debug.LogWarning($"error_ResourceManager : {name} 캐릭터 이미지 파일이 존재하지 않습니다.");
-            sprite = Resources.Load<Sprite>("Sprites/BugJava");
-        }
-
-        return sprite;
+        return GetSprite($"CH/{name}");
     }
 
-    public Sprite GetSprite(string name)
+    public static Sprite GetBgSprite(string name)
     {
-        if (InGameSprite[name] == null)
-            InGameSprite[name] = LoadSprite(name);
-        return InGameSprite[name];
+        return GetSprite($"BG/{name}");
     }
 
-    public Sprite GetChSprite(string name)
+    public static Sprite GetUiSprite(string name)
     {
-        if (InGameSprite[name] == null)
-            InGameSprite[name] = LoadChSprite(name);
-        return InGameSprite[name];
+        return GetSprite($"UI/{name}");
     }
-
+   
     public GameObject Instantiate(string path)
     {
         GameObject target = Resources.Load<GameObject>(path);
@@ -95,7 +107,7 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
                 continue;
             if (i == 1)
             {
-                LoadChSprite($"{parts[0]}_{parts[1]}");
+                GetChSprite($"{parts[0]}_{parts[1]}");
                 continue;
             }
             if (i == parts.Length - 1)
@@ -103,12 +115,12 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
                 foreach (string effect in parts[i].Split("/"))
                 {
                     if (effect.Trim() != "@None" && !string.IsNullOrEmpty(effect.Trim()))
-                        LoadChSprite(effect.Trim());
+                        GetChSprite(effect.Trim());
                 }
                 continue;
             }
             if (parts[i].Trim() != "@None" && !string.IsNullOrEmpty(parts[i].Trim()))
-                LoadChSprite(parts[i].Trim());
+                GetChSprite(parts[i].Trim());
         }
     }
 

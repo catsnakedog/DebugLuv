@@ -1,6 +1,18 @@
+//-------------------------------------------------------------------------------------------------
+// @file	.cs
+//
+// @brief	을 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class StoryManager : ManagerSingle<StoryManager>
 {
@@ -10,6 +22,6 @@ public class StoryManager : ManagerSingle<StoryManager>
     {
         EpisodeData data = DataManager.Instance.GetEpisodeData(InGameData.Story, InGameData.Episode);
         ResourceManager.Instance.SetSpriteData(data);
-        EpisodeManager.Instance.StartEpisode(data, InGameData.Branch,  InGameData.Setence);
+        EpisodeManager.StartEpisode(data, InGameData.Branch,  InGameData.Setence);
     }
 }

@@ -124,46 +124,46 @@ public class Tasks : MonoBehaviour
     private void EtcTask(string task, Action done)
     {
         Type classType = Type.GetType(_setenceData.EtcTask.Name);
-        if(_setenceData.Storage != -1)
-            EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().Storage[_setenceData.Storage], _setenceData.EtcTask.Value, done);
+        if (_setenceData.Storage != -1 && EpisodeManager.IsStorageAvailable(_setenceData.Storage))
+            EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Storage[_setenceData.Storage], _setenceData.EtcTask.Value, done);
         else
-            EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().Etc, _setenceData.EtcTask.Value, done);
+            EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Etc, _setenceData.EtcTask.Value, done);
     }
 
     private void BgTask(string task, Action done)
     {
         Type classType = Type.GetType(_setenceData.BgTask.Name);
-        EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().BG, _setenceData.BgTask.Value, done);
+        EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().BG, _setenceData.BgTask.Value, done);
     }
 
     private void Ch1Task(string task, Action done)
     {
         Type classType = Type.GetType(_setenceData.Ch1Task.Name);
-        EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().Ch1, _setenceData.Ch1Task.Value, done);
+        EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Ch1, _setenceData.Ch1Task.Value, done);
     }
 
     private void Ch2Task(string task, Action done)
     {
         Type classType = Type.GetType(_setenceData.Ch2Task.Name);
-        EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().Ch2, _setenceData.Ch2Task.Value, done);
+        EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Ch2, _setenceData.Ch2Task.Value, done);
     }
 
     private void Ch3Task(string task, Action done)
     {
         Type classType = Type.GetType(_setenceData.Ch3Task.Name);
-        EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().Ch3, _setenceData.Ch3Task.Value, done);
+        EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Ch3, _setenceData.Ch3Task.Value, done);
     }
 
     private void Ch4Task(string task, Action done)
     {
         Type classType = Type.GetType(_setenceData.Ch4Task.Name);
-        EffectManager.Instance.PlayEffect(classType, EpisodeManager.Instance.GetInGameObjPack().Ch4, _setenceData.Ch4Task.Value, done);
+        EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Ch4, _setenceData.Ch4Task.Value, done);
     }
 
     private void TextTask(string task, Action done)
     {
-        UI_Manager.Instance.GetUI<UI_InGame>().SetName(_setenceData.Name);
-        UI_Manager.Instance.GetUI<UI_InGame>().ShowTextEffect(_setenceData.Text, done);
+        UI_Manager.GetUI<UI_InGame>().SetName(_setenceData.Name);
+        UI_Manager.GetUI<UI_InGame>().ShowTextEffect(_setenceData.Text, done);
     }
 
     private void DoneLineTask(int num, int targetComplete)

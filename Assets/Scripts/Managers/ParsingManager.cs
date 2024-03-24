@@ -1,10 +1,28 @@
+//-------------------------------------------------------------------------------------------------
+// @file	ParsingManager.cs
+//
+// @brief	Parsing 메니저 
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using System;
 
+
+/// <summary> Parsing 메니저 </summary>
 public class ParsingManager
 {
+    /// <summary>
+    /// DebugLuvData 파싱 함수
+    /// </summary>
+    /// <param name="sheetData"></param>
+    /// <returns></returns>
     public DebugLuvData ParsingSheetData(SheetData sheetData)
     {
         DebugLuvData data = new();
@@ -17,7 +35,11 @@ public class ParsingManager
         return data;
     }
 
-
+    /// <summary>
+    /// Episode 파싱 함수
+    /// </summary>
+    /// <param name="sheetData"></param>
+    /// <returns></returns>
     private List<EpisodeTypeData> ParsingEpisodeTypeData(SheetData sheetData)
     {
         List<EpisodeTypeData> data = sheetData.EpisodeTypeData;
@@ -25,6 +47,11 @@ public class ParsingManager
         return data;
     }
 
+    /// <summary>
+    /// 스토리 데이터 파싱 함수
+    /// </summary>
+    /// <param name="sheetData"></param>
+    /// <returns></returns>
     private Dictionary<string, StoryData> ParsingStoryData(SheetData sheetData)
     {
         Dictionary<string, StoryData> data = new();
@@ -66,6 +93,12 @@ public class ParsingManager
         return data;
     }
 
+
+    /// <summary>
+    /// ChoiceData 파싱 함수 
+    /// </summary>
+    /// <param name="sheetData"></param>
+    /// <returns></returns>
     private Dictionary<int, ChoiceData> ParsingChoiceData(SheetData sheetData)
     {
         Dictionary<int, ChoiceData> data = new();
@@ -84,6 +117,11 @@ public class ParsingManager
         return data;
     }
 
+    /// <summary>
+    /// 케릭터 이미지 파싱 함수
+    /// </summary>
+    /// <param name="sheetData"></param>
+    /// <returns></returns>
     private Dictionary<int, Dictionary<int, ChImageData>> ParsingChImageData(SheetData sheetData)
     {
         Dictionary<int, Dictionary<int, ChImageData>> data = new();

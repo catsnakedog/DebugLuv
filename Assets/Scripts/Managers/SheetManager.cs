@@ -1,9 +1,21 @@
+//-------------------------------------------------------------------------------------------------
+// @file	.cs
+//
+// @brief	을 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+
 
 public class SheetManager
 {

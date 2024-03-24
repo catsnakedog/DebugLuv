@@ -1,23 +1,48 @@
+//-------------------------------------------------------------------------------------------------
+// @file	UI_Manager.cs
+//
+// @brief	UI를 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는 Manager이다
 {
-    private int _order = 0;
-    private Vector2 _screenSize = new Vector2(1920, 1080);
+    private int _order = 20;
+    public static Vector2 ScreenSize = new Vector2(1920, 1080);
     private Stack<UI_Base> _popupStack = new(); // 팝업같은 경우 Stack으로 관리해준다
 
     private UI_Base _sceneUI;
-    
-    public UIType GetUI<UIType>() where UIType : UI_Base
-    {
-        if (_sceneUI is UIType) // SceneUI 인지 검사
-            return _sceneUI as UIType;
+    private UI_BackGround _backGroundUI;
 
-        foreach(UI_Base popup in _popupStack) // PopupUI 인지 검사
+    public enum UITypes
+    {
+        None,
+        Default,
+        BackGround,
+    }
+
+    /// <summary>
+    /// < Type > UI를 반환한다.
+    /// </summary>
+    /// <typeparam name="UIType"> 해당 타입을 반환함 </typeparam>
+    /// <returns></returns>
+    public static UIType GetUI<UIType>() where UIType : UI_Base
+    {
+        if (Instance._sceneUI is UIType) // SceneUI 인지 검사
+            return Instance._sceneUI as UIType;
+
+        foreach(UI_Base popup in Instance._popupStack) // PopupUI 인지 검사
         {
             if (popup is UIType)
                 return popup as UIType;
@@ -25,6 +50,20 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
 
         Debug.LogWarning($"error_UI_Manager : {typeof(UIType).ToString()} UI는 존재하지 않습니다.");
         return null;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public static UI_BackGround GetBackGroundUI()
+    {
+        if(Instance._backGroundUI == null)
+        {
+            Instance.ShowSceneUI("BackGround", UITypes.BackGround);
+        }
+        
+        return Instance._backGroundUI;
     }
 
     public GameObject Root{
@@ -39,7 +78,7 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
         }
     }
 
-    public void SetCanavas(GameObject go, bool sort = true) // 기본적인 Setting + 기존의 UI들과 충돌이 일어나지 않도록 Order를 관리해준다
+    public void SetCanavas(GameObject go, bool sort = true ,int DirectSortOrder = -1) // 기본적인 Setting + 기존의 UI들과 충돌이 일어나지 않도록 Order를 관리해준다
     {
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode= RenderMode.ScreenSpaceCamera;
@@ -47,15 +86,24 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
         canvas.overrideSorting = true;
         CanvasScaler scaler = Util.GetOrAddComponent<CanvasScaler>(go);
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = _screenSize; // 플레이어 지정 해상도
+        scaler.referenceResolution = ScreenSize; // 플레이어 지정 해상도
 
         if(sort)
             canvas.sortingOrder = ++_order;
         else
             canvas.sortingOrder = 0;
+
+        if(DirectSortOrder != -1 )
+            canvas.sortingOrder = DirectSortOrder;
+
     }
 
-    public void ShowSceneUI(string name = null) // Scene에서 가장 기본이 되는 SceneUI를 세팅한다
+    /// <summary>
+    /// Scene 에 UI를 세팅한다. 
+    /// </summary>
+    /// <param name="name"> Scene UI를 세팅한다. </param>
+    /// <param name="isDefault"> Default UI로 사용한다. </param>
+    public void ShowSceneUI(string name = null, UITypes Type = UITypes.Default) // Scene에서 가장 기본이 되는 SceneUI를 세팅한다
     {   
         GameObject go = ResourceManager.Instance.Instantiate($"Prefabs/UI/Scene/UI_{name}"); // SceneUI같은 경우 Resources/UI/Scene에 저장한다
         if (go == null)
@@ -63,10 +111,27 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
             Debug.LogWarning($"error_UI_Manager : {name} Scene의 Scene UI 생성을 실패했습니다.");
             return;
         }
-        SetCanavas(go, false);
         go.transform.SetParent(Root.transform);
+        
+        switch (Type)
+        {
+            case UITypes.Default:
+                SetCanavas(go);
+                _sceneUI = go.GetComponent<UI_Base>();
 
-        _sceneUI = go.GetComponent<UI_Base>();
+                break;
+
+            case UITypes.BackGround:
+                SetCanavas(go, true, 0);
+                _backGroundUI = go.GetComponent<UI_BackGround>();
+                
+                break;
+
+            default:
+                
+                break;
+
+        }
     }
 
     public void ShowPopupUI(string name = null) // PopupUI를 세팅한다
@@ -79,7 +144,7 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
         }
         SetCanavas(go);
         go.transform.SetParent(Root.transform);
-
+        
         _popupStack.Push(go.GetComponent<UI_Base>());
     }
 

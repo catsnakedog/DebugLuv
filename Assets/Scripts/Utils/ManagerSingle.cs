@@ -1,10 +1,24 @@
+//-------------------------------------------------------------------------------------------------
+// @file	ManagerSingle.cs
+//
+// @brief	Singleton 을 사용하는 Manager 
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ManagerSingle<ManagerType> : ManagerBase where ManagerType : ManagerBase
 {
+    /// <summary> </summary>
     private static ManagerType _instance;
+
 
     public static ManagerType Instance
     {
@@ -31,9 +45,10 @@ public class ManagerSingle<ManagerType> : ManagerBase where ManagerType : Manage
                     }
                     _instance = managers.AddComponent<ManagerType>();
                 }
+
+                Managers.Init<ManagerType>();
             }
 
-            Managers.Init<ManagerType>();
             return _instance;
         }
     }

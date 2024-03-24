@@ -1,8 +1,20 @@
+//-------------------------------------------------------------------------------------------------
+// @file	.cs
+//
+// @brief	을 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class TaskManager : ManagerSingle<TaskManager>
 {
@@ -66,9 +78,12 @@ public class TaskManager : ManagerSingle<TaskManager>
                 }
             }
         }
-
-        _tasksRoot = new GameObject("@Tasks");
-
+        ///??????????????????
+        if(_tasksRoot == null)
+        {
+            _tasksRoot = new GameObject("@Tasks");
+        }
+            
         if(_tasks == null)
         {
             _tasks = new();
@@ -104,7 +119,7 @@ public class TaskManager : ManagerSingle<TaskManager>
     {
         yield return new WaitUntil(() => _taskCount == _taskDoneCount);
 
-        EpisodeManager.Instance.DoneSetenece();
+        EpisodeManager.DoneSentenece();
     }
 
     private void SetFirst()
@@ -114,12 +129,13 @@ public class TaskManager : ManagerSingle<TaskManager>
         ChMakingManager.Instance.SetDefault(2, _data[0].Ch3Info);
         ChMakingManager.Instance.SetDefault(3, _data[0].Ch4Info);
 
-        UI_Manager.Instance.GetUI<UI_InGame>().Get<Image>("BG").sprite = ResourceManager.Instance.LoadSprite(_data[0].BgInfo.BgImage);
-        UI_Manager.Instance.GetUI<UI_InGame>().Get<Image>("BG").color = new Color(1f, 1f, 1f, _data[0].BgInfo.Opacity);
-        UI_Manager.Instance.GetUI<UI_InGame>().Get<TMP_Text>("Text").text = "";
+        Image BG = EpisodeManager.GetInGameObjPack().BG.GetComponent<Image>();
+        BG.sprite = ResourceManager.GetSprite(_data[0].BgInfo.BgImage);
+        BG.color = new Color(1f, 1f, 1f, _data[0].BgInfo.Opacity);
+        UI_Manager.GetUI<UI_InGame>().Get<TMP_Text>("Text").text = "";
         if (_data[0].StateUI == "Hide")
-            UI_Manager.Instance.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -740, 0);
+            UI_Manager.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -740, 0);
         else
-            UI_Manager.Instance.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -370, 0);
+            UI_Manager.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -370, 0);
     }
 }

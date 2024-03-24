@@ -1,6 +1,18 @@
+//-------------------------------------------------------------------------------------------------
+// @file	SoundManager.cs
+//
+// @brief	Sound 관리를 위한 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class SoundManager : ManagerSingle<SoundManager>, IClearable, IInit // 사운드를 관리하는 Manager이다
 {

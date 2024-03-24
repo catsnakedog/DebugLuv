@@ -14,7 +14,6 @@ public class UI_Main : UI_Base
         OptionBtn,
         QuitBtn
     }
-
     private void Start()
     {
         BindEvent(Get(UI.QuitBtn), ClickQuitBtn, Define.UIEvent.Click);

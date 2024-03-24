@@ -14,7 +14,7 @@ public class HideUI : EffectBase
 
     private IEnumerator ShowUIEffect()
     {
-        GameObject target = UI_Manager.Instance.GetUI<UI_InGame>().Get("TextBox");
+        GameObject target = UI_Manager.GetUI<UI_InGame>().Get("TextBox");
 
         Vector2 startPosition = target.transform.localPosition;
         float time = 0f;

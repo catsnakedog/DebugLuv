@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Util{
-
+    List<int> vs;
     public static T GetOrAddComponent<T>(GameObject go) where T : UnityEngine.Component
     {
         T component = go.GetComponent<T>();
@@ -12,7 +13,6 @@ public class Util{
             component = go.AddComponent<T>();
         return component;
     }
-
     public static object StringToType(string text, Type type)
     {
         object value;
@@ -73,5 +73,45 @@ public class Util{
         Vector2 value = new Vector2(float.Parse(xy[0]), float.Parse(xy[1]));
 
         return value;
+    }
+    public static Vector3 StringToVector3(string text)
+    {
+        Vector2 StringToVector2 = Util.StringToVector2(text);
+        Vector3 value = new Vector3(StringToVector2.x, StringToVector2.y, 0);
+
+        return value;
+    }
+
+    /// <summary>
+    /// DebugLog
+    /// </summary>
+    /// <param name="Log"></param>
+    public static void DebugLog( string Log )
+    {
+#if UNITY_EDITOR
+        Debug.Log(Log);
+#endif
+    }
+
+    /// <summary>
+    /// DebugLogWarning
+    /// </summary>
+    /// <param name="Log"></param>
+    public static void DebugLogWarning(string Log)
+    {
+#if UNITY_EDITOR
+        Debug.LogWarning(Log);
+#endif
+    }
+
+    /// <summary>
+    /// DebugLogError
+    /// </summary>
+    /// <param name="Log"></param>
+    public static void DebugLogError(string Log)
+    {
+#if UNITY_EDITOR
+        Debug.LogError(Log);
+#endif
     }
 }

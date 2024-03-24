@@ -11,9 +11,9 @@ public class ImageChange : EffectBase
         Image image = gameObject.GetComponent<Image>();
 
         if (spriteRenderer != null)
-            spriteRenderer.sprite = ResourceManager.Instance.LoadSprite(Value.Value1);
+            spriteRenderer.sprite = ResourceManager.GetSprite(Value.Value1);
         if (image != null)
-            image.sprite = ResourceManager.Instance.LoadSprite(Value.Value1);
+            image.sprite = ResourceManager.GetSprite(Value.Value1);
 
         EndEffect();
     }
@@ -24,9 +24,9 @@ public class ImageChange : EffectBase
         Image image = gameObject.GetComponent<Image>();
 
         if (spriteRenderer != null)
-            spriteRenderer.sprite = ResourceManager.Instance.LoadSprite(Value.Value1);
+            spriteRenderer.sprite = ResourceManager.GetSprite(Value.Value1);
         if (image != null)
-            image.sprite = ResourceManager.Instance.LoadSprite(Value.Value1);
+            image.sprite = ResourceManager.GetSprite(Value.Value1);
     }
 
     public override void StopAll()

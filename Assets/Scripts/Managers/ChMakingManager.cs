@@ -1,3 +1,14 @@
+//-------------------------------------------------------------------------------------------------
+// @file	ChMakingManager.cs
+//
+// @brief	캐릭터 생성 매니저
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +17,30 @@ using UnityEngine.UI;
 using System.Text;
 using Unity.VisualScripting;
 
+
+/// <summary> 캐릭터 생성 메니저 </summary>
 public class ChMakingManager : ManagerSingle<ChMakingManager>
 {
+    /// <summary> 캐릭터 배열 </summary>
     GameObject[] _ch;
+    /// <summary> 캐릭터 정보 배열 </summary>
     ChPart[] _chPart;
-    GameObject _chPool;
+    /// <summary> 캐릭터 풀링용 Root </summary>
+    GameObject _chPool;     
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="chInfo"></param>
     public void SetDefault(int num, ChInfo chInfo)
     {
         SetCh(_ch[num], _chPart[num], chInfo);
     }
 
+    /// <summary>
+    /// 메니저 초기 Set
+    /// </summary>
     public void Set()
     {
         _chPool = new GameObject("@ChPool");
@@ -47,11 +71,22 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="chInfo"></param>
+    /// <param name="num"></param>
     public void ChMaking(ChInfo chInfo, int num)
     {
         SetCh(_ch[num], _chPart[num], chInfo);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ch"></param>
+    /// <param name="chPart"></param>
+    /// <param name="chInfo"></param>
     void SetCh(GameObject ch, ChPart chPart, ChInfo chInfo)
     {
         if (chInfo.Scale == -1)
@@ -139,6 +174,11 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="correction"></param>
+    /// <returns></returns>
     Vector2 CorrectionVector(Vector2 correction)
     {
         float pixelPerUnit = 100f;
@@ -148,14 +188,21 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         return correction;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     Sprite LoadPartImage(string name)
     {
-        Sprite image = ResourceManager.Instance.LoadChSprite(name);
+        Sprite image = ResourceManager.GetChSprite(name);
 
         return image;
     }
 }
 
+
+/// <summary> 캐릭터 정보 Info </summary>
 public class ChPart
 {
     public SpriteRenderer Body;
