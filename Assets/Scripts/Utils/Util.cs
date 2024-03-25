@@ -82,11 +82,12 @@ public class Util{
         return value;
     }
 
+
     /// <summary>
     /// DebugLog
     /// </summary>
-    /// <param name="Log"></param>
-    public static void DebugLog( string Log )
+    /// <param name="Log"> ¿œπ› Log </param>
+    public static void DebugLog(string Log)
     {
 #if UNITY_EDITOR
         Debug.Log(Log);
@@ -96,7 +97,7 @@ public class Util{
     /// <summary>
     /// DebugLogWarning
     /// </summary>
-    /// <param name="Log"></param>
+    /// <param name="Log"> Warning Log </param>
     public static void DebugLogWarning(string Log)
     {
 #if UNITY_EDITOR
@@ -107,11 +108,12 @@ public class Util{
     /// <summary>
     /// DebugLogError
     /// </summary>
-    /// <param name="Log"></param>
+    /// <param name="Log"> Error Log </param>
     public static void DebugLogError(string Log)
     {
 #if UNITY_EDITOR
         Debug.LogError(Log);
 #endif
     }
+
 }

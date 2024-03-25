@@ -1,8 +1,23 @@
+//-------------------------------------------------------------------------------------------------
+// @file	UI_Logo.cs
+//
+// @brief	로고용 UI
+//
+// @date	2024-03-14
+//
+// Copyright 2024 Team One-eyed Games. All Rights Reserved.
+//-------------------------------------------------------------------------------------------------
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 로고용 UI
+/// </summary>
 public class UI_Logo : UI_Base
 {
     enum UI

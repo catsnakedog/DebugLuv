@@ -5,14 +5,25 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using static TaskManager;
 
+
 public class Tasks : MonoBehaviour
 {
+    [SerializeField]
     private TaskConnect _taskConnect;
+    [SerializeField]
     private LineData _setenceData;
+    [SerializeField]
     private int _LinecompleteCnt;
+    [SerializeField]
     private List<List<string>> _taskOrder;
+    [SerializeField]
     private int[] _isDoneLineTask;
 
+    /// <summary>
+    /// ¥‹¿œ Task Data Set
+    /// </summary>
+    /// <param name="taskConnect"> TaskConnect </param>
+    /// <param name="setenceData"> LineData </param>
     public void Set(TaskConnect taskConnect, LineData setenceData)
     {
         _taskConnect = taskConnect;
@@ -89,8 +100,6 @@ public class Tasks : MonoBehaviour
 
     private void RunTask(string task, Action done)
     {
-        Debug.Log(task);
-
         switch (task)
         {
             case "Etc":

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 시트 전체 데이터 
+/// </summary>
 [System.Serializable]
 public class SheetData
 {
@@ -12,6 +15,9 @@ public class SheetData
 }
 
 #region LineData
+/// <summary>
+/// 엑셀 한 문장
+/// </summary>
 [System.Serializable]
 public class LineData
 {

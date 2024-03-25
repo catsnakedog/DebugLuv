@@ -78,7 +78,7 @@ public class TaskManager : ManagerSingle<TaskManager>
                 }
             }
         }
-        ///??????????????????
+
         if(_tasksRoot == null)
         {
             _tasksRoot = new GameObject("@Tasks");
@@ -87,9 +87,11 @@ public class TaskManager : ManagerSingle<TaskManager>
         if(_tasks == null)
         {
             _tasks = new();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
-                Tasks tasks = _tasksRoot.AddComponent<Tasks>();
+                GameObject _task = new GameObject($"Task_{ i.ToString() }");
+                _task.transform.parent = _tasksRoot.transform;
+                Tasks tasks = _task.AddComponent<Tasks>();
                 _tasks.Add(tasks);
             }
         }
@@ -99,11 +101,17 @@ public class TaskManager : ManagerSingle<TaskManager>
         StartCoroutine(WaitTaskAllDone());
     }
 
+    /// <summary>
+    /// ¥‹¿œ Task∏¶ run
+    /// </summary>
+    /// <param name="num"></param>
     public void RunTasks(int num)
     {
         while(_tasks.Count <= num)
         {
-            Tasks tasks = _tasksRoot.AddComponent<Tasks>();
+            GameObject _task = new GameObject($"Task_{_tasks.Count.ToString()}");
+            _task.transform.parent = _tasksRoot.transform;
+            Tasks tasks = _task.AddComponent<Tasks>();
             _tasks.Add(tasks);
         }
 

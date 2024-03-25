@@ -126,8 +126,10 @@ Com	0	0	Text	0			유니티	네? ​																																													
 Com	0	0	Text	0			유니티	아니요. 저는 아직 군대도 안다녀왔는데 갑자기 대학원이라니요?​																																																																							ep1_doc3	1	
 Com	0	0	Text	0			유니티	너무 갑작스럽게 느껴져요.																																																																							ep1_doc3	1	
 Com	0	0	Text	0			유니티	저는 고작 2학년일 뿐이라구요!​																																																																							ep1_doc3	1	
-Com	0	0	BG Text	0			???	흠...저는 나쁘지 않은 기회라고 생각됩니다.​										CrossFade	1	ep1_doc2	1																																																										ep1_doc3	1	
-Com	0	0	BG Text	0			???	얘기를 들어보니 유니티님은 실력이 뛰어난 분이신 것 같습니다.​										CrossFade	1	ep1_doc1	1																																																										ep1_doc2	1	
+Com	0	0	Text	0	C_1		???	흠...저는 나쁘지 않은 기회라고 생각됩니다.​																																																																							ep1_doc3	1	
+			BG	1	C_2													CrossFade	1	ep1_doc2	1																																																										ep1_doc3	1	
+Com	0	0	Text	0	C_1		???	얘기를 들어보니 유니티님은 실력이 뛰어난 분이신 것 같습니다.​																																																																							ep1_doc2	1	
+			BG	1	C_2													CrossFade	1	ep1_doc1	1																																																										ep1_doc2	1	
 Com	0	0	Text	0			???	교수님들께서 벌써 이렇게 관심을 가질 정도니까요.​																																																																							ep1_doc1	1	
 Com	0	0	Text	0			???	저는 유니티님 같이 능력있는 분이 대학원에 가는 게 개인적으로도 사회적으로도 좋은 일이라고 생각합니다.​​​																																																																							ep1_doc1	1	
 Com	0	0	Text	0			???	대학원 진학에 그렇게 부정적인 생각을 가지게 된 계기가 있을까요?																																																																							ep1_doc1	1	

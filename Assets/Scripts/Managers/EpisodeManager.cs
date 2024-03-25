@@ -33,7 +33,7 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
         public GameObject Ch3;
         /// <summary> 캐릭터 4번 </summary>
         public GameObject Ch4;
-        /// <summary> ? </summary>
+        /// <summary> Storage 객체 저장용 </summary>
         public List<GameObject> Storage;
 
         /// <summary>

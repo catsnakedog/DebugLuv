@@ -17,12 +17,12 @@ public class StorageSpawn : EffectBase
 
     private IEnumerator _StorageSpawn()
     {
-        Util.DebugLog($"{Value.Value1}");
-        Util.DebugLog($"{Value.Value2}");
-        Util.DebugLog($"{Value.Value3}");
+        int storageIdx = EpisodeManager.GetInGameObjPack().Storage.Count;
+        EpisodeManager.GetInGameObjPack().Storage.Add(new GameObject($"Storage_{storageIdx}"));
+        GameObject storageObject = EpisodeManager.GetInGameObjPack().Storage[storageIdx];
 
         SpriteRenderer spriteRenderer = null;
-        if (spriteRenderer = Util.GetOrAddComponent< SpriteRenderer >(gameObject))
+        if (spriteRenderer = Util.GetOrAddComponent< SpriteRenderer >(storageObject))
         {
             spriteRenderer.sprite = ResourceManager.GetSprite(Value.Value1);
             spriteRenderer.color = Color.white;
@@ -32,20 +32,20 @@ public class StorageSpawn : EffectBase
         if(Value.Value2 != null)
         {
             float scale = Util.StringToFloat(Value.Value2);
-            transform.localScale = new Vector3(scale, scale, 1.0f);
+            storageObject.transform.localScale = new Vector3(scale, scale, 1.0f);
         }
         else
         {
-            transform.localScale = Vector3.one;
+            storageObject.transform.localScale = Vector3.one;
         }
 
         if (Value.Value3 != null)
         {
-            transform.localPosition = Util.StringToVector2(Value.Value3);
+            storageObject.transform.localPosition = Util.StringToVector2(Value.Value3);
         }
         else
         {
-            transform.localPosition = Vector3.zero;
+            storageObject.transform.localPosition = Vector3.zero;
         }
 
         yield return null;

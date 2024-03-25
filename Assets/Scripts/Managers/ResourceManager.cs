@@ -52,16 +52,6 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
     {
         return GetSprite($"CH/{name}");
     }
-
-    public static Sprite GetBgSprite(string name)
-    {
-        return GetSprite($"BG/{name}");
-    }
-
-    public static Sprite GetUiSprite(string name)
-    {
-        return GetSprite($"UI/{name}");
-    }
    
     public GameObject Instantiate(string path)
     {
