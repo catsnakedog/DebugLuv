@@ -40,7 +40,7 @@ public class ResourceManager : ManagerSingle<ResourceManager>, IClearable, IInit
 
             if(Instance.InGameSprite[path] == null)
             {
-                Util.DebugLogWarning($"error_ResourceManager : {name} 이미지 파일이 존재하지 않습니다.");
+                Util.DebugLogWarning($"error_ResourceManager : [{name}] 이미지 파일이 존재하지 않습니다.");
                 Instance.InGameSprite[path] = Resources.Load<Sprite>("Sprites/BugJava");
             }
         }

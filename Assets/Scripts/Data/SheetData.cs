@@ -65,11 +65,12 @@ public class Value
 }
 [System.Serializable]
 public class ChInfo
-{
+{ 
     public string ImageCode;
     public Vector2 Pos;
     public float Scale;
     public float Opacity;
+    public int ChIndex = 0;
 }
 [System.Serializable]
 public class BgInfo

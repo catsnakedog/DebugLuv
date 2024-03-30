@@ -7,7 +7,7 @@ public class Effect : MonoBehaviour
 {
     private Dictionary<Type, EffectBase> _effect;
     
-    public void PlayEffect(Type type, Action<Action> endAction, Value value, Action work)
+    public void PlayEffect(Type type, Action<Action> endAction, Value value, Action work, ChInfo chInfo = null)
     {
         if (type == null)
         {
@@ -24,7 +24,7 @@ public class Effect : MonoBehaviour
             _effect[type] = gameObject.AddComponent(type) as EffectBase;
         }
 
-        _effect[type].StartEffect(endAction, value, work);
+        _effect[type].StartEffect(endAction, value, work, chInfo);
     }
 
     public void SkipEffect(Type type)

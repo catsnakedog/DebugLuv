@@ -17,9 +17,18 @@ public class StorageSpawn : EffectBase
 
     private IEnumerator _StorageSpawn()
     {
-        int storageIdx = EpisodeManager.GetInGameObjPack().Storage.Count;
-        EpisodeManager.GetInGameObjPack().Storage.Add(new GameObject($"Storage_{storageIdx}"));
-        GameObject storageObject = EpisodeManager.GetInGameObjPack().Storage[storageIdx];
+        int idx = 0;
+        if (Value.Value4 == null || Value.Value4 == "")
+        {
+            Util.DebugLogError("Storage Index NULL");
+        }
+        else
+        {
+            idx = Util.StringToInt(Value.Value4);
+            EpisodeManager.ScheduleDropStorageIdx(idx);
+        }
+        EpisodeManager.GetInGameObjPack().Storage.Add(idx, new GameObject($"Storage_{idx}"));
+        GameObject storageObject = EpisodeManager.GetInGameObjPack().Storage[idx];
 
         SpriteRenderer spriteRenderer = null;
         if (spriteRenderer = Util.GetOrAddComponent< SpriteRenderer >(storageObject))

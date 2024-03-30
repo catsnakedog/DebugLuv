@@ -137,9 +137,10 @@ public class TaskManager : ManagerSingle<TaskManager>
         ChMakingManager.Instance.SetDefault(2, _data[0].Ch3Info);
         ChMakingManager.Instance.SetDefault(3, _data[0].Ch4Info);
 
-        Image BG = EpisodeManager.GetInGameObjPack().BG.GetComponent<Image>();
+        Image BG  = EpisodeManager.GetInGameObjPack().BG.GetComponent<Image>();
         BG.sprite = ResourceManager.GetSprite(_data[0].BgInfo.BgImage);
-        BG.color = new Color(1f, 1f, 1f, _data[0].BgInfo.Opacity);
+        BG.color  = new Color(1f, 1f, 1f, _data[0].BgInfo.Opacity);
+
         UI_Manager.GetUI<UI_InGame>().Get<TMP_Text>("Text").text = "";
         if (_data[0].StateUI == "Hide")
             UI_Manager.GetUI<UI_InGame>().Get("TextBox").transform.localPosition = new Vector3(0, -740, 0);

@@ -53,6 +53,28 @@ public class Util{
 
         return value;
     }
+
+    public static int GetStorageIdx(string text)
+    {
+        string prefix = "Storage_";
+
+        // 접두사를 제거하여 숫자 부분만 추출
+        string numberPart = text.Replace(prefix, "");
+
+        // 숫자 부분을 int로 변환
+        if (int.TryParse(numberPart, out int idx))
+        {
+            return idx;
+        }
+        else
+        {
+            DebugLogError("StorageIdx 를 변환실패");
+            return -1;
+        }
+    }
+
+
+
     public static float StringToFloat(string text)
     {
         float value;
@@ -82,6 +104,41 @@ public class Util{
         return value;
     }
 
+    /// <summary>
+    /// 색 설정
+    /// </summary>
+    /// <param name="spriteRenderer"></param>
+    /// <param name="color"></param>
+    public static void SetColor(SpriteRenderer spriteRenderer, Color color)
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = color;
+        }
+    }
+
+    /// <summary>
+    /// 색 설정
+    /// </summary>
+    /// <param name="Image"></param>
+    /// <param name="color"></param>
+    public static void SetColor(Image Image, Color color)
+    {
+        if (Image != null)
+        {
+            Image.color = color;
+        }
+    }
+
+    public static bool IsCharacter(GameObject Obj)
+    {
+        if (Obj.transform.name.StartsWith("Ch"))
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     /// <summary>
     /// DebugLog
@@ -115,5 +172,6 @@ public class Util{
         Debug.LogError(Log);
 #endif
     }
+
 
 }

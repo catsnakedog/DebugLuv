@@ -34,12 +34,12 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
         /// <summary> 캐릭터 4번 </summary>
         public GameObject Ch4;
         /// <summary> Storage 객체 저장용 </summary>
-        public List<GameObject> Storage;
+        public Dictionary<int,GameObject> Storage;
 
         /// <summary>
         /// InGameObjPack 생성자
         /// </summary>
-        public InGameObjPack(GameObject etc, GameObject bG, GameObject ch1, GameObject ch2, GameObject ch3, GameObject ch4, List<GameObject> storage)
+        public InGameObjPack(GameObject etc, GameObject bG, GameObject ch1, GameObject ch2, GameObject ch3, GameObject ch4, Dictionary<int, GameObject> storage)
         {
             Etc = etc;
             BG = bG;
@@ -76,9 +76,11 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     /// <summary> 문장 갯수?? </summary>
     public static int Sentence { get { return Instance.sentence; } set { Instance.sentence = value; } }
 
+    /// <summary> 삭제하려는 스토리지 인덱스 보관 </summary>
+    List<int> dropStorageIndex = new();
 
     /// <summary>
-    /// 에피소드 시작
+    /// 에피소드 시작 
     /// </summary>
     /// <param name="data"></param>
     /// <param name="branch"></param>
@@ -86,7 +88,7 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     public static void StartEpisode(EpisodeData data, int branch, int setence)
     {
         SetInGameObj();
-        Branch = branch;
+        Branch = branch;    
         Sentence = setence;
         Instance._episodeData = data;
         Instance.StartCoroutine(Instance.Episode(data));
@@ -123,7 +125,7 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     }
 
     /// <summary>
-    ///  문장 졸료인지 확인
+    /// 문장이 종료인지 확인한다.
     /// </summary>
     /// <returns></returns>
     private static bool CheckSentenceDone()
@@ -132,10 +134,11 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     }
 
     /// <summary>
-    /// 문장 졸료를 선언
+    /// 문장 종료를 선언
     /// </summary>
     public static void DoneSentenece()
     {
+        //EpisodeManager.DropStorageAll();
         IsSentenceDone = true;
     }
 
@@ -176,14 +179,74 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     /// <returns></returns>
     public static bool IsStorageAvailable(int idx)
     {
-        if (GetInGameObjPack().Storage.Count > idx && idx >= 0) 
+        if (GetInGameObjPack().Storage != null && GetInGameObjPack().Storage.ContainsKey(idx)) 
         {
             return true;
         }
         else
         {
-            Util.DebugLogWarning($" Storage NOT Available {idx}, Index Must Under {GetInGameObjPack().Storage.Count}");
+            Util.DebugLogWarning($" Storage NOT Available {idx}");
             return false;
         }
     }
+
+    /// <summary>
+    /// 삭제하려는 Index를 등록
+    /// </summary>
+    /// <param name="idx"></param>
+    public static void ScheduleDropStorageIdx(int idx)
+    {
+        if (Instance.dropStorageIndex != null && !Instance.dropStorageIndex.Contains(idx))
+        {
+            Instance.dropStorageIndex.Add(idx);
+        }
+    }
+
+    public static bool ObjLockStorageIdx(int idx)
+    {
+        if (Instance.dropStorageIndex != null && Instance.dropStorageIndex.Contains(idx))
+        {
+            Instance.dropStorageIndex.Remove(idx);
+            return true;
+        }
+        else 
+        {
+            Util.DebugLogError($"보관하려는 {idx} 에 문제가 있음");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// 스토리지에서 예약한 Storage 전체 삭제
+    /// </summary>
+    public static void DropStorageAll()
+    {
+        if (Instance.dropStorageIndex == null) return;
+
+        foreach(int dropIdx in Instance.dropStorageIndex )
+        {
+            if (!GetInGameObjPack().Storage.ContainsKey(dropIdx)) continue;
+            
+            GameObject dropObj = GetInGameObjPack().Storage[dropIdx];
+            GetInGameObjPack().Storage.Remove(dropIdx);
+            Destroy(dropObj);
+        }
+    }
+
+    /// <summary>
+    /// 스토리지에서 예약한 Storage 전체 삭제
+    /// </summary>
+    public static void DropStorageIdxDirect(int dropIdx)
+    {
+        if (!GetInGameObjPack().Storage.ContainsKey(dropIdx))
+        {
+            Util.DebugLogWarning($"삭제할 Index: {dropIdx} 가 없음");
+            return;
+        }
+
+        GameObject dropObj = GetInGameObjPack().Storage[dropIdx];
+        GetInGameObjPack().Storage.Remove(dropIdx);
+        Destroy(dropObj);
+    }
+
 }

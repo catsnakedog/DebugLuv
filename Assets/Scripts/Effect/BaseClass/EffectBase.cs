@@ -23,8 +23,10 @@ public abstract class EffectBase : MonoBehaviour
     private Action _work;
 
     private Value _value;
-    
-    public Value Value { get { return _value; } set { _value = value; } }
+    private ChInfo _chInfo;
+    protected Value Value { get { return _value; } set { _value = value; } }
+    protected ChInfo ChInfo { get { return _chInfo; } set { _chInfo = value; } }
+
 
     /// <summary>
     /// Effect Ω√¿€
@@ -32,11 +34,12 @@ public abstract class EffectBase : MonoBehaviour
     /// <param name="endAction"></param>
     /// <param name="value"></param>
     /// <param name="work"></param>
-    public void StartEffect(Action<Action> endAction, Value value, Action work)
+    public void StartEffect(Action<Action> endAction, Value value, Action work, ChInfo chInfo = null)
     {
         _endAction = endAction;
         _work = work;
         Value = value;
+        ChInfo = chInfo;
         DoEffect();
     }
 

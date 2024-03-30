@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 
 public class UI_InGame : UI_Base
 {
+    /// <summary> 글자와 글자 사이 딜래이 </summary>
+    WaitForSeconds _textDelay = null; 
     enum UI
     {
         Name,
@@ -28,6 +30,12 @@ public class UI_InGame : UI_Base
 
     private void Start()
     {
+#if UNITY_EDITOR
+        _textDelay = new WaitForSeconds(0.01f);
+#else
+        _textDelay = new WaitForSeconds(0.05f);
+#endif
+
         BindEvent(Get(UI.NextParagraph), NextSetence, Define.UIEvent.Click);
     }
 
@@ -44,7 +52,7 @@ public class UI_InGame : UI_Base
         {
             sb.Append(letter);
             Get<TMP_Text>(UI.Text).text = sb.ToString();
-            yield return new WaitForSeconds(0.05f);
+            yield return _textDelay;
         }
 
         work?.Invoke();
@@ -59,6 +67,7 @@ public class UI_InGame : UI_Base
     {
         if (EpisodeManager.IsSentenceDone)
         {
+            EpisodeManager.DropStorageAll();
             EpisodeManager.IsNext = true;
         }
         else

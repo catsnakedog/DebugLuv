@@ -17,9 +17,15 @@ public class FadeOut : EffectBase
         float a = 1f;
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         Image image = gameObject.GetComponent<Image>();
+        float time = 0.5f;
+        if (Value.Value1 != null && Value.Value1 != "" )
+        {
+            time = Util.StringToFloat(Value.Value1);
+        }
+        
         while (a > 0)
         {
-            a -= Time.deltaTime / Util.StringToFloat(Value.Value1);
+            a -= Time.deltaTime / time;
 
             if (spriteRenderer != null)
             {

@@ -25,9 +25,9 @@ public class EffectManager : ManagerSingle<EffectManager>
     /// <param name="target"></param>
     /// <param name="value"></param>
     /// <param name="work"></param>
-    public void PlayEffect(Type type, GameObject target,Value value, Action work = null)
+    public void PlayEffect(Type type, GameObject target,Value value, Action work = null, ChInfo chInfo = null)
     {
-        target.GetOrAddComponent<Effect>().PlayEffect(type, EndEffect, value, work);
+        target.GetOrAddComponent<Effect>().PlayEffect(type, EndEffect, value, work, chInfo);
     }
 
     /// <summary>
