@@ -109,14 +109,19 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
     /// <returns></returns>
     private IEnumerator Episode(EpisodeData data)
     {
-        for(int i = Sentence; i < data.Setence[Branch].Count; i++)
+        WaitUntil waitUntilCheckSentenceDone = new WaitUntil(CheckSentenceDone);
+        WaitUntil waitUntilIsNext            = new WaitUntil(() => IsNext);
+
+        TaskManager.SetFirst(data.Setence[Branch][Sentence]);
+
+        for (int i = Sentence; i < data.Setence[Branch].Count; i++)
         {
             Sentence = i;
             IsNext = false;
             IsSentenceDone = false;
-            TaskManager.Instance.StartSetenceTasks(data.Setence[Branch][i]);
-            yield return new WaitUntil(CheckSentenceDone);
-            yield return new WaitUntil(() => IsNext);
+            TaskManager.StartSetenceTasks(data.Setence[Branch][i]);
+            yield return waitUntilCheckSentenceDone;
+            yield return waitUntilIsNext;
         }
         if (data.Setence[Branch][^1][^1].Choice != 0)
             UI_Manager.GetUI<UI_InGame>().ShowChoice(data.Setence[Branch][^1][^1].Choice);
@@ -231,6 +236,16 @@ public class EpisodeManager : ManagerSingle<EpisodeManager>
             GetInGameObjPack().Storage.Remove(dropIdx);
             Destroy(dropObj);
         }
+    }
+
+    /// <summary>
+    /// 스토리지에서 예약한 Storage 전체 Lock
+    /// </summary>
+    public static void ObjLockStorageAll()
+    {
+        if (Instance.dropStorageIndex == null) return;
+
+        Instance.dropStorageIndex.Clear();
     }
 
     /// <summary>

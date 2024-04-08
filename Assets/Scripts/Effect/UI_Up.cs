@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class HideUI : EffectBase
+public class UI_Up : EffectBase 
 {
-    private Coroutine effectC;
-    private Vector2 _targetPosition = new Vector2(0, -740);
+    private Coroutine effectC       = null;
+    private GameObject TextBox      = null;
 
     public override void DoEffect()
     {
@@ -14,25 +15,26 @@ public class HideUI : EffectBase
 
     private IEnumerator ShowUIEffect()
     {
-        GameObject target = UI_Manager.GetUI<UI_InGame>().Get("TextBox");
+        if (TextBox == null) TextBox = UI_Manager.GetUI<UI_InGame>().Get("TextBox");
+        
 
-        Vector2 startPosition = target.transform.localPosition;
+        Vector2 startPosition = TextBox.transform.localPosition;
         float time = 0f;
 
         while (time < Util.StringToFloat(Value.Value1))
         {
-            target.transform.localPosition = Vector3.Lerp(startPosition, _targetPosition, time / Util.StringToFloat(Value.Value1));
-
+            TextBox.transform.localPosition = Vector3.Lerp(startPosition, UI_Manager.UpUIPos, time / Util.StringToFloat(Value.Value1));
             time += Time.deltaTime;
             yield return null;
         }
 
+        Debug.Log("이동 완료");
         EndEffect();
     }
 
     public override void ShowResult()
     {
-        transform.localPosition = _targetPosition;
+        transform.localPosition = UI_Manager.UpUIPos;
     }
 
     public override void StopAll()

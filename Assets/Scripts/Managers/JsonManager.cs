@@ -24,20 +24,19 @@ public class JsonManager // Json데이터를 읽고 쓰는 Manager이다
     /// <param name="saveData"> 저장 데이터 </param>
     public void SaveJson(SaveData saveData) // 데이터를 쓰는 함수
     {
-        StringBuilder sb = new StringBuilder(Application.dataPath);
+        StringBuilder sb = new StringBuilder("");
 
         string jsonText;
-        string pilePath = sb.Append("/Save").ToString();
-        string savePath = sb.Append("/SaveData.json").ToString();
 #if UNITY_EDITOR_WIN
-
+        sb.Append(Application.dataPath);
 #endif
 #if UNITY_ANDROID // 안드로이드인 경우 경로를 수정해준다
-        sb.Clear();
         sb.Append(Application.persistentDataPath);
-        pilePath = sb.Append("/Save").ToString();
-        savePath = sb.Append("/SaveData.json").ToString();
 #endif
+
+        string pilePath = sb.Append("/Save").ToString();
+        string savePath = sb.Append("/SaveData.json").ToString();
+
         if (!Directory.Exists(pilePath)) // 파일이 존재하는지 확인한다
         {
             Directory.CreateDirectory(pilePath);

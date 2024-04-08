@@ -30,10 +30,13 @@ public class UI_InGame : UI_Base
 
     private void Start()
     {
+
 #if UNITY_EDITOR
         _textDelay = new WaitForSeconds(0.01f);
 #else
-        _textDelay = new WaitForSeconds(0.05f);
+        //_textDelay = new WaitForSeconds(0.05f);
+        _textDelay = new WaitForSeconds(0.01f);
+
 #endif
 
         BindEvent(Get(UI.NextParagraph), NextSetence, Define.UIEvent.Click);
@@ -52,6 +55,7 @@ public class UI_InGame : UI_Base
         {
             sb.Append(letter);
             Get<TMP_Text>(UI.Text).text = sb.ToString();
+
             yield return _textDelay;
         }
 
@@ -73,6 +77,8 @@ public class UI_InGame : UI_Base
         else
         {
             //Skip
+
+            //SkipEffect()
         }
     }
 

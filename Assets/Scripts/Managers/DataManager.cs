@@ -48,9 +48,9 @@ public class DataManager : ManagerSingle<DataManager>, IInit // µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´
 
             GameData gameData = new GameData();
 
-            _jsonManager = new JsonManager();
+            _jsonManager    = new JsonManager();
             _parsingManager = new ParsingManager();
-            _sheetManager = new SheetManager();
+            _sheetManager   = new SheetManager();
 
             LoadJsonData(gameData);
 
@@ -62,12 +62,17 @@ public class DataManager : ManagerSingle<DataManager>, IInit // µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´
     }
 
     /// <summary>
-    /// °ÔÀÓ µ¥ÀÌÅÍ¸¦ ÆÄ½ÌÇÑ´Ù.
+    /// °ÔÀÓ µ¥ÀÌÅÍ ÀüÃ¼¸¦ ÆÄ½ÌÇÑ´Ù.
     /// </summary>
-    public void ParsingDebugLuvData()
+    public static void ParsingDebugLuvData()
     {
-        SheetData = _sheetManager.SetSheetData();
-        DebugLuvData = _parsingManager.ParsingSheetData(SheetData);
+        Instance.SheetData    = Instance._sheetManager.SetSheetData();
+        Instance.DebugLuvData = Instance._parsingManager.ParsingSheetData(Instance.SheetData);
+    }
+    public static void ParsingDebugLuvData(string path, Type type)
+    {
+        Instance.SheetData = Instance._sheetManager.SetSheetData(path, type);
+        Instance.DebugLuvData = Instance._parsingManager.ParsingSheetData(Instance.SheetData);
     }
 
     /// <summary>
@@ -90,8 +95,8 @@ public class DataManager : ManagerSingle<DataManager>, IInit // µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´
     /// <summary>
     /// ¿¡ÇÇ¼Òµå µ¥ÀÌÅÍ¸¦ getÇÑ´Ù.
     /// </summary>
-    /// <param name="Story"></param>
-    /// <param name="Episode"></param>
+    /// <param name="Story"> ÇØ´ç ½ºÅä¸®ÀÇ Á¤º¸¸¦ °¡Á®¿Â´Ù. </param>
+    /// <param name="Episode">  </param>
     /// <returns></returns>
     public EpisodeData GetEpisodeData(string Story, int Episode)
     {

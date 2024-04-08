@@ -35,6 +35,7 @@ public class StorageSpawn : EffectBase
         {
             spriteRenderer.sprite = ResourceManager.GetSprite(Value.Value1);
             spriteRenderer.color = Color.white;
+            spriteRenderer.sortingOrder = idx;
         }
         
 

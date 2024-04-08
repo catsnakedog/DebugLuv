@@ -1,47 +1,45 @@
-//-------------------------------------------------------------------------------------------------
-// @file	UI_Base.cs
-//
-// @brief	°³º° UI¸¦ À§ÇÑ UI base class
-//
-// @date	2024-03-14
-//
-// Copyright 2024 Team One-eyed Games. All Rights Reserved.
-//-------------------------------------------------------------------------------------------------
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class UI_Base : MonoBehaviour
 {
-    /// <summary> UI¿¡¼­ »ç¿ëÇÒ °´Ã¼(Button Text µî)¸¦ ´ã´Â ÀÚ·á±¸Á¶</summary>
     private Dictionary<string, Dictionary<Type, UnityEngine.Object>> _objects;
 
-    /// <summary>
-    /// ÇØ´ç UIÀÇ GameObject TypeÀ» Get
-    /// </summary>
-    /// <param name="name"> °´Ã¼ ÀÌ¸§ Enum Type </param>
-    /// <returns> ÇØ´ç °´Ã¼ </returns>
-    public GameObject Get(Enum name) // GameObject ¹İÈ¯
-    {
-        return Get(name.ToString());
-    }
-
-    /// <summary>
-    /// StringÀ» ÀÌ¿ëÇÑ Get
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public GameObject Get(String name) // GameObject ¹İÈ¯
+    public GameObject Get(Enum name) // GameObject ë°˜í™˜
     {
         if (_objects == null)
             _objects = new();
-        if (!_objects.ContainsKey(name)) // ÇÑ¹øµµ È£ÃâÀÌ ¾ÈµÈ °æ¿ì _objects¿¡ µî·ÏÇÑ´Ù
+        if (!_objects.ContainsKey(name.ToString())) // í•œë²ˆë„ í˜¸ì¶œì´ ì•ˆëœ ê²½ìš° _objectsì— ë“±ë¡í•œë‹¤
+            _objects[name.ToString()] = new();
+        if (!_objects[name.ToString()].ContainsKey(typeof(GameObject))) // GameObjectê°€ ì•„ì§ ë°”ì¸ë”©ì´ ì•ˆëœ ê²½ìš° ë°”ì¸ë”© í•´ì¤€ë‹¤
+        {
+            GameObject target = null;
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
+                if (child.gameObject.name == name.ToString())
+                {
+                    target = child.gameObject;
+                    break;
+                }
+            if (target == null)
+            {
+                Debug.LogWarning($"error_UI : {name.ToString()}ë¼ëŠ” UI ì˜¤ë¸Œì íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
+                return null;
+            }
+            else
+                _objects[name.ToString()][typeof(GameObject)] = target;
+        }
+        return (GameObject)_objects[name.ToString()][typeof(GameObject)];
+    }
+
+    public GameObject Get(String name) // GameObject ë°˜í™˜
+    {
+        if (_objects == null)
+            _objects = new();
+        if (!_objects.ContainsKey(name)) // í•œë²ˆë„ í˜¸ì¶œì´ ì•ˆëœ ê²½ìš° _objectsì— ë“±ë¡í•œë‹¤
             _objects[name] = new();
-        if (!_objects[name].ContainsKey(typeof(GameObject))) // GameObject°¡ ¾ÆÁ÷ ¹ÙÀÎµùÀÌ ¾ÈµÈ °æ¿ì ¹ÙÀÎµù ÇØÁØ´Ù
+        if (!_objects[name].ContainsKey(typeof(GameObject))) // GameObjectê°€ ì•„ì§ ë°”ì¸ë”©ì´ ì•ˆëœ ê²½ìš° ë°”ì¸ë”© í•´ì¤€ë‹¤
         {
             GameObject target = null;
             foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
@@ -52,7 +50,7 @@ public class UI_Base : MonoBehaviour
                 }
             if (target == null)
             {
-                Debug.LogWarning($"error_UI : {name}¶ó´Â UI ¿ÀºêÁ§Æ®°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning($"error_UI : {name}ë¼ëŠ” UI ì˜¤ë¸Œì íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
                 return null;
             }
             else
@@ -61,30 +59,40 @@ public class UI_Base : MonoBehaviour
         return (GameObject)_objects[name][typeof(GameObject)];
     }
 
-    /// <summary>
-    /// TargetType °´Ã¼ ¹İÈ¯ 
-    /// </summary>
-    /// <typeparam name="TargetType"></typeparam>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public TargetType Get<TargetType>(Enum name) where TargetType : UnityEngine.Object // GameObject ¹İÈ¯
-    {
-        return Get<TargetType>(name.ToString());
-    }
-
-    /// <summary>
-    /// TargetType °´Ã¼ ¹İÈ¯ 
-    /// </summary>
-    /// <typeparam name="TargetType"></typeparam>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public TargetType Get<TargetType>(string name) where TargetType : UnityEngine.Object // GameObject ¹İÈ¯
+    public TargetType Get<TargetType>(Enum name) where TargetType : UnityEngine.Object // GameObject ë°˜í™˜
     {
         if (_objects == null)
             _objects = new();
-        if (!_objects.ContainsKey(name)) // ÇÑ¹øµµ È£ÃâÀÌ ¾ÈµÈ °æ¿ì _objects¿¡ µî·Ï
+        if (!_objects.ContainsKey(name.ToString())) // í•œë²ˆë„ í˜¸ì¶œì´ ì•ˆëœ ê²½ìš° _objectsì— ë“±ë¡
+            _objects[name.ToString()] = new();
+        if (!_objects[name.ToString()].ContainsKey(typeof(TargetType))) // TargetTypeì´ ì•„ì§ ë°”ì¸ë”©ì´ ì•ˆëœ ê²½ìš° ë°”ì¸ë”© í•´ì¤€ë‹¤
+        {
+            TargetType target = null;
+            foreach (TargetType child in transform.GetComponentsInChildren<TargetType>(true))
+                if (child.name == name.ToString())
+                {
+                    target = child;
+                    break;
+                }
+            if (target == null)
+            {
+                Debug.LogWarning($"error_UI : {name.ToString()}ë¼ëŠ” UI ì˜¤ë¸Œì íŠ¸ì— {typeof(TargetType).ToString()} ì»´í¬ë„ŒíŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
+                return null;
+            }
+            else
+                _objects[name.ToString()][typeof(TargetType)] = target;
+        }
+
+        return (TargetType)_objects[name.ToString()][typeof(TargetType)];
+    }
+
+    public TargetType Get<TargetType>(string name) where TargetType : UnityEngine.Object // GameObject ë°˜í™˜
+    {
+        if (_objects == null)
+            _objects = new();
+        if (!_objects.ContainsKey(name)) // í•œë²ˆë„ í˜¸ì¶œì´ ì•ˆëœ ê²½ìš° _objectsì— ë“±ë¡
             _objects[name] = new();
-        if (!_objects[name].ContainsKey(typeof(TargetType))) // TargetTypeÀÌ ¾ÆÁ÷ ¹ÙÀÎµùÀÌ ¾ÈµÈ °æ¿ì ¹ÙÀÎµù ÇØÁØ´Ù
+        if (!_objects[name].ContainsKey(typeof(TargetType))) // TargetTypeì´ ì•„ì§ ë°”ì¸ë”©ì´ ì•ˆëœ ê²½ìš° ë°”ì¸ë”© í•´ì¤€ë‹¤
         {
             TargetType target = null;
             foreach (TargetType child in transform.GetComponentsInChildren<TargetType>(true))
@@ -95,7 +103,7 @@ public class UI_Base : MonoBehaviour
                 }
             if (target == null)
             {
-                Debug.LogWarning($"error_UI : {name}¶ó´Â UI ¿ÀºêÁ§Æ®¿¡ {typeof(TargetType).ToString()} ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning($"error_UI : {name}ë¼ëŠ” UI ì˜¤ë¸Œì íŠ¸ì— {typeof(TargetType).ToString()} ì»´í¬ë„ŒíŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
                 return null;
             }
             else
@@ -105,13 +113,7 @@ public class UI_Base : MonoBehaviour
         return (TargetType)_objects[name][typeof(TargetType)];
     }
 
-    /// <summary>
-    /// ÀÌº¥Æ® ¹ÙÀÎµù (ÇöÀç Click, Drag, Mouse Down, Mouse Up Áö¿ø ÇÊ¿ä½Ã Ãß°¡ ¹Ù¶÷)
-    /// </summary>
-    /// <param name="go"></param>
-    /// <param name="action"></param>
-    /// <param name="type"></param>
-    public void BindEvent(GameObject go, Action<UnityEngine.EventSystems.PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click) // Å¬¸¯°ú °ü·ÃµÈ ÀÌº¥Æ®¸¦ Bind ÇØÁØ´Ù
+    public void BindEvent(GameObject go, Action<UnityEngine.EventSystems.PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click) // í´ë¦­ê³¼ ê´€ë ¨ëœ ì´ë²¤íŠ¸ë¥¼ Bind í•´ì¤€ë‹¤
     {
         UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
 

@@ -51,13 +51,13 @@ public class Tasks : MonoBehaviour
     private void RunParallel()
     {
         foreach (int num in _taskConnect.ParallelConnect)
-            TaskManager.Instance.RunTasks(num);
+            TaskManager.RunTasks(num);
     }
 
     private void RunSequential()
     {
         foreach (int num in _taskConnect.SequentialConnect)
-            TaskManager.Instance.RunTasks(num);
+            TaskManager.RunTasks(num);
     }
 
     private List<List<string>> SortTaskOrder()

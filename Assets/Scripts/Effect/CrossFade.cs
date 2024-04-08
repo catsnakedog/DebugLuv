@@ -31,13 +31,17 @@ public class CrossFade : EffectBase
     {
         float a     = 1.0f;
         float size  = 1.0f;
+
+        // SpriteRenderer 인가 UI 인가?
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        Image image = gameObject.GetComponent<Image>();
+        Image image                   = gameObject.GetComponent<Image>();
         
         SpriteRenderer fadeOutSpriteRenderer    = null;
         Image          fadeOutImage             = null;
 
         Sprite fadeInImage = null;
+
+        // Value.Value2 == Sprite name
         if (Value.Value2 != null)
         {
             fadeInImage = ResourceManager.GetSprite(Value.Value2);

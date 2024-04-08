@@ -1979,10 +1979,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uAC00\uB098\uB2F7\uB77C \n\uB681 \uB545 \uD574 \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c4692c6258073a647b5596b5e1136ef4, type: 2}
-  m_sharedMaterial: {fileID: -3119238437546795216, guid: c4692c6258073a647b5596b5e1136ef4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3b9df7d7c4e984948916eb74cb29d3a7, type: 2}
+  m_sharedMaterial: {fileID: 5411037352360906592, guid: 3b9df7d7c4e984948916eb74cb29d3a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

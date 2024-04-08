@@ -17,7 +17,7 @@ public class Logo : BaseScene
 {
     private void Start()
     {
-        DataManager.Instance.ParsingDebugLuvData();
+        DataManager.ParsingDebugLuvData();
         UI_Manager.GetUI<UI_Logo>().StartEffect();
     }
 }

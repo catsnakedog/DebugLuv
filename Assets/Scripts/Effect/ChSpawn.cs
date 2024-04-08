@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChSpawn : EffectBase
 {
     private Coroutine effectC = null;
-    private GameObject fadeOut = null;
 
     public override void DoEffect()
     {

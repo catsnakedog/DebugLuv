@@ -73,8 +73,6 @@ public class Util{
         }
     }
 
-
-
     public static float StringToFloat(string text)
     {
         float value;

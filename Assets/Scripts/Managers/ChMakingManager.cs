@@ -21,6 +21,9 @@ using Unity.VisualScripting;
 /// <summary> 캐릭터 생성 메니저 </summary>
 public class ChMakingManager : ManagerSingle<ChMakingManager>
 {
+    /// <summary>
+    /// 캐릭터 enum
+    /// </summary>
     public enum ChIndex
     {
         Ch1,
@@ -31,6 +34,10 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         MaxCount
 
     }
+
+    /// <summary>
+    /// Effect enum
+    /// </summary>
     enum EffectIndex
     {
         Effect0,
@@ -42,6 +49,9 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
 
     }
 
+    /// <summary>
+    /// 캐릭터에 대한 정보들
+    /// </summary>
     enum ChData
     { 
         ChCode,
@@ -88,13 +98,13 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         {
             _ch[i] = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/Ch"), _chPool.transform);
             _ch[i].name = $"Ch{i+1}";
-            Transform charBody  = _ch[i].transform.GetChild(0);
-            _chPart[i].Body     = charBody.GetComponent<SpriteRenderer>();
-            _chPart[i].Clothes  = charBody.GetChild(0).GetComponent<SpriteRenderer>();
-            _chPart[i].Eye      = charBody.GetChild(1).GetComponent<SpriteRenderer>();
-            _chPart[i].Eyebrow  = charBody.GetChild(2).GetComponent<SpriteRenderer>();
-            _chPart[i].Mouth    = charBody.GetChild(3).GetComponent<SpriteRenderer>();
-            _chPart[i].Effect   = new SpriteRenderer[(int)EffectIndex.MaxCount];
+            Transform charBody = _ch[i].transform.GetChild(0);
+            _chPart[i].Body    = charBody.GetComponent<SpriteRenderer>();
+            _chPart[i].Clothes = charBody.GetChild(0).GetComponent<SpriteRenderer>();
+            _chPart[i].Eye     = charBody.GetChild(1).GetComponent<SpriteRenderer>();
+            _chPart[i].Eyebrow = charBody.GetChild(2).GetComponent<SpriteRenderer>();
+            _chPart[i].Mouth   = charBody.GetChild(3).GetComponent<SpriteRenderer>();
+            _chPart[i].Effect  = new SpriteRenderer[(int)EffectIndex.MaxCount];
             _chPart[i].Effect[(int)EffectIndex.Effect0] = charBody.GetChild(4).GetChild(0).GetComponent<SpriteRenderer>();
             _chPart[i].Effect[(int)EffectIndex.Effect1] = charBody.GetChild(4).GetChild(1).GetComponent<SpriteRenderer>();
             _chPart[i].Effect[(int)EffectIndex.Effect2] = charBody.GetChild(4).GetChild(2).GetComponent<SpriteRenderer>();
@@ -121,12 +131,12 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
     /// <param name="num"> 캐릭터 번호 </param>
     public static void ChMaking(ChInfo chInfo, GameObject ChObj)
     {
-        int charIdx = 0;
+        ChIndex charIdx = 0;
         if(!Enum.TryParse<ChIndex>(ChObj.name, out ChIndex chIndex))
         {
             Util.DebugLog("ChMaking 파싱 실패");
         }
-        Instance.SetCh(Instance._ch[charIdx], Instance._chPart[charIdx], chInfo);
+        Instance.SetCh(Instance._ch[(int)charIdx], Instance._chPart[(int)charIdx], chInfo);
     }
 
     /// <summary>
@@ -140,7 +150,7 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         if (chInfo.Scale == -1)
             ch.transform.localScale = Vector3.one;
         else
-            ch.transform.localScale = new Vector2() * chInfo.Scale;
+            ch.transform.localScale = new Vector2(chInfo.Scale, chInfo.Scale);
 
         if(chInfo.Pos != new Vector2(-1000, -1000))
             ch.transform.localPosition = chInfo.Pos;
@@ -234,6 +244,11 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         chPart.Eyebrow.color = AlpaColor;
         chPart.Eye.color     = AlpaColor;
         chPart.Mouth.color   = AlpaColor;
+        for (EffectIndex effectIndex = 0; effectIndex < EffectIndex.MaxCount; effectIndex++)
+        {
+            if (chPart.Effect[(int)effectIndex] == null) continue;
+            chPart.Effect[(int)effectIndex].color = AlpaColor;
+        }
     }
 
     /// <summary>
@@ -242,24 +257,19 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
     /// <param name="opacity"></param>
     public static void SetOpacity(GameObject Character, float opacity)
     {
-        Color AlpaColor = new Color(1f, 1f, 1f, opacity);
         int num = (int)ParseIndex(Character);
         ChPart chPart = Instance._chPart[num];
-        chPart.Body.color = AlpaColor;
-        chPart.Clothes.color = AlpaColor;
-        chPart.Eyebrow.color = AlpaColor;
-        chPart.Eye.color = AlpaColor;
-        chPart.Mouth.color = AlpaColor;
+        SetOpacity(chPart, opacity);
     }
 
     /// <summary>
-    /// 
+    /// 픽셀 => 유니티  Unit 단위로 변환
     /// </summary>
     /// <param name="correction"></param>
     /// <returns></returns>
     Vector2 CorrectionVector(Vector2 correction)
     {
-        float pixelPerUnit = 100f;
+        float pixelPerUnit = 200f;
 
         correction /= pixelPerUnit;
 

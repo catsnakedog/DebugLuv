@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.IO;
 using UnityEngine;
 
 
@@ -23,15 +24,37 @@ public class SheetManager
 
     public SheetData SheetData { get { return _sheetData; } }
 
+    /// <summary>
+    /// 모든 시트 데이터를 파싱
+    /// </summary>
+    /// <returns></returns>
     public SheetData SetSheetData()
     {
-        _sheetData = new();
+        if(_sheetData == null) _sheetData = new();
 
         TextAsset[] textAssets = Resources.LoadAll<TextAsset>("Data");
         ParsingSheetData(textAssets);
 
         return _sheetData;
     }
+
+
+    /// <summary>
+    /// 특정 시트 데이터만을 세팅
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public SheetData SetSheetData(string path, Type type)
+    {
+        if(_sheetData == null) _sheetData = new();
+
+        string fileData = File.ReadAllText(path);
+        ParsingSheetData(type, fileData);
+
+        return _sheetData;
+    }
+
 
     public SheetData GetSheetData()
     {
@@ -40,20 +63,25 @@ public class SheetManager
 
     void ParsingSheetData(TextAsset[] textAssets)
     {
-        Type dataType = _sheetData.GetType();
         foreach (TextAsset textAsset in textAssets)
         {
             Type variableType = Type.GetType(textAsset.name);
-
-            IList myList = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(variableType));
-
-            foreach (object element in ParsingData(variableType, textAsset))
-            {
-                myList.Add(Convert.ChangeType(element, variableType));
-            }
-
-            typeof(SheetData).GetField(textAsset.name).SetValue(_sheetData, Convert.ChangeType(myList, typeof(SheetData).GetField(textAsset.name).FieldType));
+            ParsingSheetData(variableType, textAsset.text);
         }
+    }
+
+    void ParsingSheetData(Type variableType, string fileData)
+    {
+        IList myList = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(variableType));
+
+        Debug.Log(variableType.FullName);
+        foreach (object element in ParsingData(variableType, fileData))
+        {
+            myList.Add(Convert.ChangeType(element, variableType));
+        }
+        typeof(SheetData).GetField(variableType.FullName).SetValue(_sheetData, Convert.ChangeType(myList, typeof(SheetData).GetField(variableType.FullName).FieldType));
+
+
     }
 
     Dictionary<string, int> SetVariableIndex(string line)
@@ -73,11 +101,31 @@ public class SheetManager
         return variableIndex;
     }
 
+    /// <summary>
+    /// 해당 TextAsset Data를 파싱
+    /// </summary>
+    /// <param name="type"> 파싱 타입 </param>
+    /// <param name="textAsset"> Raw TextAsset Data  </param>
+    /// <returns> 파싱된 List {type} </returns>
     List<object> ParsingData(Type type, TextAsset textAsset)
+    {
+        if (textAsset != null)
+            return ParsingData(type, textAsset.text);
+        else
+            return null;
+    }
+
+    /// <summary>
+    /// 해당 string Data를 파싱
+    /// </summary>
+    /// <param name="type"> 파싱 타입 </param>
+    /// <param name="stringText"> Raw string Data </param>
+    /// <returns> 파싱된 List {type} </returns>
+    List<object> ParsingData(Type type, string stringText)
     {
         List<object> data = new();
 
-        string[] lines = textAsset.text.Split("\n");
+        string[] lines = stringText.Split("\n");
 
         foreach (string line in lines.Skip(1))
         {

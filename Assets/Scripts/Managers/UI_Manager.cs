@@ -18,12 +18,16 @@ using UnityEngine.UI;
 
 public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는 Manager이다
 {
-    private int _order = 20;
     public static Vector2 ScreenSize = new Vector2(1920, 1080);
+    public static Vector3 DownUIPos  = new Vector3(0, -740, 0);
+    public static Vector3 UpUIPos    = new Vector3(0, -370, 0);
+
     private Stack<UI_Base> _popupStack = new(); // 팝업같은 경우 Stack으로 관리해준다
 
-    private UI_Base _sceneUI;
+    private UI_Base       _sceneUI;
     private UI_BackGround _backGroundUI;
+    
+    private int _order = 70;
 
     public enum UITypes
     {
@@ -66,26 +70,29 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
         return Instance._backGroundUI;
     }
 
-    public GameObject Root{
+    /// <summary> UI Root </summary>
+    public GameObject Root
+    {
         get
         {
-        GameObject root = GameObject.Find("@UI_Root"); // UI같은 경우 @UI_Root에 자식으로 들어간다
-        if(root == null)
+            GameObject root = GameObject.Find("@UI_Root"); // UI같은 경우 @UI_Root에 자식으로 들어간다
+            if (root == null)
             {
                 root = new GameObject { name = "@UI_Root" };
             }
-        return root;
+            return root;
         }
     }
 
     public void SetCanavas(GameObject go, bool sort = true ,int DirectSortOrder = -1) // 기본적인 Setting + 기존의 UI들과 충돌이 일어나지 않도록 Order를 관리해준다
     {
-        Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
-        canvas.renderMode= RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main;
-        canvas.overrideSorting = true;
+        Canvas canvas       = Util.GetOrAddComponent<Canvas>(go);
         CanvasScaler scaler = Util.GetOrAddComponent<CanvasScaler>(go);
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        
+        canvas.overrideSorting     = true;
+        canvas.renderMode          = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera         = Camera.main;
+        scaler.uiScaleMode         = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = ScreenSize; // 플레이어 지정 해상도
 
         if(sort)
@@ -165,7 +172,7 @@ public class UI_Manager : ManagerSingle<UI_Manager>, IClearable // UI를 관리하는
 
     public void ClosePopupUI() // 가장 위에 있는 팝업을 닫는다
     {
-        if(_popupStack.Count==0)
+        if(_popupStack.Count == 0)
             return;
 
         UI_Base popup = _popupStack.Pop();

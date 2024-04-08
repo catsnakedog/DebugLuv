@@ -8,10 +8,10 @@ using UnityEngine;
 [System.Serializable]
 public class SheetData
 {
-    public List<LineData> LineData;
+    public List<LineData>        LineData;
     public List<EpisodeTypeData> EpisodeTypeData;
-    public List<SelectData> SelectData;
-    public List<ChImageData> ChImageData;
+    public List<SelectData>      SelectData;
+    public List<ChImageData>     ChImageData;
 }
 
 #region LineData
@@ -22,18 +22,18 @@ public class SheetData
 public class LineData
 {
     public string Story;
-    public int Episode;
-    public int Branch;
+    public int    Episode;
+    public int    Branch;
     public string TasksOrder;
-    public int SetenceIdx;
+    public int    SetenceIdx;
     public string Connect;
-    public int Storage;
-    public Task EtcTask;
-    public Task BgTask;
-    public Task Ch1Task;
-    public Task Ch2Task;
-    public Task Ch3Task;
-    public Task Ch4Task;
+    public int    Storage;
+    public Task   EtcTask;
+    public Task   BgTask;
+    public Task   Ch1Task;
+    public Task   Ch2Task;
+    public Task   Ch3Task;
+    public Task   Ch4Task;
     public BgInfo BgInfo;
     public ChInfo Ch1Info;
     public ChInfo Ch2Info;
@@ -42,14 +42,14 @@ public class LineData
     public string Name;
     public string Text;
     public string StateUI;
-    public int Choice;
+    public int    Choice;
 }
 
 [System.Serializable]
 public class Task
 {
     public string Name;
-    public Value Value;
+    public Value  Value;
 }
 [System.Serializable]
 public class Value
@@ -66,17 +66,17 @@ public class Value
 [System.Serializable]
 public class ChInfo
 { 
-    public string ImageCode;
+    public string  ImageCode;
     public Vector2 Pos;
-    public float Scale;
-    public float Opacity;
-    public int ChIndex = 0;
+    public float   Scale;
+    public float   Opacity;
+    public int     ChIndex = 0;
 }
 [System.Serializable]
 public class BgInfo
 {
     public string BgImage;
-    public float Opacity;
+    public float  Opacity;
 }
 #endregion
 
@@ -85,7 +85,7 @@ public class BgInfo
 public class EpisodeTypeData
 {
     public string Story;
-    public int Episode;
+    public int    Episode;
     public string StoryName;
 }
 #endregion

@@ -28,9 +28,9 @@ public class ParsingManager
         DebugLuvData data = new();
 
         data.EpisodeType = ParsingEpisodeTypeData(sheetData);
-        data.Story = ParsingStoryData(sheetData);
-        data.Choice = ParsingChoiceData(sheetData);
-        data.ChImage = ParsingChImageData(sheetData);
+        data.Story       = ParsingStoryData(sheetData);
+        data.Choice      = ParsingChoiceData(sheetData);
+        data.ChImage     = ParsingChImageData(sheetData);
 
         return data;
     }
