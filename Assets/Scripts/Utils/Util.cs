@@ -171,5 +171,38 @@ public class Util{
 #endif
     }
 
+    public static IEnumerator SpriteAlpaFade(GameObject go ,float time, Sprite sprite, bool frontObj)
+    {
+        float a = 1.0f;
+     
+        Image image = go.GetComponent<SpriteRenderer>();
+
+        if (image)
+        {
+            if (Value.Value1 != null) time = Util.StringToFloat(Value.Value1);
+            if (Value.Value2 != null) newSprite = ResourceManager.GetSprite(Value.Value2);
+
+            fadeIn = new GameObject("@FadeIn");
+            fadeIn.transform.parent = this.transform;
+            Image fadeInImage = Util.GetOrAddComponent<Image>(fadeIn);
+            fadeInImage.color = new Color(1f, 1f, 1f, 0f);
+            fadeInImage.rectTransform.localScale = Vector3.one;
+            fadeInImage.sprite = newSprite;
+
+            while (a > 0)
+            {
+                a -= Time.deltaTime / time;
+
+                Color color = new Color(1.0f, 1.0f, 1.0f, a);
+                fadeInImage.color = color;
+            }
+
+            yield return null;
+            image.sprite = newSprite;
+            Destroy(fadeIn);
+        }
+        yield return null;
+        EndEffect();
+    }
 
 }
