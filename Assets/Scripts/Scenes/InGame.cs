@@ -21,7 +21,7 @@ public class InGame : BaseScene
         StoryManager.Instance.InGameData.Story = "Com";
         StoryManager.Instance.InGameData.Episode = 0;
         StoryManager.Instance.InGameData.Branch = 0;
-        ChMakingManager.Instance.Set();
+        ChMakingManager.Instance.Init();
         StoryManager.Instance.StartInGame();
     }
 }

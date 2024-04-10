@@ -84,7 +84,7 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
     /// <summary>
     /// 메니저 초기 Set
     /// </summary>
-    public void Set()
+    public void Init()
     {
         _chPool                   = new GameObject("@ChPool");
         _ch                       = new GameObject[(int)ChIndex.MaxCount];
@@ -122,6 +122,25 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
     public static void ChMaking(ChInfo chInfo, int charIdx)
     {
         Instance.SetCh(Instance._ch[charIdx], Instance._chPart[charIdx], chInfo);
+    }
+
+    /// <summary>
+    /// 캐릭터 생성과 변형이 아닌  FadeIn등에서 사용하기 위한  Set
+    /// </summary>
+    /// <param name="go"></param>
+    /// <param name="chInfo"></param>
+    public static void SetChararter(GameObject go, ChInfo chInfo)
+    {
+        if (go == null) return;
+        int idx = GetChIndex(go);
+        if (idx == -1)  return;
+
+        if (chInfo.Pos != new Vector2(-1000, -1000))
+            go.transform.localPosition = chInfo.Pos;
+
+        //if (chInfo.Opacity != -1) 
+        //    SetOpacity(Instance._ch[idx], chInfo.Opacity);
+
     }
 
     /// <summary>
@@ -299,6 +318,14 @@ public class ChMakingManager : ManagerSingle<ChMakingManager>
         return chIndex;
     }
     
+    static int GetChIndex(GameObject go)
+    {
+        if (go.transform.name.StartsWith("Ch"))
+        {
+            return Util.StringToInt(go.transform.name.Substring(2));
+        }
+        return -1;
+    }
 }
 
 

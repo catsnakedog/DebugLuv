@@ -32,6 +32,7 @@ public class FadeIn : EffectBase
             if (IsCharacter)
             {
                 ChMakingManager.SetOpacity(gameObject, a);
+                ChMakingManager.SetChararter(gameObject, ChInfo);
             }
             else
             {
