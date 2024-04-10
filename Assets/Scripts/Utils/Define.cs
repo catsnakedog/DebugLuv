@@ -19,4 +19,11 @@ public class Define : MonoBehaviour
         Up,
         Drag,
     }
+    public enum EffectType
+    {
+        FadeIn,
+        FadeOut,
+
+    }
+
 }
