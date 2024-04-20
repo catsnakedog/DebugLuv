@@ -64,6 +64,7 @@ public abstract class EffectBase : MonoBehaviour
     public void EndEffect() 
     {
         _endAction.Invoke(_work);
+
     }
 
     /// <summary>

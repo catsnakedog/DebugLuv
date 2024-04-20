@@ -27,7 +27,7 @@ public class UI_InGame : UI_Base
     }
 
     private ChoiceData _choiceData;
-
+    public TMP_Text UIText => Get<TMP_Text>(UI.Text);
     private void Start()
     {
 
@@ -46,7 +46,7 @@ public class UI_InGame : UI_Base
     {
         StartCoroutine(ShowText(text, work));
     }
-
+    
     public IEnumerator ShowText(string text, Action work)
     {
         StringBuilder sb = new(Get<TMP_Text>(UI.Text).text);
@@ -77,8 +77,7 @@ public class UI_InGame : UI_Base
         else
         {
             //Skip
-
-            //SkipEffect()
+            EffectManager.SkipEffect();
         }
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Define : MonoBehaviour
 {
+    public static readonly string TextEffect = "Text";
     public enum Sound
     {
         Bgm,

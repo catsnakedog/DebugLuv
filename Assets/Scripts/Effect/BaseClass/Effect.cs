@@ -7,13 +7,13 @@ public class Effect : MonoBehaviour
 {
     private Dictionary<Type, EffectBase> _effect;
     
-    public void PlayEffect(Type type, Action<Action> endAction, Value value, Action work, ChInfo chInfo = null)
+    public Effect PlayEffect(Type type, Action<Action> endAction, Value value, Action work, ChInfo chInfo = null)
     {
         if (type == null)
         {
             Debug.LogWarning($"error_Effect : Effect Type : 이 이상합니다.");
             work?.Invoke();
-            return;
+            return null;
         }
 
         if (_effect == null)
@@ -25,12 +25,32 @@ public class Effect : MonoBehaviour
         }
 
         _effect[type].StartEffect(endAction, value, work, chInfo);
+
+        return this;
     }
 
-    public void SkipEffect(Type type)
+    public void SkipEffect()
     {
-        if (_effect[type] == null)
-            return;
-        _effect[type].SkipEffect();
+        //if (_effect[type] == null)
+        //    return;
+        //_effect[type].SkipEffect();
+
+        foreach (var effect in _effect)
+        {
+            if (effect.Value == null) continue;
+            effect.Value.SkipEffect();
+        }
     }
+
+    public void DeleteEffect()
+    {
+        foreach (var effect in _effect)
+        {
+            if (effect.Value == null) continue;
+            
+            Destroy(effect.Value);
+        }
+        _effect.Clear();
+    }
+
 }

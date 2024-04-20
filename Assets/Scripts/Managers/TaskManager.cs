@@ -129,6 +129,7 @@ public class TaskManager : ManagerSingle<TaskManager>
         while (num++ < Instance._tasks.Count)
         {
             Instance._tasks[num].Set(Instance._taskConnect[num], Instance._data[num]);
+        
         }
 
     }

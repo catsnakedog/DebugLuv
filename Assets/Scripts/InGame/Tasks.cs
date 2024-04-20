@@ -178,8 +178,14 @@ public class Tasks : MonoBehaviour
 
     private void TextTask(string task, Action done)
     {
-        UI_Manager.GetUI<UI_InGame>().SetName(_setenceData.Name);
-        UI_Manager.GetUI<UI_InGame>().ShowTextEffect(_setenceData.Text, done);
+        //UI_Manager.GetUI<UI_InGame>().SetName(_setenceData.Name);
+        //UI_Manager.GetUI<UI_InGame>().ShowTextEffect(_setenceData.Text, done);
+
+        Type classType = Type.GetType(Define.TextEffect);
+        _setenceData.EtcTask.Value.Value1 = _setenceData.Name;
+        _setenceData.EtcTask.Value.Value2 = _setenceData.Text;
+        EffectManager.Instance.PlayEffect(classType, EpisodeManager.GetInGameObjPack().Etc, _setenceData.EtcTask.Value, done);
+
     }
 
     private void DoneLineTask(int num, int targetComplete)

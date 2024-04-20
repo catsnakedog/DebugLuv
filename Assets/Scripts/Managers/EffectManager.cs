@@ -18,6 +18,7 @@ using UnityEngine;
 /// <summary> 이펙트를 위한 매니저 </summary>
 public class EffectManager : ManagerSingle<EffectManager>
 {
+    List<Effect> effectList = new List<Effect>();
     /// <summary>
     /// 게임 Play 중 사용할 Effect를 Play(Start)한다.
     /// </summary>
@@ -27,7 +28,12 @@ public class EffectManager : ManagerSingle<EffectManager>
     /// <param name="work"></param>
     public void PlayEffect(Type type, GameObject target,Value value, Action work = null, ChInfo chInfo = null)
     {
-        target.GetOrAddComponent<Effect>().PlayEffect(type, EndEffect, value, work, chInfo);
+        Effect effect = target.GetOrAddComponent<Effect>().PlayEffect(type, EndEffect, value, work, chInfo);
+        if(effect != null)
+        {
+            effectList.Add(effect);
+        }
+
     }
 
     /// <summary>
@@ -35,9 +41,14 @@ public class EffectManager : ManagerSingle<EffectManager>
     /// </summary>
     /// <param name="type"></param>
     /// <param name="target"></param>
-    public void SkipEffect(Type type, GameObject target)
+    public static void SkipEffect()
     {
-        target.GetOrAddComponent<Effect>().SkipEffect(type);
+        //target.GetOrAddComponent<Effect>().SkipEffect(type);
+        foreach(var effect in Instance.effectList)
+        {
+            if (effect == null) continue;
+            effect.SkipEffect();
+        }
     }
 
     /// <summary>
